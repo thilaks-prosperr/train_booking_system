@@ -34,7 +34,8 @@ function SeatSelection() {
                 // Assuming backend handles missing seq gracefully or we'd need to fetch stations.
                 startSeq: 1,
                 endSeq: 10
-            }
+            },
+            headers: user ? { Authorization: `Bearer ${user.token}` } : {}
         })
             .then(res => setSeatRows(res.data))
             .catch(err => console.error("Failed to load seats", err));
@@ -71,6 +72,8 @@ function SeatSelection() {
                 destStationId: trainData.destStationId || 3,     // Fallback
                 coachType: coachType,
                 selectedSeats: selectedSeats
+            }, {
+                headers: { Authorization: `Bearer ${user.token}` }
             });
 
             alert(`Booking Successful for ${selectedSeats.join(', ')}!`);

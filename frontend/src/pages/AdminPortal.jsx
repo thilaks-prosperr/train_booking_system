@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config';
+import { useAuth } from '../context/AuthContext';
 import '../styles/AdminPortal.css';
 
 function AdminPortal() {
     const [activeTab, setActiveTab] = useState('stats'); // Default view 'stats'
+    const { user } = useAuth(); // Need user for token
 
     return (
         <div className="admin-container">
@@ -20,9 +22,9 @@ function AdminPortal() {
 
             {/* Main Content */}
             <div className="admin-content">
-                {activeTab === 'stats' && <StatsView />}
-                {activeTab === 'station' && <AddStationView />}
-                {activeTab === 'train' && <AddTrainView />}
+                {activeTab === 'stats' && <StatsView user={user} />}
+                {activeTab === 'station' && <AddStationView user={user} />}
+                {activeTab === 'train' && <AddTrainView user={user} />}
             </div>
         </div>
     );
@@ -39,15 +41,18 @@ function SidebarItem({ label, active, onClick }) {
     );
 }
 
-function StatsView() {
+function StatsView({ user }) {
     const [stats, setStats] = useState({ users: 0, trains: 0, stations: 0 });
 
     useEffect(() => {
+        if (!user) return;
         // Mock endpoints if backend doesn't support them all yet exactly as required
-        axios.get(`${API_BASE_URL}/api/admin/stats`)
+        axios.get(`${API_BASE_URL}/api/admin/stats`, {
+            headers: { Authorization: `Bearer ${user.token}` }
+        })
             .then(res => setStats(res.data))
             .catch(err => console.error("Failed to load stats", err));
-    }, []);
+    }, [user]);
 
     return (
         <div>
@@ -70,7 +75,7 @@ function StatCard({ title, value, color, borderColor }) {
     );
 }
 
-function AddStationView() {
+function AddStationView({ user }) {
     const [formData, setFormData] = useState({ code: '', name: '', city: '', latitude: '', longitude: '' });
 
     const handleSubmit = async (e) => {
@@ -84,6 +89,8 @@ function AddStationView() {
                 // Wait, let's double check api_tests
                 latitude: parseFloat(formData.latitude),
                 longitude: parseFloat(formData.longitude)
+            }, {
+                headers: { Authorization: `Bearer ${user.token}` }
             });
             alert("Station added successfully!");
             setFormData({ code: '', name: '', city: '', latitude: '', longitude: '' });
@@ -110,7 +117,7 @@ function AddStationView() {
     );
 }
 
-function AddTrainView() {
+function AddTrainView({ user }) {
     const [formData, setFormData] = useState({ name: '', number: '', seats: 60 });
 
     const handleSubmit = async (e) => {
@@ -120,6 +127,8 @@ function AddTrainView() {
                 trainName: formData.name,
                 trainNumber: formData.number,
                 totalSeatsPerCoach: parseInt(formData.seats)
+            }, {
+                headers: { Authorization: `Bearer ${user.token}` }
             });
             alert("Train added successfully!");
             setFormData({ name: '', number: '', seats: 60 });
