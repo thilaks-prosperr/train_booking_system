@@ -2,8 +2,7 @@ package com.example.tbs.dto;
 
 import lombok.Data;
 
-public class AuthDTO {
-
+public class AuthDto {
     @Data
     public static class LoginRequest {
         private String username;
@@ -20,14 +19,14 @@ public class AuthDTO {
 
     @Data
     public static class AuthResponse {
-        private Long userId;
-        private String username;
+        private String token;
         private String role;
+        private Long userId;
 
-        public AuthResponse(Long userId, String username, String role) {
-            this.userId = userId;
-            this.username = username;
+        public AuthResponse(String token, String role, Long userId) {
+            this.token = token;
             this.role = role;
+            this.userId = userId;
         }
     }
 }

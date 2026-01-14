@@ -6,7 +6,7 @@
 .hero-section {
     height: 100vh;
     width: 100vw;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url("/images/vande_barath.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url("/images/vande_barath.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -48,7 +48,7 @@
 }
 
 .form-label {
-    color: var(--color-text-secondary);
+    color: var(--color-text-input-label);
     font-size: 0.9rem;
     font-weight: 600;
 }

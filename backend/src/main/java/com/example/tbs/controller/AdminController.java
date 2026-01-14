@@ -123,9 +123,14 @@ public class AdminController {
         // We will return 0 or a placeholder.
         double revenue = 0.0;
 
+        long trainCount = trainRepository.count();
+        long stationCount = stationRepository.count();
+
         java.util.Map<String, Object> stats = new java.util.HashMap<>();
         stats.put("users", userCount);
         stats.put("bookings", bookingCount);
+        stats.put("trains", trainCount);
+        stats.put("stations", stationCount);
         stats.put("revenue", revenue);
         return stats;
     }

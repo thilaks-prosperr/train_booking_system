@@ -91,6 +91,10 @@ public class BookingService {
                 return savedBooking.getBookingId();
         }
 
+        public void cancelBooking(Long bookingId) {
+                bookingRepository.deleteById(bookingId);
+        }
+
         public java.util.List<BookingHistoryDTO> getUserBookings(Long userId) {
                 return bookingRepository.findByUserUserId(userId).stream().map(b -> new BookingHistoryDTO(
                                 b.getBookingId(),

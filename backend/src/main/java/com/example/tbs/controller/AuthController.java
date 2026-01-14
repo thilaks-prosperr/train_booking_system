@@ -1,8 +1,7 @@
 package com.example.tbs.controller;
 
-import com.example.tbs.dto.AuthDTO;
-import com.example.tbs.entity.User;
-import com.example.tbs.repository.UserRepository;
+import com.example.tbs.dto.AuthDto;
+import com.example.tbs.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,36 +9,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private final UserRepository userRepository;
+    private final AuthService authService;
 
-    public AuthController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody AuthDTO.RegisterRequest request) {
-        if (userRepository.findByUsername(request.getUsername()) != null) {
-            return ResponseEntity.badRequest().body("Username already exists");
-        }
-
-        User newUser = new User();
-        newUser.setUsername(request.getUsername());
-        newUser.setPassword(request.getPassword()); // Plain text as requested
-        newUser.setEmail(request.getEmail());
-        newUser.setFullName(request.getFullName());
-        newUser.setRole("USER");
-
-        userRepository.save(newUser);
-        return ResponseEntity.ok("User registered successfully");
+    public ResponseEntity<AuthDto.AuthResponse> register(@RequestBody AuthDto.RegisterRequest request) {
+        return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthDTO.LoginRequest request) {
-        User user = userRepository.findByUsername(request.getUsername());
-        if (user == null || !user.getPassword().equals(request.getPassword())) {
-            return ResponseEntity.badRequest().body("Invalid credentials");
-        }
-
-        return ResponseEntity.ok(new AuthDTO.AuthResponse(user.getUserId(), user.getUsername(), user.getRole()));
+    public ResponseEntity<AuthDto.AuthResponse> login(@RequestBody AuthDto.LoginRequest request) {
+        return ResponseEntity.ok(authService.login(request));
     }
 }
