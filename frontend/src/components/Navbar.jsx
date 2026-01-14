@@ -15,7 +15,7 @@ function Navbar() {
             </div>
             <div className="navbar-links">
                 <Link to="/" className="nav-link">Home</Link>
-                <Link to="#" className="nav-link">About</Link>
+                <Link to="/about" className="nav-link">About</Link>
                 {user ? (
                     <div className="user-menu">
                         <Link to={dashboardLink} className="user-icon-link" title="My Dashboard">

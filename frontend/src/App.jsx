@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import SearchResults from './pages/SearchResults';
 import SeatSelection from './pages/SeatSelection';
+import AboutPage from './pages/AboutPage';
 import AdminPortal from './pages/AdminPortal';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -22,6 +23,7 @@ function App() {
           <Route path="/book/:trainId" element={<SeatSelection />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/about" element={<AboutPage />} />
 
           {/* Protected Routes */}
           <Route element={<PrivateRoute />}>
