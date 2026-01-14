@@ -1,0 +1,115 @@
+### Get All Stations
+GET http://localhost:8080/api/stations
+
+### Search for Trains
+# Uses Station Codes (SBC, MYS, UBL etc.)
+GET http://localhost:8080/api/search?from=SBC&to=MYS&date=2026-01-20
+
+### View Seats
+# Uses Train ID (not Number) and Coach Code
+# Check the Train ID from Admin -> Trains if 1 does not exist.
+GET http://localhost:8080/api/seats?trainId=1&date=2026-01-20&coach=S1
+
+### Make a Booking
+# NOTE: This endpoint requires Station IDs (Long), not Codes (String).
+# You can find IDs from the GET /api/stations response.
+# Ensure userId 1 exists (seeded by default).
+POST http://localhost:8080/api/bookings
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "trainId": 1,
+  "journeyDate": "2026-01-20",
+  "sourceStationId": 1,
+  "destStationId": 3,
+  "coachType": "S1",
+  "selectedSeats": [5, 6]
+}
+
+### Admin: Get All Trains
+GET http://localhost:8080/api/admin/trains
+
+### Admin: Add New Train
+POST http://localhost:8080/api/admin/trains
+Content-Type: application/json
+
+{
+    "trainNumber": "99999",
+    "trainName": "Test Express",
+    "totalSeatsPerCoach": 72
+}
+
+### Admin: Add Schedule (Stop)
+# Requires valid Train and Station nested objects (or at least IDs if configured)
+# Assuming IDs 1 exist for Train and Station.
+POST http://localhost:8080/api/admin/schedules
+Content-Type: application/json
+
+{
+    "train": { "trainId": 1 },
+    "station": { "stationId": 3 },
+    "arrivalTime": "10:00:00",
+    "departureTime": "10:05:00",
+    "stopSequence": 5,
+    "distanceFromStartKm": 150
+}
+
+### Admin: Get Stats
+GET http://localhost:8080/api/admin/stats
+
+###########################################################
+### NEW ENDPOINTS (Backend Upgrade)
+###########################################################
+
+### AUTH: Register
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "newuser",
+    "password": "password123",
+    "email": "newuser@example.com",
+    "fullName": "New User"
+}
+
+### AUTH: Login
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "newuser",
+    "password": "password123"
+}
+
+### PUBLIC: Get Train Route (Map)
+GET http://localhost:8080/api/trains/1/route
+
+### BOOKING HISTORY: Get User Bookings
+GET http://localhost:8080/api/bookings/user/1
+
+### ADMIN: Add Station
+POST http://localhost:8080/api/admin/stations
+Content-Type: application/json
+
+{
+    "stationCode": "TST",
+    "stationName": "Test Station",
+    "city": "Test City",
+    "latitude": 13.0,
+    "longitude": 77.0
+}
+
+### ADMIN: Get Train Occupancy
+GET http://localhost:8080/api/admin/occupancy?trainId=1&date=2026-01-20
+
+### ADMIN: Block Seats
+POST http://localhost:8080/api/admin/seats/block
+Content-Type: application/json
+
+{
+    "trainId": 1,
+    "date": "2026-01-20",
+    "coach": "S1",
+    "seatNumbers": [10, 11, 12]
+}
