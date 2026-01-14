@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const TrainCard = ({ train, onViewRoute }) => {
+const TrainCard = ({ train, date, onViewRoute }) => {
     const navigate = useNavigate();
 
     return (
@@ -29,7 +29,7 @@ const TrainCard = ({ train, onViewRoute }) => {
 
             {/* Layover Card / Segments Display */}
             {train.segments && train.segments.length > 1 && (
-                <div className="segments-container" style={{ background: '#f8f9fa', padding: '1rem', borderRadius: '4px', margin: '1rem 0', fontSize: '0.9rem' }}>
+                <div className="segments-container" style={{ background: 'var(--bg-input)', padding: '1rem', borderRadius: '4px', margin: '1rem 0', fontSize: '0.9rem' }}>
                     <strong>Journey Details:</strong>
                     <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.5rem' }}>
                         {train.segments.map((segment, idx) => (
@@ -38,7 +38,7 @@ const TrainCard = ({ train, onViewRoute }) => {
                                     {segment.trainName} ({segment.sourceStation}→{segment.destStation})
                                 </span>
                                 {idx < train.segments.length - 1 && (
-                                    <span style={{ margin: '0 0.5rem', color: '#dc3545', fontWeight: 'bold' }}>
+                                    <span style={{ margin: '0 0.5rem', color: 'var(--danger-color)', fontWeight: 'bold' }}>
                                         -- {segment.waitTimeAtDest || "Layover"} {"-->"}
                                     </span>
                                 )}
@@ -49,7 +49,7 @@ const TrainCard = ({ train, onViewRoute }) => {
             )}
 
             {!train.direct && !train.segments && (
-                <div className="train-alert">
+                <div className="train-alert" style={{ marginBottom: '1rem', color: 'orange' }}>
                     ⚠️ Layover at {train.layoverStation}
                 </div>
             )}
@@ -63,7 +63,7 @@ const TrainCard = ({ train, onViewRoute }) => {
                 </button>
                 <button
                     className="btn btn-primary btn-block"
-                    onClick={() => navigate(`/book/${train.trainNumber}`)}
+                    onClick={() => navigate(`/book/${train.trainId || train.trainNumber}?date=${date}`, { state: { train } })}
                     style={{ marginTop: 0 }}
                 >
                     Select Seats

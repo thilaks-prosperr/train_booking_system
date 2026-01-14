@@ -3,14 +3,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 4rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: transparent;
-    font-family: var(--font-family-base);
+    padding: 1rem 2rem;
+    background-color: #1e293b;
+    /* Dark background for visibility */
+    color: white;
+    box-shadow: var(--shadow-md);
 }
 
 .navbar-brand {
@@ -26,7 +23,7 @@
 }
 
 .brand-text {
-    color: var(--color-text-white);
+    color: white;
     text-decoration: none;
     font-weight: 800;
     letter-spacing: 0.5px;
@@ -39,31 +36,21 @@
 }
 
 .nav-link {
-    color: var(--color-text-white);
+    color: #cbd5e1;
     text-decoration: none;
     font-size: 1rem;
-    opacity: 0.9;
-    transition: opacity 0.2s;
+    font-weight: 500;
+    transition: color 0.2s;
 }
 
 .nav-link:hover {
-    opacity: 1;
+    color: white;
 }
 
-.btn-login {
-    background-color: var(--color-primary);
-    color: var(--color-text-white);
-    text-decoration: none;
-    font-weight: 600;
-    padding: 0.6rem 1.5rem;
-    border-radius: var(--border-radius-sm);
-    transition: background 0.2s;
-    border: none;
-    font-size: 0.95rem;
-}
-
-.btn-login:hover {
-    background-color: var(--color-primary-hover);
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .user-icon-link {
@@ -74,11 +61,11 @@
 }
 
 .user-icon {
-    font-size: 1.8rem;
-    color: var(--color-text-white);
-    background: rgba(255, 255, 255, 0.2);
-    width: 40px;
-    height: 40px;
+    font-size: 1.5rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,5 +74,5 @@
 }
 
 .user-icon:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
 }

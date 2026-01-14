@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { API_BASE_URL } from '../config';
 import Navbar from '../components/Navbar';
+import '../styles/UserDashboard.css';
 
 function UserDashboard() {
     const { user, logout } = useAuth();
@@ -15,7 +16,6 @@ function UserDashboard() {
             fetchBookings();
         } else {
             setLoading(false);
-
         }
     }, [user]);
 
@@ -47,69 +47,58 @@ function UserDashboard() {
         }
     };
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div className="flex-center" style={{ height: '100vh' }}>Loading...</div>;
 
     return (
-        <div style={{ background: 'var(--color-bg-light)', minHeight: '100vh' }}>
-            {/* Reusing Navbar, but we need to ensure it's visible on light bg if it's transparent. 
-                For dashboard, maybe we want a colored navbar or just use the same one.
-                The current navbar is absolute. We might need a spacer. */}
+        <div className="dashboard-container">
             <Navbar />
 
-            {/* Spacer for fixed/absolute navbar */}
-            <div style={{ height: '80px', backgroundColor: '#333' }}></div>
-
-            <div style={{ padding: '2rem 4rem', maxWidth: '1200px', margin: '0 auto' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+            <div className="dashboard-content">
+                <div className="dashboard-header">
                     <h2>My Dashboard</h2>
-                    <button onClick={logout} style={{ padding: '0.5rem 1rem', background: '#dc3545', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                    <button onClick={logout} className="btn btn-danger btn-sm">
                         Logout
                     </button>
                 </div>
 
-                {message && <div style={{ padding: '1rem', background: '#d4edda', color: '#155724', marginBottom: '1rem', borderRadius: '4px' }}>{message}</div>}
+                {message && <div className="alert alert-success" style={{ marginBottom: '1rem', padding: '1rem', background: '#d1fae5', color: '#065f46', borderRadius: '4px' }}>{message}</div>}
 
-                <div style={{ background: 'white', padding: '1.5rem', borderRadius: '8px', boxShadow: 'var(--shadow-card)' }}>
+                <div className="bookings-card">
                     <h3>My Bookings</h3>
                     {bookings.length === 0 ? (
-                        <p style={{ color: 'var(--color-text-secondary)', marginTop: '1rem' }}>No bookings found.</p>
+                        <p style={{ color: 'var(--text-secondary)', marginTop: '1rem' }}>No bookings found.</p>
                     ) : (
-                        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
+                        <table className="bookings-table">
                             <thead>
-                                <tr style={{ borderBottom: '2px solid #eee', textAlign: 'left' }}>
-                                    <th style={{ padding: '1rem' }}>Train</th>
-                                    <th style={{ padding: '1rem' }}>Route</th>
-                                    <th style={{ padding: '1rem' }}>Date</th>
-                                    <th style={{ padding: '1rem' }}>Status</th>
-                                    <th style={{ padding: '1rem' }}>Action</th>
+                                <tr>
+                                    <th>Train</th>
+                                    <th>Route</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {bookings.map(booking => (
-                                    <tr key={booking.bookingId} style={{ borderBottom: '1px solid #eee' }}>
-                                        <td style={{ padding: '1rem' }}>
-                                            <div style={{ fontWeight: 'bold' }}>{booking.trainName}</div>
-                                            <div style={{ fontSize: '0.85rem', color: '#666' }}>{booking.trainNumber}</div>
+                                    <tr key={booking.bookingId}>
+                                        <td>
+                                            <div style={{ fontWeight: 600 }}>{booking.trainName}</div>
+                                            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{booking.trainNumber}</div>
                                         </td>
-                                        <td style={{ padding: '1rem' }}>
+                                        <td>
                                             {booking.source} ➝ {booking.dest}
                                         </td>
-                                        <td style={{ padding: '1rem' }}>{booking.date}</td>
-                                        <td style={{ padding: '1rem' }}>
-                                            <span style={{
-                                                padding: '0.25rem 0.5rem',
-                                                borderRadius: '4px',
-                                                fontSize: '0.85rem',
-                                                background: booking.status === 'CONFIRMED' ? '#d4edda' : '#f8d7da',
-                                                color: booking.status === 'CONFIRMED' ? '#155724' : '#721c24'
-                                            }}>
+                                        <td>{booking.date}</td>
+                                        <td>
+                                            <span className={`status-badge ${booking.status === 'CONFIRMED' ? 'status-confirmed' : 'status-cancelled'}`}>
                                                 {booking.status}
                                             </span>
                                         </td>
-                                        <td style={{ padding: '1rem' }}>
+                                        <td>
                                             <button
                                                 onClick={() => handleCancel(booking.bookingId)}
-                                                style={{ padding: '0.4rem 0.8rem', background: 'transparent', border: '1px solid #dc3545', color: '#dc3545', borderRadius: '4px', cursor: 'pointer', fontSize: '0.9rem' }}
+                                                className="btn btn-secondary btn-sm"
+                                                style={{ border: '1px solid var(--danger-color)', color: 'var(--danger-color)' }}
                                             >
                                                 Cancel
                                             </button>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { API_BASE_URL } from '../config';
 import '../styles/HomePage.css';
 
@@ -11,11 +12,9 @@ function HomePage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        import('axios').then(axios => {
-            axios.default.get(`${API_BASE_URL}/api/stations`)
-                .then(res => setStations(res.data.map(s => s.code)))
-                .catch(err => console.error(err));
-        });
+        axios.get(`${API_BASE_URL}/api/stations`)
+            .then(res => setStations(res.data.map(s => s.code)))
+            .catch(err => console.error(err));
     }, []);
 
     const handleSubmit = (e) => {

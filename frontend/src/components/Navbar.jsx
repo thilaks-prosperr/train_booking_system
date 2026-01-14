@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import '../styles/Navbar.css';
 
 function Navbar() {
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
     // Assuming backend returns role "USER" or "ADMIN"
     const dashboardLink = user?.role === 'ADMIN' ? '/admin' : '/dashboard';
 
@@ -17,16 +17,16 @@ function Navbar() {
                 <Link to="/" className="nav-link">Home</Link>
                 <Link to="#" className="nav-link">About</Link>
                 {user ? (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div className="user-menu">
                         <Link to={dashboardLink} className="user-icon-link" title="My Dashboard">
                             <span className="user-icon">👤</span>
                         </Link>
-                        <button onClick={useAuth().logout} style={{ background: 'transparent', border: '1px solid white', color: 'white', padding: '0.4rem 0.8rem', borderRadius: '4px', cursor: 'pointer' }}>
+                        <button onClick={logout} className="btn btn-danger btn-sm">
                             Logout
                         </button>
                     </div>
                 ) : (
-                    <Link to="/login" className="btn-login">
+                    <Link to="/login" className="btn btn-primary">
                         Login
                     </Link>
                 )}

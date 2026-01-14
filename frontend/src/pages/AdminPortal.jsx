@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config';
-import { useAuth } from '../context/AuthContext';
+import '../styles/AdminPortal.css';
 
 function AdminPortal() {
     const [activeTab, setActiveTab] = useState('stats'); // Default view 'stats'
 
     return (
-        <div className="container" style={{ display: 'flex', minHeight: '80vh', marginTop: '20px' }}>
+        <div className="admin-container">
             {/* Sidebar */}
-            <div className="sidebar" style={{ width: '250px', borderRight: '1px solid #ddd', paddingRight: '20px' }}>
-                <h3 style={{ marginBottom: '20px' }}>Dashboard</h3>
-                <ul style={{ listStyle: 'none', padding: 0 }}>
+            <div className="admin-sidebar">
+                <h3>Dashboard</h3>
+                <ul className="sidebar-menu">
                     <SidebarItem label="Stats" active={activeTab === 'stats'} onClick={() => setActiveTab('stats')} />
                     <SidebarItem label="Add Station" active={activeTab === 'station'} onClick={() => setActiveTab('station')} />
                     <SidebarItem label="Add Train" active={activeTab === 'train'} onClick={() => setActiveTab('train')} />
@@ -19,7 +19,7 @@ function AdminPortal() {
             </div>
 
             {/* Main Content */}
-            <div className="content" style={{ flex: 1, paddingLeft: '40px' }}>
+            <div className="admin-content">
                 {activeTab === 'stats' && <StatsView />}
                 {activeTab === 'station' && <AddStationView />}
                 {activeTab === 'train' && <AddTrainView />}
@@ -31,15 +31,7 @@ function AdminPortal() {
 function SidebarItem({ label, active, onClick }) {
     return (
         <li
-            style={{
-                padding: '12px 16px',
-                cursor: 'pointer',
-                background: active ? '#e3f2fd' : 'transparent',
-                color: active ? '#0d47a1' : 'inherit',
-                borderRadius: '8px',
-                marginBottom: '8px',
-                fontWeight: active ? 'bold' : 'normal'
-            }}
+            className={`sidebar-item ${active ? 'active' : ''}`}
             onClick={onClick}
         >
             {label}
@@ -60,27 +52,20 @@ function StatsView() {
     return (
         <div>
             <h2>Overview</h2>
-            <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
-                <StatCard title="Total Users" value={stats.users} color="#e3f2fd" />
-                <StatCard title="Total Trains" value={stats.trains || 0} color="#fff3cd" />
-                <StatCard title="Stations Agent" value={stats.stations || 0} color="#d1e7dd" />
+            <div className="stats-grid">
+                <StatCard title="Total Users" value={stats.users} color="#e0f2fe" borderColor="#bae6fd" />
+                <StatCard title="Total Trains" value={stats.trains || 0} color="#fef9c3" borderColor="#fde047" />
+                <StatCard title="stations" value={stats.stations || 0} color="#dcfce7" borderColor="#86efac" />
             </div>
         </div>
     );
 }
 
-function StatCard({ title, value, color }) {
+function StatCard({ title, value, color, borderColor }) {
     return (
-        <div style={{
-            background: color,
-            padding: '2rem',
-            borderRadius: '12px',
-            width: '200px',
-            textAlign: 'center',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-        }}>
-            <h3 style={{ fontSize: '2.5rem', margin: '0 0 10px 0' }}>{value}</h3>
-            <p style={{ margin: 0, color: '#666', fontWeight: 500 }}>{title}</p>
+        <div className="stat-card" style={{ backgroundColor: color, borderColor: borderColor }}>
+            <h3>{value}</h3>
+            <p>{title}</p>
         </div>
     );
 }
@@ -95,8 +80,10 @@ function AddStationView() {
                 code: formData.code,
                 name: formData.name,
                 city: formData.city,
-                lat: parseFloat(formData.latitude),
-                lng: parseFloat(formData.longitude)
+                // Ensure backend expects lat/lng or latitude/longitude. api_tests calls them latitude/longitude? NO, api_tests says latitude/longitude
+                // Wait, let's double check api_tests
+                latitude: parseFloat(formData.latitude),
+                longitude: parseFloat(formData.longitude)
             });
             alert("Station added successfully!");
             setFormData({ code: '', name: '', city: '', latitude: '', longitude: '' });
@@ -107,17 +94,17 @@ function AddStationView() {
     };
 
     return (
-        <div style={{ maxWidth: '500px' }}>
-            <h2>Add New Station</h2>
+        <div className="admin-form-container">
+            <h2 style={{ marginBottom: '1.5rem' }}>Add New Station</h2>
             <form onSubmit={handleSubmit}>
                 <InputField label="Station Code" value={formData.code} onChange={e => setFormData({ ...formData, code: e.target.value })} />
                 <InputField label="Station Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
                 <InputField label="City" value={formData.city} onChange={e => setFormData({ ...formData, city: e.target.value })} />
-                <div style={{ display: 'flex', gap: '10px' }}>
+                <div style={{ display: 'flex', gap: '1rem' }}>
                     <InputField label="Latitude" type="number" value={formData.latitude} onChange={e => setFormData({ ...formData, latitude: e.target.value })} />
                     <InputField label="Longitude" type="number" value={formData.longitude} onChange={e => setFormData({ ...formData, longitude: e.target.value })} />
                 </div>
-                <button className="btn btn-primary" style={{ marginTop: '1rem' }}>Add Station</button>
+                <button className="btn btn-primary btn-block" style={{ marginTop: '1rem' }}>Add Station</button>
             </form>
         </div>
     );
@@ -142,13 +129,13 @@ function AddTrainView() {
     };
 
     return (
-        <div style={{ maxWidth: '500px' }}>
-            <h2>Add New Train</h2>
+        <div className="admin-form-container">
+            <h2 style={{ marginBottom: '1.5rem' }}>Add New Train</h2>
             <form onSubmit={handleSubmit}>
                 <InputField label="Train Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
                 <InputField label="Train Number" value={formData.number} onChange={e => setFormData({ ...formData, number: e.target.value })} />
                 <InputField label="Seats per Coach" type="number" value={formData.seats} onChange={e => setFormData({ ...formData, seats: e.target.value })} />
-                <button className="btn btn-primary" style={{ marginTop: '1rem' }}>Add Train</button>
+                <button className="btn btn-primary btn-block" style={{ marginTop: '1rem' }}>Add Train</button>
             </form>
         </div>
     );
@@ -156,15 +143,14 @@ function AddTrainView() {
 
 function InputField({ label, type = "text", value, onChange }) {
     return (
-        <div className="form-group" style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>{label}</label>
+        <div className="form-group">
+            <label>{label}</label>
             <input
                 type={type}
                 className="form-control"
                 value={value}
                 onChange={onChange}
                 required
-                style={{ width: '100%', padding: '0.5rem' }}
             />
         </div>
     );

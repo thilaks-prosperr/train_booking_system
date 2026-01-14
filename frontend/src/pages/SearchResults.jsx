@@ -111,6 +111,7 @@ function SearchResults() {
                             <TrainCard
                                 key={index}
                                 train={train}
+                                date={date}
                                 onViewRoute={handleViewRoute}
                             />
                         ))}
@@ -120,10 +121,10 @@ function SearchResults() {
                 {/* Right Column: Map */}
                 <div className="results-map-container">
                     {/* Date Navigator */}
-                    <div className="date-navigator" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', padding: '0.5rem', background: '#333', color: '#fff', borderRadius: '4px' }}>
-                        <button onClick={() => handleDateChange(-1)} className="btn btn-sm" style={{ color: '#fff', padding: '0 0.5rem' }}>&lt; Prev Day</button>
+                    <div className="card date-navigator" style={{ padding: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', background: 'var(--text-primary)', color: 'var(--text-inverse)' }}>
+                        <button onClick={() => handleDateChange(-1)} className="btn btn-sm btn-secondary" style={{ background: 'rgba(255,255,255,0.1)', color: 'white', border: 'none' }}>&lt; Prev Day</button>
                         <span style={{ fontWeight: 'bold' }}>{date}</span>
-                        <button onClick={() => handleDateChange(1)} className="btn btn-sm" style={{ color: '#fff', padding: '0 0.5rem' }}>Next Day &gt;</button>
+                        <button onClick={() => handleDateChange(1)} className="btn btn-sm btn-secondary" style={{ background: 'rgba(255,255,255,0.1)', color: 'white', border: 'none' }}>Next Day &gt;</button>
                     </div>
 
                     <StationMap
