@@ -112,6 +112,21 @@ public class AdminController {
         public List<Integer> seatNumbers;
     }
 
+    // --- Bookings Management ---
+    @GetMapping("/bookings")
+    public List<com.example.tbs.service.BookingService.BookingHistoryDTO> getAllBookings() {
+        return bookingRepository.findAll().stream()
+                .map(b -> new com.example.tbs.service.BookingService.BookingHistoryDTO(
+                        b.getBookingId(),
+                        b.getTrain().getTrainName(),
+                        b.getTrain().getTrainNumber(),
+                        b.getSourceStation().getStationName(),
+                        b.getDestStation().getStationName(),
+                        b.getJourneyDate(),
+                        b.getBookingStatus()))
+                .toList();
+    }
+
     // --- Stats ---
     // --- Stats ---
     @GetMapping("/stats")

@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/Navbar.css';
 
 function Navbar() {
     const { user, logout } = useAuth();
+    const location = useLocation();
     // Assuming backend returns role "USER" or "ADMIN"
     const dashboardLink = user?.role === 'ADMIN' ? '/admin' : '/dashboard';
 
@@ -21,9 +22,12 @@ function Navbar() {
                         <Link to={dashboardLink} className="user-icon-link" title="My Dashboard">
                             <span className="user-icon">👤</span>
                         </Link>
-                        <button onClick={logout} className="btn btn-danger btn-sm">
-                            Logout
-                        </button>
+                        {/* Only show logout if on dashboard/admin pages as per request */}
+                        {(location.pathname.includes('/dashboard') || location.pathname.includes('/admin')) && (
+                            <button onClick={logout} className="btn btn-danger btn-sm" style={{ marginLeft: '1rem' }}>
+                                Logout
+                            </button>
+                        )}
                     </div>
                 ) : (
                     <Link to="/login" className="btn btn-primary">

@@ -15,6 +15,7 @@ function AdminPortal() {
                 <h3>Dashboard</h3>
                 <ul className="sidebar-menu">
                     <SidebarItem label="Stats" active={activeTab === 'stats'} onClick={() => setActiveTab('stats')} />
+                    <SidebarItem label="Bookings" active={activeTab === 'bookings'} onClick={() => setActiveTab('bookings')} />
                     <SidebarItem label="Add Station" active={activeTab === 'station'} onClick={() => setActiveTab('station')} />
                     <SidebarItem label="Add Train" active={activeTab === 'train'} onClick={() => setActiveTab('train')} />
                 </ul>
@@ -23,6 +24,7 @@ function AdminPortal() {
             {/* Main Content */}
             <div className="admin-content">
                 {activeTab === 'stats' && <StatsView user={user} />}
+                {activeTab === 'bookings' && <BookingsView user={user} />}
                 {activeTab === 'station' && <AddStationView user={user} />}
                 {activeTab === 'train' && <AddTrainView user={user} />}
             </div>
@@ -166,3 +168,59 @@ function InputField({ label, type = "text", value, onChange }) {
 }
 
 export default AdminPortal;
+function BookingsView({ user }) {
+    const [bookings, setBookings] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (!user) return;
+        // Fetch all bookings
+        api.get('/admin/bookings')
+            .then(res => setBookings(res.data))
+            .catch(err => console.error("Failed to load bookings", err))
+            .finally(() => setLoading(false));
+    }, [user]);
+
+    if (loading) return <div>Loading bookings...</div>;
+
+    return (
+        <div>
+            <h2>All Bookings</h2>
+            <div className="bookings-table-container " style={{ overflowX: 'auto' }}>
+                <table className="bookings-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead>
+                        <tr style={{ background: '#f3f4f6' }}>
+                            <th style={{ padding: '0.75rem', textAlign: 'left' }}>ID</th>
+                            <th style={{ padding: '0.75rem', textAlign: 'left' }}>Train</th>
+                            <th style={{ padding: '0.75rem', textAlign: 'left' }}>Route</th>
+                            <th style={{ padding: '0.75rem', textAlign: 'left' }}>Date</th>
+                            <th style={{ padding: '0.75rem', textAlign: 'left' }}>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {bookings.map(b => (
+                            <tr key={b.bookingId} style={{ borderBottom: '1px solid #e5e7eb' }}>
+                                <td style={{ padding: '0.75rem' }}>#{b.bookingId}</td>
+                                <td style={{ padding: '0.75rem' }}>{b.trainName} ({b.trainNumber})</td>
+                                <td style={{ padding: '0.75rem' }}>{b.source} → {b.dest}</td>
+                                <td style={{ padding: '0.75rem' }}>{b.date}</td>
+                                <td style={{ padding: '0.75rem' }}>
+                                    <span style={{
+                                        padding: '0.25rem 0.5rem',
+                                        borderRadius: '4px',
+                                        fontSize: '0.85rem',
+                                        background: b.status === 'CONFIRMED' ? '#dcfce7' : '#fee2e2',
+                                        color: b.status === 'CONFIRMED' ? '#166534' : '#991b1b'
+                                    }}>
+                                        {b.status}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                {bookings.length === 0 && <p style={{ margin: '1rem', color: '#666' }}>No bookings found.</p>}
+            </div>
+        </div>
+    );
+}

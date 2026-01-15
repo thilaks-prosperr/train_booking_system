@@ -114,6 +114,11 @@ function SeatSelection() {
                 </div>
 
                 <div className="coach-layout">
+                    {seatRows.length === 0 && !bookingLoading && (
+                        <div className="alert alert-warning" style={{ textAlign: 'center', margin: '2rem' }}>
+                            Unable to load seat map. Please try refreshing or searching again.
+                        </div>
+                    )}
                     {seatRows.map(row => (
                         <div key={row.rowNumber} className="seat-row">
                             {/* Seat A */}
