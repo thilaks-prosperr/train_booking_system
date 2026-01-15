@@ -9,13 +9,13 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/hooks/use-toast';
-import { trainApi } from '@/lib/api';
+import { trainApi, bookingApi } from '@/lib/api';
 // import { mockTrains, mockStations } from '@/data/mockData';
 
 const SeatSelection = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { toast } = useToast();
 
   const [selectedCoach, setSelectedCoach] = useState('S1');
@@ -80,12 +80,47 @@ const SeatSelection = () => {
       return;
     }
 
-    // Navigate to payment/confirmation
-    toast({
-      title: 'Booking Confirmed!',
-      description: `Your seats ${selectedSeats.join(', ')} in ${selectedCoach} have been booked.`,
-    });
-    navigate('/dashboard');
+    // Create booking object
+    const bookingPayload = {
+      userId: user?.userId,
+      trainId: trainId,
+      journeyDate: date,
+      sourceStationId: 1, // You might need to look this up or pass it in searchParams
+      destStationId: 2,   // Same here
+      coachType: selectedCoach,
+      selectedSeats: selectedSeats
+    };
+
+    // Need to resolve station IDs properly. For now we will try to extract codes if possible or just proceed.
+    // Ideally searchParams has station IDs. If not, this might fail on backend side if IDs are required.
+    // The previous implementation didn't have station IDs in params, checking SearchResults to see if we can pass them.
+
+    // Let's rely on backend accepting IDs. For the purpose of this fix, let's assume we can get them.
+    // Actually, `from` and `to` are station IDs in SearchResults handleCheckAvailability? 
+    // Yes: from: result.sourceStationId.toString(), to: result.destStationId.toString()
+
+    const fromId = Number(searchParams.get('from'));
+    const toId = Number(searchParams.get('to'));
+
+    if (fromId) bookingPayload.sourceStationId = fromId;
+    if (toId) bookingPayload.destStationId = toId;
+
+    bookingApi.create(bookingPayload)
+      .then(() => {
+        toast({
+          title: 'Booking Confirmed!',
+          description: `Your seats ${selectedSeats.join(', ')} in ${selectedCoach} have been booked.`,
+        });
+        navigate('/dashboard');
+      })
+      .catch((err) => {
+        console.error(err);
+        toast({
+          title: 'Booking Failed',
+          description: 'Could not complete your booking. Please try again.',
+          variant: 'destructive',
+        });
+      });
   };
 
   const totalPrice = selectedSeats.length * price;

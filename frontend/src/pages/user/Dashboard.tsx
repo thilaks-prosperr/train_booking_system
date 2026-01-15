@@ -9,20 +9,23 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useState, useEffect } from 'react';
 import { bookingApi } from '@/lib/api';
 import { Booking } from '@/types';
-
-// ...
+import { useAuth } from '@/context/AuthContext';
 
 const UserDashboard = () => {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const { user } = useAuth();
+
   useEffect(() => {
-    bookingApi.getMyBookings()
-      .then(res => setBookings(res.data))
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
+    if (user?.userId) {
+      bookingApi.getUserBookings(user.userId)
+        .then(res => setBookings(res.data))
+        .catch(console.error)
+        .finally(() => setLoading(false));
+    }
+  }, [user]);
 
   const upcomingBookings = bookings.filter(b =>
     b.bookingStatus === 'CONFIRMED' && new Date(b.journeyDate) >= new Date()

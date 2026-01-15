@@ -51,7 +51,8 @@ export const seatApi = {
 // Booking API endpoints
 export const bookingApi = {
     create: (data) => api.post('/bookings', data),
-    getMyBookings: () => api.get('/bookings/my'),
+    getMyBookings: () => Promise.resolve({ data: [] }), // Deprecated
+    getUserBookings: (userId) => api.get(`/bookings/user/${userId}`),
     cancel: (id) => api.put(`/bookings/${id}/cancel`)
 };
 
