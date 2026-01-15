@@ -27,11 +27,37 @@ public class SearchResultDTO {
     // ... (rest of file)
 
     @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class SegmentDTO {
-        // ... existing fields
+        private String trainName;
+        private String trainNumber;
+        private String sourceStationCode;
+        private String destStationCode;
+        @com.fasterxml.jackson.annotation.JsonFormat(pattern = "HH:mm")
+        private LocalTime departureTime;
+        @com.fasterxml.jackson.annotation.JsonFormat(pattern = "HH:mm")
+        private LocalTime arrivalTime;
+        private String description;
+        private Long trainId;
+        private Long sourceStationId;
+        private Long destStationId;
         private int availableSeats;
 
-        // ... constructors
+        public SegmentDTO(String trainName, String trainNumber, String sourceStationCode, String destStationCode,
+                LocalTime departureTime, LocalTime arrivalTime, String description, Long trainId, Long sourceStationId,
+                Long destStationId) {
+            this.trainName = trainName;
+            this.trainNumber = trainNumber;
+            this.sourceStationCode = sourceStationCode;
+            this.destStationCode = destStationCode;
+            this.departureTime = departureTime;
+            this.arrivalTime = arrivalTime;
+            this.description = description;
+            this.trainId = trainId;
+            this.sourceStationId = sourceStationId;
+            this.destStationId = destStationId;
+        }
     }
 
     // New field for Map Routing
@@ -215,98 +241,6 @@ public class SearchResultDTO {
 
     public void setDestStationCode(String destStationCode) {
         this.destStationCode = destStationCode;
-    }
-
-    @Data
-    public static class SegmentDTO {
-        private String trainName;
-        private String trainNumber;
-        private String sourceStation;
-        private String destStation;
-        @com.fasterxml.jackson.annotation.JsonFormat(pattern = "HH:mm")
-        private LocalTime departureTime;
-        @com.fasterxml.jackson.annotation.JsonFormat(pattern = "HH:mm")
-        private LocalTime arrivalTime;
-        private String waitTimeAtDest;
-
-        // New IDs for booking
-        private Long trainId;
-        private Long sourceStationId;
-        private Long destStationId;
-
-        public SegmentDTO() {
-        }
-
-        public SegmentDTO(String trainName, String trainNumber, String sourceStation, String destStation,
-                LocalTime departureTime, LocalTime arrivalTime, String waitTimeAtDest, Long trainId,
-                Long sourceStationId, Long destStationId) {
-            this.trainName = trainName;
-            this.trainNumber = trainNumber;
-            this.sourceStation = sourceStation;
-            this.destStation = destStation;
-            this.departureTime = departureTime;
-            this.arrivalTime = arrivalTime;
-            this.waitTimeAtDest = waitTimeAtDest;
-            this.trainId = trainId;
-            this.sourceStationId = sourceStationId;
-            this.destStationId = destStationId;
-        }
-
-        public String getTrainName() {
-            return trainName;
-        }
-
-        public void setTrainName(String trainName) {
-            this.trainName = trainName;
-        }
-
-        public String getTrainNumber() {
-            return trainNumber;
-        }
-
-        public void setTrainNumber(String trainNumber) {
-            this.trainNumber = trainNumber;
-        }
-
-        public String getSourceStation() {
-            return sourceStation;
-        }
-
-        public void setSourceStation(String sourceStation) {
-            this.sourceStation = sourceStation;
-        }
-
-        public String getDestStation() {
-            return destStation;
-        }
-
-        public void setDestStation(String destStation) {
-            this.destStation = destStation;
-        }
-
-        public Long getTrainId() {
-            return trainId;
-        }
-
-        public void setTrainId(Long trainId) {
-            this.trainId = trainId;
-        }
-
-        public Long getSourceStationId() {
-            return sourceStationId;
-        }
-
-        public void setSourceStationId(Long sourceStationId) {
-            this.sourceStationId = sourceStationId;
-        }
-
-        public Long getDestStationId() {
-            return destStationId;
-        }
-
-        public void setDestStationId(Long destStationId) {
-            this.destStationId = destStationId;
-        }
     }
 
     @Data
