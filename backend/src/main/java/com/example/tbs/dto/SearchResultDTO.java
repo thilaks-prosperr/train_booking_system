@@ -217,11 +217,17 @@ public class SearchResultDTO {
         private LocalTime arrivalTime;
         private String waitTimeAtDest;
 
+        // New IDs for booking
+        private Long trainId;
+        private Long sourceStationId;
+        private Long destStationId;
+
         public SegmentDTO() {
         }
 
         public SegmentDTO(String trainName, String trainNumber, String sourceStation, String destStation,
-                LocalTime departureTime, LocalTime arrivalTime, String waitTimeAtDest) {
+                LocalTime departureTime, LocalTime arrivalTime, String waitTimeAtDest, Long trainId,
+                Long sourceStationId, Long destStationId) {
             this.trainName = trainName;
             this.trainNumber = trainNumber;
             this.sourceStation = sourceStation;
@@ -229,9 +235,11 @@ public class SearchResultDTO {
             this.departureTime = departureTime;
             this.arrivalTime = arrivalTime;
             this.waitTimeAtDest = waitTimeAtDest;
+            this.trainId = trainId;
+            this.sourceStationId = sourceStationId;
+            this.destStationId = destStationId;
         }
 
-        // ... getters
         public String getTrainName() {
             return trainName;
         }
@@ -262,6 +270,30 @@ public class SearchResultDTO {
 
         public void setDestStation(String destStation) {
             this.destStation = destStation;
+        }
+
+        public Long getTrainId() {
+            return trainId;
+        }
+
+        public void setTrainId(Long trainId) {
+            this.trainId = trainId;
+        }
+
+        public Long getSourceStationId() {
+            return sourceStationId;
+        }
+
+        public void setSourceStationId(Long sourceStationId) {
+            this.sourceStationId = sourceStationId;
+        }
+
+        public Long getDestStationId() {
+            return destStationId;
+        }
+
+        public void setDestStationId(Long destStationId) {
+            this.destStationId = destStationId;
         }
     }
 

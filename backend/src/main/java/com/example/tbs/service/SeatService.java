@@ -15,45 +15,45 @@ import java.util.stream.Collectors;
 @Service
 public class SeatService {
 
-    private final BookedSeatRepository bookedSeatRepository;
+        private final BookedSeatRepository bookedSeatRepository;
 
-    public SeatService(BookedSeatRepository bookedSeatRepository) {
-        this.bookedSeatRepository = bookedSeatRepository;
-    }
-
-    public List<SeatRowDTO> getSeatLayout(Long trainId, LocalDate date, String coach, int startSeq, int endSeq) {
-        // Fetch overlapping bookings
-        // Logic: A seat is 'BOOKED' if (UserStart < BookedEnd) AND (UserEnd >
-        // BookedStart).
-        // The repository query already handles this logic:
-        // b.fromSeq < :endSeq AND b.toSeq > :startSeq
-        List<BookedSeat> bookedSeats = bookedSeatRepository.findBookedSeats(
-                trainId, date, coach, startSeq, endSeq);
-
-        Set<Integer> bookedSeatNumbers = bookedSeats.stream()
-                .map(BookedSeat::getSeatNumber)
-                .collect(Collectors.toSet());
-
-        List<SeatRowDTO> rows = new ArrayList<>();
-        int seatsPerRow = 4;
-        int totalRows = 10;
-
-        for (int i = 1; i <= totalRows; i++) {
-            List<SeatDTO> seats = new ArrayList<>();
-            // Seat Numbers logic matches frontend expectation
-            int baseSeatNum = (i - 1) * seatsPerRow;
-
-            seats.add(new SeatDTO(baseSeatNum + 1, String.valueOf(baseSeatNum + 1),
-                    bookedSeatNumbers.contains(baseSeatNum + 1)));
-            seats.add(new SeatDTO(baseSeatNum + 2, String.valueOf(baseSeatNum + 2),
-                    bookedSeatNumbers.contains(baseSeatNum + 2)));
-            seats.add(new SeatDTO(baseSeatNum + 3, String.valueOf(baseSeatNum + 3),
-                    bookedSeatNumbers.contains(baseSeatNum + 3)));
-            seats.add(new SeatDTO(baseSeatNum + 4, String.valueOf(baseSeatNum + 4),
-                    bookedSeatNumbers.contains(baseSeatNum + 4)));
-
-            rows.add(new SeatRowDTO(i, seats));
+        public SeatService(BookedSeatRepository bookedSeatRepository) {
+                this.bookedSeatRepository = bookedSeatRepository;
         }
-        return rows;
-    }
+
+        public List<SeatRowDTO> getSeatLayout(Long trainId, LocalDate date, String coach, int startSeq, int endSeq) {
+                // Fetch overlapping bookings
+                // Logic: A seat is 'BOOKED' if (UserStart < BookedEnd) AND (UserEnd >
+                // BookedStart).
+                // The repository query already handles this logic:
+                // b.fromSeq < :endSeq AND b.toSeq > :startSeq
+                List<BookedSeat> bookedSeats = bookedSeatRepository.findBookedSeats(
+                                trainId, date, coach, startSeq, endSeq);
+
+                Set<Integer> bookedSeatNumbers = bookedSeats.stream()
+                                .map(BookedSeat::getSeatNumber)
+                                .collect(Collectors.toSet());
+
+                List<SeatRowDTO> rows = new ArrayList<>();
+                int seatsPerRow = 4;
+                int totalRows = 10;
+
+                for (int i = 1; i <= totalRows; i++) {
+                        List<SeatDTO> seats = new ArrayList<>();
+                        // Seat Numbers logic matches frontend expectation
+                        int baseSeatNum = (i - 1) * seatsPerRow;
+
+                        seats.add(new SeatDTO(baseSeatNum + 1, String.valueOf(baseSeatNum + 1),
+                                        bookedSeatNumbers.contains(baseSeatNum + 1)));
+                        seats.add(new SeatDTO(baseSeatNum + 2, String.valueOf(baseSeatNum + 2),
+                                        bookedSeatNumbers.contains(baseSeatNum + 2)));
+                        seats.add(new SeatDTO(baseSeatNum + 3, String.valueOf(baseSeatNum + 3),
+                                        bookedSeatNumbers.contains(baseSeatNum + 3)));
+                        seats.add(new SeatDTO(baseSeatNum + 4, String.valueOf(baseSeatNum + 4),
+                                        bookedSeatNumbers.contains(baseSeatNum + 4)));
+
+                        rows.add(new SeatRowDTO(i, seats));
+                }
+                return rows;
+        }
 }

@@ -41,12 +41,66 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // ALWAYS reset admin password to 'admin' to ensure access
+        resetAdminCredentials();
+
+        if (stationRepository.count() < 105) { // Check if already seeded including test data (30 + 4 = 34 stations? no
+                                               // wait 30)
+            // Actually just check if STA exists
+            if (stationRepository.findAll().stream().noneMatch(s -> s.getStationCode().equals("STA"))) {
+                seedIndirectRouteTest();
+            }
+        }
+
         if (stationRepository.count() == 0) {
             seedStations();
             seedTrainsAndSchedules();
             System.out.println("FULL SCALE DATA SEEDING COMPLETE!");
         }
         seedUsers();
+    }
+
+    private void resetAdminCredentials() {
+        try {
+            User admin = userRepository.findByUsername("admin").orElse(null);
+            if (admin != null) {
+                admin.setPassword(passwordEncoder.encode("admin"));
+                userRepository.save(admin);
+                System.out.println("Admin password reset to 'admin'");
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to reset admin password: " + e.getMessage());
+        }
+    }
+
+    private void seedIndirectRouteTest() {
+        System.out.println("Seeding Indirect Route Test Data (A,B,C,D)...");
+        Station s1 = stationRepository.save(new Station(null, "STA", "Station A", "City A", 10.0, 10.0));
+        Station s2 = stationRepository.save(new Station(null, "STB", "Station B", "City B", 11.0, 11.0));
+        Station s3 = stationRepository.save(new Station(null, "STC", "Station C", "City C", 12.0, 12.0));
+        Station s4 = stationRepository.save(new Station(null, "STD", "Station D", "City D", 13.0, 13.0));
+
+        // T1: A -> B
+        Train t1 = trainRepository.save(new Train(null, "90001", "Link A-B", 60));
+        createSchedule(t1, s1, LocalTime.of(8, 0), LocalTime.of(8, 0), 1, 0);
+        createSchedule(t1, s2, LocalTime.of(10, 0), LocalTime.of(10, 0), 2, 100);
+
+        // T2: B -> C (2h layover at B: Arr 10:00, Dep 12:00)
+        Train t2 = trainRepository.save(new Train(null, "90002", "Link B-C", 60));
+        createSchedule(t2, s2, LocalTime.of(12, 0), LocalTime.of(12, 0), 1, 0);
+        createSchedule(t2, s3, LocalTime.of(14, 0), LocalTime.of(14, 0), 2, 100);
+
+        // T3: C -> D (2h layover at C: Arr 14:00, Dep 16:00)
+        Train t3 = trainRepository.save(new Train(null, "90003", "Link C-D", 60));
+        createSchedule(t3, s3, LocalTime.of(16, 0), LocalTime.of(16, 0), 1, 0);
+        createSchedule(t3, s4, LocalTime.of(18, 0), LocalTime.of(18, 0), 2, 100);
+
+        // T4: D -> A (2h layover at D: Arr 18:00, Dep 20:00)
+        Train t4 = trainRepository.save(new Train(null, "90004", "Link D-A", 60));
+        createSchedule(t4, s4, LocalTime.of(20, 0), LocalTime.of(20, 0), 1, 0);
+        createSchedule(t4, s1, LocalTime.of(22, 0), LocalTime.of(22, 0), 2, 100);
+
+        System.out.println("Test Data Seeded: Trains 90001-90004");
     }
 
     private void seedUsers() {

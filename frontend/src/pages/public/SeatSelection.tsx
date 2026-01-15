@@ -10,7 +10,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { trainApi, bookingApi } from '@/lib/api';
-// import { mockTrains, mockStations } from '@/data/mockData';
+import { Segment } from '@/types';
+
+interface JourneyLeg {
+  trainId: number;
+  trainName: string;
+  trainNumber: string;
+  sourceStation: string;
+  destStation: string;
+  sourceStationId: number;
+  destStationId: number;
+  date: string; // Add date to leg for clarity, though it's global for now
+}
 
 const SeatSelection = () => {
   const [searchParams] = useSearchParams();
@@ -18,58 +29,114 @@ const SeatSelection = () => {
   const { isAuthenticated, user } = useAuth();
   const { toast } = useToast();
 
-  const [selectedCoach, setSelectedCoach] = useState('S1');
-  const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
-  const trainId = Number(searchParams.get('trainId'));
-  const date = searchParams.get('date') || '';
-  const price = Number(searchParams.get('price')) || 850;
-
-  // State for train data
-  const [train, setTrain] = useState<any>(null); // Replace 'any' with Train type
+  const [legs, setLegs] = useState<JourneyLeg[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch train details
+  // State maps: trainId -> value
+  const [selectedCoaches, setSelectedCoaches] = useState<Record<number, string>>({});
+  const [selectedSeats, setSelectedSeats] = useState<Record<number, number[]>>({});
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const globalDate = searchParams.get('date') || '';
+  const pricePerLeg = (Number(searchParams.get('price')) || 850) / (legs.length || 1); // rough estimate
+
   useEffect(() => {
-    const fetchTrainDetails = async () => {
-      if (!trainId) return;
-      try {
-        const response = await trainApi.getDetails(trainId);
-        setTrain(response.data);
-      } catch (err) {
-        toast({
-          title: "Error",
-          description: "Failed to load train details",
-          variant: "destructive"
-        });
-      } finally {
-        setLoading(false);
+    const initLegs = async () => {
+      const legsParam = searchParams.get('legs');
+
+      if (legsParam) {
+        try {
+          const segments: Segment[] = JSON.parse(legsParam);
+          const parsedLegs: JourneyLeg[] = segments.map(s => ({
+            trainId: s.trainId,
+            trainName: s.trainName,
+            trainNumber: s.trainNumber,
+            sourceStation: s.sourceStation,
+            destStation: s.destStation,
+            sourceStationId: s.sourceStationId,
+            destStationId: s.destStationId,
+            date: globalDate
+          }));
+          setLegs(parsedLegs);
+
+          // Init state
+          const initialCoaches: Record<number, string> = {};
+          const initialSeats: Record<number, number[]> = {};
+          parsedLegs.forEach(l => {
+            initialCoaches[l.trainId] = 'S1';
+            initialSeats[l.trainId] = [];
+          });
+          setSelectedCoaches(initialCoaches);
+          setSelectedSeats(initialSeats);
+          setLoading(false);
+
+        } catch (e) {
+          console.error("Failed to parse legs", e);
+          navigate(-1);
+        }
+      } else {
+        // Direct Train Fallback
+        const trainId = Number(searchParams.get('trainId'));
+        if (!trainId) return;
+
+        try {
+          const response = await trainApi.getDetails(trainId);
+          const train = response.data;
+
+          const leg: JourneyLeg = {
+            trainId: trainId,
+            trainName: train.trainName,
+            trainNumber: train.trainNumber,
+            sourceStation: searchParams.get('fromCode') || 'SRC', // Fallback display
+            destStation: searchParams.get('toCode') || 'DEST',
+            sourceStationId: Number(searchParams.get('from')),
+            destStationId: Number(searchParams.get('to')),
+            date: globalDate
+          };
+
+          setLegs([leg]);
+          setSelectedCoaches({ [trainId]: 'S1' });
+          setSelectedSeats({ [trainId]: [] });
+        } catch (err) {
+          console.error(err);
+        } finally {
+          setLoading(false);
+        }
       }
     };
-    fetchTrainDetails();
-  }, [trainId]);
+    initLegs();
+  }, [searchParams]);
 
-  // Derived station codes (you might want to fetch station details if needed, 
-  // or pass them via location state from search results)
-  const fromStationCode = searchParams.get('fromCode') || 'SRC';
-  const toStationCode = searchParams.get('toCode') || 'DEST';
 
   const coaches = ['S1', 'S2', 'S3'];
 
-  const handleSeatToggle = (seatNumber: number) => {
-    setSelectedSeats(prev =>
-      prev.includes(seatNumber)
-        ? prev.filter(s => s !== seatNumber)
-        : [...prev, seatNumber]
-    );
+  const handleSeatToggle = (trainId: number, seatNumber: number) => {
+    setSelectedSeats(prev => {
+      const current = prev[trainId] || [];
+      const updated = current.includes(seatNumber)
+        ? current.filter(s => s !== seatNumber)
+        : [...current, seatNumber];
+      return { ...prev, [trainId]: updated };
+    });
+  };
+
+  const handleCoachChange = (trainId: number, coach: string) => {
+    setSelectedCoaches(prev => ({ ...prev, [trainId]: coach }));
+    // Clear seats when coach changes
+    setSelectedSeats(prev => ({ ...prev, [trainId]: [] }));
   };
 
   const handleProceed = () => {
-    if (selectedSeats.length === 0) {
+    // Validate: Must select at least 1 seat for EACH leg
+    // Actually, maybe not strictly required? But user asked for "book all".
+    // Let's enforce it to avoid partial bookings for now.
+    const missingLegs = legs.filter(l => (selectedSeats[l.trainId]?.length || 0) === 0);
+
+    if (missingLegs.length > 0) {
       toast({
         title: 'Select seats',
-        description: 'Please select at least one seat to proceed.',
+        description: `Please select seats for: ${missingLegs.map(l => l.trainName).join(', ')}`,
         variant: 'destructive',
       });
       return;
@@ -80,36 +147,36 @@ const SeatSelection = () => {
       return;
     }
 
-    // Create booking object
-    const bookingPayload = {
+    // Construct Payload
+    // If multiple legs, use composite. even if 1 leg, we can use composite or fallback.
+    // Let's use composite for consistency if we want.
+    // Or just check length. Backend supports composite.
+
+    const bookingRequests = legs.map(leg => ({
       userId: user?.userId,
-      trainId: trainId,
-      journeyDate: date,
-      sourceStationId: 1, // You might need to look this up or pass it in searchParams
-      destStationId: 2,   // Same here
-      coachType: selectedCoach,
-      selectedSeats: selectedSeats
-    };
+      trainId: leg.trainId,
+      journeyDate: leg.date,
+      sourceStationId: leg.sourceStationId,
+      destStationId: leg.destStationId,
+      coachType: selectedCoaches[leg.trainId],
+      selectedSeats: selectedSeats[leg.trainId]
+    }));
 
-    // Need to resolve station IDs properly. For now we will try to extract codes if possible or just proceed.
-    // Ideally searchParams has station IDs. If not, this might fail on backend side if IDs are required.
-    // The previous implementation didn't have station IDs in params, checking SearchResults to see if we can pass them.
+    const apiCall = bookingRequests.length > 1
+      ? bookingApi.createComposite({ bookings: bookingRequests })
+      : bookingApi.create(bookingRequests[0]); // Fallback to simple for single leg if desired, OR just use composite for list of 1.
+    // Actually earlier code used simple create. Let's stick to safe path: single -> create, multi -> createComposite.
 
-    // Let's rely on backend accepting IDs. For the purpose of this fix, let's assume we can get them.
-    // Actually, `from` and `to` are station IDs in SearchResults handleCheckAvailability? 
-    // Yes: from: result.sourceStationId.toString(), to: result.destStationId.toString()
+    // Wait, simple create() returns Long (id). composite returns List<Long>.
+    // Promise handling needs to be robust.
 
-    const fromId = Number(searchParams.get('from'));
-    const toId = Number(searchParams.get('to'));
-
-    if (fromId) bookingPayload.sourceStationId = fromId;
-    if (toId) bookingPayload.destStationId = toId;
-
-    bookingApi.create(bookingPayload)
+    (bookingRequests.length > 1
+      ? bookingApi.createComposite({ bookings: bookingRequests })
+      : bookingApi.create(bookingRequests[0]))
       .then(() => {
         toast({
           title: 'Booking Confirmed!',
-          description: `Your seats ${selectedSeats.join(', ')} in ${selectedCoach} have been booked.`,
+          description: `Your journey has been successfully booked.`,
         });
         navigate('/dashboard');
       })
@@ -123,123 +190,107 @@ const SeatSelection = () => {
       });
   };
 
-  const totalPrice = selectedSeats.length * price;
+  const totalSeats = Object.values(selectedSeats).reduce((acc, curr) => acc + curr.length, 0);
+  // Total Price: Sum of (seats_in_leg * price_of_leg)
+  // We passed a global price. Let's just say totalSeats * (globalPrice / legs).
+  // Or simpler: just display global price * max(seats)? 
+  // Wait, if I book 2 seats on leg 1 and 2 seats on leg 2, I pay 2 * total_fare.
+  // The 'price' param is total fare for 1 person (sum of legs).
+  // So if I select same number of seats for both legs...
+  // But user might select 1 seat on leg 1 and 2 on leg 2 (weird but possible).
+  // Let's approximate: Total Price = (Sum of seats selected) * (price / legs)
+  const estimatedTotal = Math.round(totalSeats * pricePerLeg);
+
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
-  if (!train) {
-    return <div className="min-h-screen flex items-center justify-center">Train not found</div>;
-  }
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-24">
       <Navbar />
 
       <div className="pt-20 px-4">
-        <div className="container mx-auto py-8 max-w-4xl">
-          {/* Header */}
+        <div className="container mx-auto py-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
-            <Button
-              variant="ghost"
-              onClick={() => navigate(-1)}
-              className="mb-4"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Results
+            <Button variant="ghost" onClick={() => navigate(-1)} className="mb-4">
+              <ArrowLeft className="w-4 h-4 mr-2" /> Back
             </Button>
-
-            <div className="glass-card p-6">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                  <h1 className="font-display text-2xl font-bold">{train.trainName}</h1>
-                  <p className="text-muted-foreground">#{train.trainNumber}</p>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <div>
-                    <p className="text-muted-foreground">From</p>
-                    <p className="font-semibold">{fromStationCode}</p>
-                  </div>
-                  <div className="text-2xl">→</div>
-                  <div>
-                    <p className="text-muted-foreground">To</p>
-                    <p className="font-semibold">{toStationCode}</p>
-                  </div>
-                  <div className="border-l border-border pl-4 ml-2">
-                    <p className="text-muted-foreground">Date</p>
-                    <p className="font-semibold">{date}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h1 className="text-3xl font-display font-bold">Select Seats</h1>
+            <p className="text-muted-foreground">{globalDate}</p>
           </motion.div>
 
-          {/* Coach Selection */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            <Tabs value={selectedCoach} onValueChange={(v) => { setSelectedCoach(v); setSelectedSeats([]); }}>
-              <TabsList className="w-full justify-start mb-6 bg-muted/50">
-                {coaches.map(coach => (
-                  <TabsTrigger
-                    key={coach}
-                    value={coach}
-                    className="flex-1 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white"
-                  >
-                    Coach {coach}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-
-              {coaches.map(coach => (
-                <TabsContent key={coach} value={coach}>
-                  <SeatSelector
-                    trainId={trainId}
-                    coach={coach}
-                    date={date}
-                    selectedSeats={selectedSeats}
-                    onSeatToggle={handleSeatToggle}
-                  />
-                </TabsContent>
-              ))}
-            </Tabs>
-          </motion.div>
-
-          {/* Bottom Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="fixed bottom-0 left-0 right-0 glass-card border-t border-border p-4"
-          >
-            <div className="container mx-auto max-w-4xl flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">
-                  {selectedSeats.length} seat{selectedSeats.length !== 1 ? 's' : ''} selected
-                </p>
-                <div className="flex items-center gap-1">
-                  <IndianRupee className="w-5 h-5 text-primary" />
-                  <span className="text-2xl font-bold">{totalPrice}</span>
-                </div>
-              </div>
-              <Button
-                variant="hero"
-                size="lg"
-                onClick={handleProceed}
-                disabled={selectedSeats.length === 0}
+          {/* Grid for multiple legs */}
+          <div className={`grid gap-8 ${legs.length === 1 ? 'max-w-4xl mx-auto' : legs.length === 2 ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1 lg:grid-cols-3'}`}>
+            {legs.map((leg, index) => (
+              <motion.div
+                key={leg.trainId}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-card p-6"
               >
-                <Check className="w-5 h-5" />
-                Proceed to Pay
-              </Button>
+                <div className="mb-6 border-b border-border pb-4">
+                  <h2 className="text-xl font-bold">{leg.trainName}</h2>
+                  <p className="text-sm text-muted-foreground">#{leg.trainNumber}</p>
+                  <div className="flex items-center gap-2 mt-2 text-sm">
+                    <span className="font-semibold">{leg.sourceStation}</span>
+                    <span>→</span>
+                    <span className="font-semibold">{leg.destStation}</span>
+                  </div>
+                </div>
+
+                <Tabs value={selectedCoaches[leg.trainId]} onValueChange={(v) => handleCoachChange(leg.trainId, v)}>
+                  <TabsList className="w-full justify-start mb-6 bg-muted/50">
+                    {coaches.map(coach => (
+                      <TabsTrigger
+                        key={coach}
+                        value={coach}
+                        className="flex-1 data-[state=active]:bg-primary data-[state=active]:text-white"
+                      >
+                        {coach}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+                  <SeatSelector
+                    trainId={leg.trainId}
+                    coach={selectedCoaches[leg.trainId]}
+                    date={leg.date}
+                    selectedSeats={selectedSeats[leg.trainId]}
+                    onSeatToggle={(seat) => handleSeatToggle(leg.trainId, seat)}
+                  />
+                </Tabs>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="fixed bottom-0 left-0 right-0 glass-card border-t border-border p-4 z-50">
+        <div className="container mx-auto max-w-4xl flex items-center justify-between">
+          <div>
+            <p className="text-sm text-muted-foreground">
+              {totalSeats} seat(s) selected across {legs.length} train(s)
+            </p>
+            <div className="flex items-center gap-1">
+              <IndianRupee className="w-5 h-5 text-primary" />
+              <span className="text-2xl font-bold">{estimatedTotal}</span>
             </div>
-          </motion.div>
+          </div>
+          <Button
+            variant="hero"
+            size="lg"
+            onClick={handleProceed}
+            disabled={totalSeats === 0}
+          >
+            <Check className="w-5 h-5" />
+            Proceed to Book All
+          </Button>
         </div>
       </div>
 

@@ -35,4 +35,6 @@ public class Booking {
     private Station destStation;
 
     private String bookingStatus;
+
+    private Double totalFare;
 }

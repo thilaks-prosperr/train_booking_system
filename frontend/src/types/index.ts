@@ -33,7 +33,7 @@ export interface SearchResult {
   destTime: string;
   duration: string;
   price: number;
-  isDirect: boolean;
+  direct: boolean;
 
   // Station Details
   sourceStationId: number;
@@ -44,9 +44,22 @@ export interface SearchResult {
   destStationCode: string;
 
   // Extra info
-  segments?: any[]; // Simplified for now
+  segments?: Segment[];
   path?: any[];     // Simplified for now
   route?: any[];    // To keep compatibility if needed, but backend calls it 'path' or 'segments'
+}
+
+export interface Segment {
+  trainName: string;
+  trainNumber: string;
+  sourceStation: string;
+  destStation: string;
+  departureTime: string;
+  arrivalTime: string;
+  waitTimeAtDest: string;
+  trainId: number;
+  sourceStationId: number;
+  destStationId: number;
 }
 
 export interface Seat {
@@ -66,8 +79,10 @@ export interface Booking {
   sourceStation?: Station;
   destStation?: Station;
   seats?: BookedSeat[];
-  totalPrice?: number;
+  totalFare?: number;
   pnr?: string;
+  userName?: string;
+  userEmail?: string;
 }
 
 export interface BookedSeat {

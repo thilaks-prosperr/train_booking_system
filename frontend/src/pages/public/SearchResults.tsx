@@ -38,12 +38,12 @@ const SearchResults = () => {
   }, [from, to, date]);
 
   const filteredResults = directOnly
-    ? results.filter(r => r.isDirect)
+    ? results.filter(r => r.direct)
     : results;
 
   const handleCheckAvailability = (result: SearchResult) => {
     const params = new URLSearchParams({
-      trainId: result.trainId.toString(),
+      trainId: result.trainId?.toString() || '', // Fallback for layover which might have null
       from: result.sourceStationId.toString(),
       to: result.destStationId.toString(),
       fromCode: result.sourceStationCode,
@@ -51,6 +51,11 @@ const SearchResults = () => {
       date: date || '',
       price: result.price.toString(),
     });
+
+    if (result.segments && result.segments.length > 0) {
+      params.append('legs', JSON.stringify(result.segments));
+    }
+
     navigate(`/seats?${params.toString()}`);
   };
 

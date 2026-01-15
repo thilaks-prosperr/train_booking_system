@@ -74,20 +74,20 @@ public class TrainSearchService {
                                         .collect(Collectors.toList());
 
                         for (TrainSchedule intermediateArr : firstLegEnds) {
-                                // Now find Train 2: Intermediate -> Destination
+                                // Now find Train 2: Intermediate -> Destination (Single Layover)
                                 List<TrainSchedule> secondLegStarts = allSchedules.stream()
                                                 .filter(ts -> ts.getStation().getStationId()
                                                                 .equals(intermediateArr.getStation().getStationId())
                                                                 &&
                                                                 !ts.getTrain().getTrainId().equals(
-                                                                                firstLegStart.getTrain().getTrainId())) // Different
-                                                                                                                        // train
+                                                                                firstLegStart.getTrain().getTrainId()))
                                                 .collect(Collectors.toList());
 
                                 for (TrainSchedule intermediateDep : secondLegStarts) {
                                         if (isLayoverValid(intermediateArr.getArrivalTime(),
                                                         intermediateDep.getDepartureTime())) {
-                                                // Find if this second train goes to destination
+
+                                                // OPTION A: Train 2 goes to Destination (Single Layover)
                                                 TrainSchedule secondLegEnd = allSchedules.stream()
                                                                 .filter(ts -> ts.getTrain().getTrainId().equals(
                                                                                 intermediateDep.getTrain().getTrainId())
@@ -106,14 +106,68 @@ public class TrainSearchService {
                                                                                         intermediateDep, secondLegEnd,
                                                                                         allSchedules));
                                                 }
+
+                                                // OPTION B: Train 2 goes to Intermediate 2 (Double Layover)
+                                                List<TrainSchedule> secondLegEnds = allSchedules.stream()
+                                                                .filter(ts -> ts.getTrain().getTrainId()
+                                                                                .equals(intermediateDep.getTrain()
+                                                                                                .getTrainId())
+                                                                                &&
+                                                                                ts.getStopSequence() > intermediateDep
+                                                                                                .getStopSequence())
+                                                                .collect(Collectors.toList());
+
+                                                for (TrainSchedule i2Arr : secondLegEnds) {
+                                                        List<TrainSchedule> thirdLegStarts = allSchedules.stream()
+                                                                        .filter(ts -> ts.getStation().getStationId()
+                                                                                        .equals(i2Arr.getStation()
+                                                                                                        .getStationId())
+                                                                                        &&
+                                                                                        !ts.getTrain().getTrainId()
+                                                                                                        .equals(intermediateDep
+                                                                                                                        .getTrain()
+                                                                                                                        .getTrainId()))
+                                                                        .collect(Collectors.toList());
+
+                                                        for (TrainSchedule i2Dep : thirdLegStarts) {
+                                                                if (isLayoverValid(i2Arr.getArrivalTime(),
+                                                                                i2Dep.getDepartureTime())) {
+                                                                        TrainSchedule thirdLegEnd = allSchedules
+                                                                                        .stream()
+                                                                                        .filter(ts -> ts.getTrain()
+                                                                                                        .getTrainId()
+                                                                                                        .equals(i2Dep.getTrain()
+                                                                                                                        .getTrainId())
+                                                                                                        &&
+                                                                                                        ts.getStation().getStationId()
+                                                                                                                        .equals(destStation
+                                                                                                                                        .getStationId())
+                                                                                                        &&
+                                                                                                        ts.getStopSequence() > i2Dep
+                                                                                                                        .getStopSequence())
+                                                                                        .findFirst()
+                                                                                        .orElse(null);
+
+                                                                        if (thirdLegEnd != null) {
+                                                                                results.add(createDoubleLayoverDTO(
+                                                                                                firstLegStart,
+                                                                                                intermediateArr,
+                                                                                                intermediateDep, i2Arr,
+                                                                                                i2Dep, thirdLegEnd,
+                                                                                                allSchedules));
+                                                                        }
+                                                                }
+                                                        }
+                                                }
+
                                         }
                                 }
                         }
                 }
 
-                return results.stream()
-                                .sorted(Comparator.comparing(SearchResultDTO::getSourceTime))
+                return results.stream().sorted(Comparator.comparing(SearchResultDTO::getSourceTime))
                                 .collect(Collectors.toList());
+
         }
 
         private boolean isLayoverValid(LocalTime arrival, LocalTime departure) {
@@ -192,7 +246,10 @@ public class TrainSearchService {
                                 t1End.getStation().getStationCode(),
                                 t1Src.getDepartureTime(),
                                 t1End.getArrivalTime(),
-                                "Layover at " + t1End.getStation().getStationCode()));
+                                "Layover at " + t1End.getStation().getStationCode(),
+                                t1Src.getTrain().getTrainId(),
+                                t1Src.getStation().getStationId(),
+                                t1End.getStation().getStationId()));
                 segments.add(new SearchResultDTO.SegmentDTO(
                                 t2Start.getTrain().getTrainName(),
                                 t2Start.getTrain().getTrainNumber(),
@@ -200,7 +257,10 @@ public class TrainSearchService {
                                 t2End.getStation().getStationCode(),
                                 t2Start.getDepartureTime(),
                                 t2End.getArrivalTime(),
-                                "Destination"));
+                                "Destination",
+                                t2Start.getTrain().getTrainId(),
+                                t2Start.getStation().getStationId(),
+                                t2End.getStation().getStationId()));
 
                 // Create Path
                 List<SearchResultDTO.StationPointDTO> path1 = getPath(t1Src.getTrain().getTrainId(),
@@ -241,5 +301,64 @@ public class TrainSearchService {
                                 t1Src.getStation().getStationCode(),
                                 t2End.getStation().getStationName(),
                                 t2End.getStation().getStationCode());
+        }
+
+        private SearchResultDTO createDoubleLayoverDTO(TrainSchedule t1Src, TrainSchedule t1End,
+                        TrainSchedule t2Start, TrainSchedule t2End,
+                        TrainSchedule t3Start, TrainSchedule t3End,
+                        List<TrainSchedule> allSchedules) {
+
+                double dist1 = t1End.getDistanceFromStartKm() - t1Src.getDistanceFromStartKm();
+                double dist2 = t2End.getDistanceFromStartKm() - t2Start.getDistanceFromStartKm();
+                double dist3 = t3End.getDistanceFromStartKm() - t3Start.getDistanceFromStartKm();
+                double price = (dist1 + dist2 + dist3) * 2.0;
+
+                Duration duration = Duration.between(t1Src.getDepartureTime(), t3End.getArrivalTime());
+                if (duration.isNegative())
+                        duration = duration.plusHours(24);
+
+                String durationStr = String.format("%dh %dm", duration.toHours(), duration.toMinutesPart());
+                String trainName = t1Src.getTrain().getTrainName() + " \u2192 " + t2Start.getTrain().getTrainName()
+                                + "\u2192" + t3Start.getTrain().getTrainName();
+                String trainNumber = "Multi-Leg";
+
+                List<SearchResultDTO.SegmentDTO> segments = new ArrayList<>();
+                segments.add(new SearchResultDTO.SegmentDTO(
+                                t1Src.getTrain().getTrainName(), t1Src.getTrain().getTrainNumber(),
+                                t1Src.getStation().getStationCode(), t1End.getStation().getStationCode(),
+                                t1Src.getDepartureTime(), t1End.getArrivalTime(),
+                                "Layover at " + t1End.getStation().getStationCode(),
+                                t1Src.getTrain().getTrainId(), t1Src.getStation().getStationId(),
+                                t1End.getStation().getStationId()));
+                segments.add(new SearchResultDTO.SegmentDTO(
+                                t2Start.getTrain().getTrainName(), t2Start.getTrain().getTrainNumber(),
+                                t2Start.getStation().getStationCode(), t2End.getStation().getStationCode(),
+                                t2Start.getDepartureTime(), t2End.getArrivalTime(),
+                                "Layover at " + t2End.getStation().getStationCode(),
+                                t2Start.getTrain().getTrainId(), t2Start.getStation().getStationId(),
+                                t2End.getStation().getStationId()));
+                segments.add(new SearchResultDTO.SegmentDTO(
+                                t3Start.getTrain().getTrainName(), t3Start.getTrain().getTrainNumber(),
+                                t3Start.getStation().getStationCode(), t3End.getStation().getStationCode(),
+                                t3Start.getDepartureTime(), t3End.getArrivalTime(), "Destination",
+                                t3Start.getTrain().getTrainId(), t3Start.getStation().getStationId(),
+                                t3End.getStation().getStationId()));
+
+                List<SearchResultDTO.StationPointDTO> path = new ArrayList<>();
+                path.addAll(getPath(t1Src.getTrain().getTrainId(), t1Src.getStopSequence(), t1End.getStopSequence(),
+                                allSchedules));
+                path.addAll(getPath(t2Start.getTrain().getTrainId(), t2Start.getStopSequence(), t2End.getStopSequence(),
+                                allSchedules));
+                path.addAll(getPath(t3Start.getTrain().getTrainId(), t3Start.getStopSequence(), t3End.getStopSequence(),
+                                allSchedules));
+
+                return new SearchResultDTO(
+                                trainName, trainNumber, t1Src.getDepartureTime(), t3End.getArrivalTime(),
+                                durationStr, price, false,
+                                t1End.getStation().getStationName() + ", " + t2End.getStation().getStationName(),
+                                segments, path, null,
+                                t1Src.getStation().getStationId(), t3End.getStation().getStationId(),
+                                t1Src.getStation().getStationName(), t1Src.getStation().getStationCode(),
+                                t3End.getStation().getStationName(), t3End.getStation().getStationCode());
         }
 }

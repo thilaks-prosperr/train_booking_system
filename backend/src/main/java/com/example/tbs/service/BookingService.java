@@ -60,9 +60,14 @@ public class BookingService {
                 booking.setUser(user);
                 booking.setTrain(train);
                 booking.setJourneyDate(request.getJourneyDate());
-                booking.setSourceStation(source);
                 booking.setDestStation(dest);
                 booking.setBookingStatus("CONFIRMED");
+
+                // Calculate Price
+                double dist = destSchedule.getDistanceFromStartKm() - sourceSchedule.getDistanceFromStartKm();
+                double price = dist * 2.0
+                                * (request.getSelectedSeats() != null ? request.getSelectedSeats().size() : 1);
+                booking.setTotalFare(price);
 
                 Booking savedBooking = bookingRepository.save(booking);
 
@@ -89,6 +94,15 @@ public class BookingService {
                 }
 
                 return savedBooking.getBookingId();
+        }
+
+        @Transactional
+        public List<Long> createCompositeBooking(com.example.tbs.dto.CompositeBookingRequest compositeRequest) {
+                List<Long> bookingIds = new java.util.ArrayList<>();
+                for (BookingRequestDTO request : compositeRequest.getBookings()) {
+                        bookingIds.add(createBooking(request));
+                }
+                return bookingIds;
         }
 
         @Transactional
@@ -130,8 +144,9 @@ public class BookingService {
                                         b.getSourceStation(),
                                         b.getDestStation(),
                                         seatDTOs,
-                                        b.getTrain().getTotalSeatsPerCoach() * 10.0 // Dummy price or calc logic
-                        );
+                                        b.getTotalFare() != null ? b.getTotalFare() : 0.0,
+                                        b.getUser().getFullName(),
+                                        b.getUser().getEmail());
                 }).collect(java.util.stream.Collectors.toList());
         }
 
@@ -152,6 +167,8 @@ public class BookingService {
                 private Station destStation;
                 private List<BookedSeatDTO> seats;
                 private Double totalPrice;
+                private String userName;
+                private String userEmail;
         }
 
         @lombok.Data

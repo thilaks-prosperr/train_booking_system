@@ -143,8 +143,9 @@ public class AdminController {
                             b.getSourceStation(),
                             b.getDestStation(),
                             seatDTOs,
-                            b.getTrain().getTotalSeatsPerCoach() * 10.0 // Dummy price
-                    );
+                            b.getTotalFare() != null ? b.getTotalFare() : 0.0,
+                            b.getUser().getFullName(),
+                            b.getUser().getEmail());
                 })
                 .collect(java.util.stream.Collectors.toList());
         return ResponseEntity.ok(dtos);
@@ -243,16 +244,46 @@ public class AdminController {
     public ResponseEntity<Map<String, Object>> getStats() {
         long userCount = userRepository.count();
         long bookingCount = bookingRepository.count();
-        double revenue = 0.0;
         long trainCount = trainRepository.count();
         long stationCount = stationRepository.count();
 
+        // Calculate Revenue from CONFIRMED bookings
+        double revenue = bookingRepository.findAll().stream()
+                .filter(b -> "CONFIRMED".equals(b.getBookingStatus()) && b.getTotalFare() != null)
+                .mapToDouble(Booking::getTotalFare)
+                .sum();
+
+        // Calculate Active Trains (trains with schedules)
+        long activeTrains = trainRepository.findAll().stream()
+                .filter(t -> !trainScheduleRepository.findByTrain(t).isEmpty())
+                .count();
+
+        // Calculate Global Occupancy (Rough estimate: Booked Seats / (Total Capacity *
+        // 30 days))
+        // Or just Total Booked Seats for now as a simple metric check
+        long totalBookedSeats = bookedSeatRepository.count();
+        long totalCapacity = trainRepository.findAll().stream().mapToLong(t -> t.getTotalSeatsPerCoach() * 10L).sum();
+
+        // Avoid division by zero
+        double occupancyPercentage = 0;
+        if (totalCapacity > 0) {
+            // This is cumulitive occupancy, which might be high/low depending on data.
+            // Let's normalize it slightly: (Booked / (Capacity * Active Days?))
+            // For simplicity in this demo: (Booked Seats / Capacity) %
+            // Ideally this should be per train per day, but global stats are aggregate.
+            occupancyPercentage = ((double) totalBookedSeats / (totalCapacity * 10)) * 100; // Assume 10 days capacity
+            if (occupancyPercentage > 100)
+                occupancyPercentage = 100;
+        }
+
         Map<String, Object> stats = new HashMap<>();
         stats.put("users", userCount);
-        stats.put("bookings", bookingCount);
-        stats.put("trains", trainCount);
+        stats.put("totalBookings", bookingCount);
+        stats.put("activeTrains", activeTrains);
         stats.put("stations", stationCount);
-        stats.put("revenue", revenue);
+        stats.put("totalRevenue", revenue);
+        stats.put("occupancyPercentage", (int) occupancyPercentage);
+
         return ResponseEntity.ok(stats);
     }
 

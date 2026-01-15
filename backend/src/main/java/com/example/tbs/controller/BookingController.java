@@ -26,6 +26,17 @@ public class BookingController {
         }
     }
 
+    @PostMapping("/composite")
+    public ResponseEntity<?> createCompositeBooking(@RequestBody com.example.tbs.dto.CompositeBookingRequest request) {
+        try {
+            java.util.List<Long> bookingIds = bookingService.createCompositeBooking(request);
+            return ResponseEntity.ok(bookingIds);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @GetMapping("/user/{userId}")
     public ResponseEntity<?> getUserBookings(@PathVariable Long userId) {
         return ResponseEntity.ok(bookingService.getUserBookings(userId));

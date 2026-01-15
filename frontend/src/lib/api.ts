@@ -65,6 +65,7 @@ export const adminApi = {
 // Booking API endpoints
 export const bookingApi = {
     create: (data) => api.post('/bookings', data),
+    createComposite: (data) => api.post('/bookings/composite', data),
     getMyBookings: () => Promise.resolve({ data: [] }), // Deprecated
     getUserBookings: (userId) => api.get(`/bookings/user/${userId}`),
     cancel: (id) => api.delete(`/bookings/${id}`)

@@ -18,4 +18,5 @@ public class Train {
     private String trainNumber;
     private String trainName;
     private int totalSeatsPerCoach;
+    private int numberOfCoaches;
 }
