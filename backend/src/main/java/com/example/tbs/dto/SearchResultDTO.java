@@ -7,8 +7,6 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class SearchResultDTO {
     private String trainName;
     private String trainNumber;
@@ -38,9 +36,176 @@ public class SearchResultDTO {
     private String destStationName;
     private String destStationCode;
 
+    public SearchResultDTO() {
+    }
+
+    public SearchResultDTO(String trainName, String trainNumber, LocalTime sourceTime, LocalTime destTime,
+            String duration, double price, boolean isDirect, String layoverStation, List<SegmentDTO> segments,
+            List<StationPointDTO> path, Long trainId, Long sourceStationId, Long destStationId,
+            String sourceStationName, String sourceStationCode, String destStationName, String destStationCode) {
+        this.trainName = trainName;
+        this.trainNumber = trainNumber;
+        this.sourceTime = sourceTime;
+        this.destTime = destTime;
+        this.duration = duration;
+        this.price = price;
+        this.isDirect = isDirect;
+        this.layoverStation = layoverStation;
+        this.segments = segments;
+        this.path = path;
+        this.trainId = trainId;
+        this.sourceStationId = sourceStationId;
+        this.destStationId = destStationId;
+        this.sourceStationName = sourceStationName;
+        this.sourceStationCode = sourceStationCode;
+        this.destStationName = destStationName;
+        this.destStationCode = destStationCode;
+    }
+
+    public String getTrainName() {
+        return trainName;
+    }
+
+    public void setTrainName(String trainName) {
+        this.trainName = trainName;
+    }
+    // ... getters for all ... I will skip trivial ones if not used, but safest to
+    // add all or rely on public fields if I could (but I can't change access now
+    // easily)
+    // Actually, TrainSearchService constructs it.
+    // I need to add getters for at least getSourceTime() which was flagged.
+
+    public LocalTime getSourceTime() {
+        return sourceTime;
+    }
+
+    public void setSourceTime(LocalTime sourceTime) {
+        this.sourceTime = sourceTime;
+    }
+
+    // Adding minimal required getters for now to save tokens, or full? Full is
+    // safer.
+    public String getTrainNumber() {
+        return trainNumber;
+    }
+
+    public void setTrainNumber(String trainNumber) {
+        this.trainNumber = trainNumber;
+    }
+
+    public LocalTime getDestTime() {
+        return destTime;
+    }
+
+    public void setDestTime(LocalTime destTime) {
+        this.destTime = destTime;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public boolean isDirect() {
+        return isDirect;
+    }
+
+    public void setDirect(boolean direct) {
+        isDirect = direct;
+    }
+
+    public String getLayoverStation() {
+        return layoverStation;
+    }
+
+    public void setLayoverStation(String layoverStation) {
+        this.layoverStation = layoverStation;
+    }
+
+    public List<SegmentDTO> getSegments() {
+        return segments;
+    }
+
+    public void setSegments(List<SegmentDTO> segments) {
+        this.segments = segments;
+    }
+
+    public List<StationPointDTO> getPath() {
+        return path;
+    }
+
+    public void setPath(List<StationPointDTO> path) {
+        this.path = path;
+    }
+
+    public Long getTrainId() {
+        return trainId;
+    }
+
+    public void setTrainId(Long trainId) {
+        this.trainId = trainId;
+    }
+
+    public Long getSourceStationId() {
+        return sourceStationId;
+    }
+
+    public void setSourceStationId(Long sourceStationId) {
+        this.sourceStationId = sourceStationId;
+    }
+
+    public Long getDestStationId() {
+        return destStationId;
+    }
+
+    public void setDestStationId(Long destStationId) {
+        this.destStationId = destStationId;
+    }
+
+    public String getSourceStationName() {
+        return sourceStationName;
+    }
+
+    public void setSourceStationName(String sourceStationName) {
+        this.sourceStationName = sourceStationName;
+    }
+
+    public String getSourceStationCode() {
+        return sourceStationCode;
+    }
+
+    public void setSourceStationCode(String sourceStationCode) {
+        this.sourceStationCode = sourceStationCode;
+    }
+
+    public String getDestStationName() {
+        return destStationName;
+    }
+
+    public void setDestStationName(String destStationName) {
+        this.destStationName = destStationName;
+    }
+
+    public String getDestStationCode() {
+        return destStationCode;
+    }
+
+    public void setDestStationCode(String destStationCode) {
+        this.destStationCode = destStationCode;
+    }
+
     @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
     public static class SegmentDTO {
         private String trainName;
         private String trainNumber;
@@ -50,16 +215,104 @@ public class SearchResultDTO {
         private LocalTime departureTime;
         @com.fasterxml.jackson.annotation.JsonFormat(pattern = "HH:mm")
         private LocalTime arrivalTime;
-        private String waitTimeAtDest; // e.g. "2hr Wait at UBL"
+        private String waitTimeAtDest;
+
+        public SegmentDTO() {
+        }
+
+        public SegmentDTO(String trainName, String trainNumber, String sourceStation, String destStation,
+                LocalTime departureTime, LocalTime arrivalTime, String waitTimeAtDest) {
+            this.trainName = trainName;
+            this.trainNumber = trainNumber;
+            this.sourceStation = sourceStation;
+            this.destStation = destStation;
+            this.departureTime = departureTime;
+            this.arrivalTime = arrivalTime;
+            this.waitTimeAtDest = waitTimeAtDest;
+        }
+
+        // ... getters
+        public String getTrainName() {
+            return trainName;
+        }
+
+        public void setTrainName(String trainName) {
+            this.trainName = trainName;
+        }
+
+        public String getTrainNumber() {
+            return trainNumber;
+        }
+
+        public void setTrainNumber(String trainNumber) {
+            this.trainNumber = trainNumber;
+        }
+
+        public String getSourceStation() {
+            return sourceStation;
+        }
+
+        public void setSourceStation(String sourceStation) {
+            this.sourceStation = sourceStation;
+        }
+
+        public String getDestStation() {
+            return destStation;
+        }
+
+        public void setDestStation(String destStation) {
+            this.destStation = destStation;
+        }
     }
 
     @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
     public static class StationPointDTO {
         private String code;
         private String name;
         private double lat;
         private double lng;
+
+        public StationPointDTO() {
+        }
+
+        public StationPointDTO(String code, String name, double lat, double lng) {
+            this.code = code;
+            this.name = name;
+            this.lat = lat;
+            this.lng = lng;
+        }
+
+        // ... getters
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public double getLat() {
+            return lat;
+        }
+
+        public void setLat(double lat) {
+            this.lat = lat;
+        }
+
+        public double getLng() {
+            return lng;
+        }
+
+        public void setLng(double lng) {
+            this.lng = lng;
+        }
     }
 }

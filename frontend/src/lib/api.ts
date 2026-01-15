@@ -48,12 +48,25 @@ export const seatApi = {
     getLayout: (trainId, date, coach) => api.get('/seats', { params: { trainId, date, coach } })
 };
 
+// Admin API endpoints
+export const adminApi = {
+    getStats: () => api.get('/admin/stats'),
+    getBookings: () => api.get('/admin/bookings'),
+    getTrains: () => api.get('/admin/trains'),
+    createStation: (data) => api.post('/admin/stations', data),
+    updateStation: (id, data) => api.put(`/admin/stations/${id}`, data),
+    deleteStation: (id) => api.delete(`/admin/stations/${id}`),
+    createTrain: (data) => api.post('/admin/trains', data),
+    updateTrain: (id, data) => api.put(`/admin/trains/${id}`, data),
+    deleteTrain: (id) => api.delete(`/admin/trains/${id}`)
+};
+
 // Booking API endpoints
 export const bookingApi = {
     create: (data) => api.post('/bookings', data),
     getMyBookings: () => Promise.resolve({ data: [] }), // Deprecated
     getUserBookings: (userId) => api.get(`/bookings/user/${userId}`),
-    cancel: (id) => api.put(`/bookings/${id}/cancel`)
+    cancel: (id) => api.delete(`/bookings/${id}`)
 };
 
 // Export the base axios instance as default

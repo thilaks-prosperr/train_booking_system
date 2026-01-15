@@ -30,7 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { bookingApi, stationApi } from '@/lib/api';
+import { bookingApi, stationApi, adminApi } from '@/lib/api';
 // import { mockAdminStats, mockAdminBookings } from '@/data/mockData';
 import { cn } from '@/lib/utils';
 import { Booking } from '@/types';
@@ -50,23 +50,24 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // For now, we might not have dedicated admin endpoints in the backend provided
-        // So we will try to fetch what we can. 
-        // If there's no "getAllBookings" for admin, we might be limited.
-        // Let's assume for now we can atleast fetch some data or show 0.
-        // Ideally backend should have /admin/stats
+        // Fetch stats
+        const statsResponse = await adminApi.getStats();
+        if (statsResponse.data) {
+          setStats({
+            totalRevenue: statsResponse.data.totalRevenue || 0,
+            activeTrains: statsResponse.data.activeTrains || 0,
+            totalBookings: statsResponse.data.totalBookings || 0,
+            occupancyPercentage: statsResponse.data.occupancyPercentage || 0
+          });
+        }
 
-        // Placeholder for actual API calls
-        // const allBookings = await bookingApi.getAll(); // if exists
-        // setBookings(allBookings.data);
-
-        // For this task, since we removed mock data, we must initialize empty or fetch real.
-        // If backend lacks the endpoint, we render empty states.
-        // Checking api.ts, we don't have admin endpoints.
-        // We will just set empty for now to fix the build, or fetch what we can.
-
+        // Fetch all bookings
+        const bookingsResponse = await adminApi.getBookings();
+        if (bookingsResponse.data) {
+          setBookings(bookingsResponse.data);
+        }
       } catch (e) {
-        console.error(e);
+        console.error('Failed to fetch admin data:', e);
       }
     };
     fetchData();

@@ -121,9 +121,6 @@ public class AdminController {
     // 3. Booking Operations
     // ==========================================
 
-    @Autowired
-    private BookedSeatRepository bookedSeatRepository;
-
     @GetMapping("/bookings")
     public ResponseEntity<List<BookingService.BookingHistoryDTO>> getAllBookings() {
         List<BookingService.BookingHistoryDTO> dtos = bookingRepository.findAll().stream()
