@@ -1,15 +1,16 @@
 {
     "info": {
         "_postman_id": "c33325c1-8415-4608-8686-3532f8658a5e",
-        "name": "RailBook API",
+        "name": "RailBook API - Complete",
+        "description": "Complete API collection for RailBook Train Booking System",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
         {
-            "name": "Auth",
+            "name": "🔐 Auth",
             "item": [
                 {
-                    "name": "Register",
+                    "name": "Register User",
                     "request": {
                         "method": "POST",
                         "header": [],
@@ -37,7 +38,7 @@
                     "response": []
                 },
                 {
-                    "name": "Login",
+                    "name": "Login User",
                     "event": [
                         {
                             "listen": "test",
@@ -57,7 +58,49 @@
                         "header": [],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"password\"\n}",
+                            "raw": "{\n    \"username\": \"user\",\n    \"password\": \"password\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/login",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Login Admin",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "var jsonData = pm.response.json();",
+                                    "pm.environment.set(\"authToken\", jsonData.token);",
+                                    "pm.environment.set(\"userId\", jsonData.userId);",
+                                    "pm.environment.set(\"role\", jsonData.role);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -81,10 +124,10 @@
             ]
         },
         {
-            "name": "Public",
+            "name": "🌍 Public",
             "item": [
                 {
-                    "name": "Get Stations",
+                    "name": "Get All Stations",
                     "request": {
                         "method": "GET",
                         "header": [],
@@ -107,7 +150,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/search?from=CEN&to=NDLS&date=2026-01-20",
+                            "raw": "{{baseUrl}}/api/search?from=SBC&to=TK&date=2024-01-20",
                             "host": [
                                 "{{baseUrl}}"
                             ],
@@ -118,15 +161,18 @@
                             "query": [
                                 {
                                     "key": "from",
-                                    "value": "CEN"
+                                    "value": "SBC",
+                                    "description": "Source station code"
                                 },
                                 {
                                     "key": "to",
-                                    "value": "NDLS"
+                                    "value": "TK",
+                                    "description": "Destination station code"
                                 },
                                 {
                                     "key": "date",
-                                    "value": "2026-01-20"
+                                    "value": "2024-01-20",
+                                    "description": "Journey date (YYYY-MM-DD)"
                                 }
                             ]
                         }
@@ -134,12 +180,51 @@
                     "response": []
                 },
                 {
-                    "name": "Get Seats",
+                    "name": "Get Train Details",
                     "request": {
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/seats?trainId=1&date=2026-01-20&coach=S1",
+                            "raw": "{{baseUrl}}/api/trains/1",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "trains",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Train Route",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/trains/1/route",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "trains",
+                                "1",
+                                "route"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Seat Layout",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/seats?trainId=1&date=2024-01-20&coach=SLEEPER",
                             "host": [
                                 "{{baseUrl}}"
                             ],
@@ -154,11 +239,11 @@
                                 },
                                 {
                                     "key": "date",
-                                    "value": "2026-01-20"
+                                    "value": "2024-01-20"
                                 },
                                 {
                                     "key": "coach",
-                                    "value": "S1"
+                                    "value": "SLEEPER"
                                 }
                             ]
                         }
@@ -168,7 +253,7 @@
             ]
         },
         {
-            "name": "User",
+            "name": "👤 User Bookings",
             "item": [
                 {
                     "name": "Create Booking",
@@ -187,7 +272,7 @@
                         "header": [],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"userId\": {{userId}},\n  \"trainId\": 1,\n  \"journeyDate\": \"2026-01-20\",\n  \"sourceStationId\": 1,\n  \"destStationId\": 5,\n  \"coachType\": \"S1\",\n  \"selectedSeats\": [1, 2]\n}",
+                            "raw": "{\n  \"userId\": {{userId}},\n  \"trainId\": 1,\n  \"journeyDate\": \"2024-01-20\",\n  \"sourceStationId\": 1,\n  \"destStationId\": 6,\n  \"coachType\": \"SLEEPER\",\n  \"selectedSeats\": [1, 2]\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -236,14 +321,43 @@
                         }
                     },
                     "response": []
+                },
+                {
+                    "name": "Cancel Booking",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/bookings/10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "bookings",
+                                "10"
+                            ]
+                        }
+                    },
+                    "response": []
                 }
             ]
         },
         {
-            "name": "Admin",
+            "name": "⚙️ Admin - Stats",
             "item": [
                 {
-                    "name": "Get Stats",
+                    "name": "Get Dashboard Stats",
                     "request": {
                         "auth": {
                             "type": "bearer",
@@ -270,7 +384,12 @@
                         }
                     },
                     "response": []
-                },
+                }
+            ]
+        },
+        {
+            "name": "⚙️ Admin - Bookings",
+            "item": [
                 {
                     "name": "Get All Bookings",
                     "request": {
@@ -299,6 +418,363 @@
                         }
                     },
                     "response": []
+                },
+                {
+                    "name": "Get Booking Details",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/bookings/1",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "bookings",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "⚙️ Admin - Stations",
+            "item": [
+                {
+                    "name": "Create Station",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"stationCode\": \"TEST\",\n  \"stationName\": \"Test Station\",\n  \"city\": \"Test City\",\n  \"latitude\": 12.9716,\n  \"longitude\": 77.5946\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/stations",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "stations"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Station",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"stationCode\": \"TEST\",\n  \"stationName\": \"Test Station Updated\",\n  \"city\": \"Test City\",\n  \"latitude\": 12.9716,\n  \"longitude\": 77.5946\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/stations/1",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "stations",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Station",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/stations/1",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "stations",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "⚙️ Admin - Trains",
+            "item": [
+                {
+                    "name": "Get All Trains",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/trains",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "trains"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Train",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"trainNumber\": \"99999\",\n  \"trainName\": \"Test Express\",\n  \"totalSeatsPerCoach\": 60\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/trains",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "trains"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Train",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"trainNumber\": \"99999\",\n  \"trainName\": \"Test Express Updated\",\n  \"totalSeatsPerCoach\": 72\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/trains/1",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "trains",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Train",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/trains/1",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "trains",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "⚙️ Admin - Schedules",
+            "item": [
+                {
+                    "name": "Get All Schedules",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/schedules",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "schedules"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Add Train Schedule",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{authToken}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"station\": {\n    \"stationId\": 1\n  },\n  \"arrivalTime\": \"10:00\",\n  \"departureTime\": \"10:15\",\n  \"stopSequence\": 1,\n  \"distanceFromStartKm\": 0\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/admin/trains/1/schedule",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "admin",
+                                "trains",
+                                "1",
+                                "schedule"
+                            ]
+                        }
+                    },
+                    "response": []
                 }
             ]
         }
@@ -306,7 +782,8 @@
     "variable": [
         {
             "key": "baseUrl",
-            "value": "http://localhost:8080"
+            "value": "http://localhost:8080",
+            "type": "string"
         }
     ]
 }
