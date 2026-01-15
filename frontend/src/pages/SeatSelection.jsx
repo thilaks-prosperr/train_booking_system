@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
-import axios from 'axios';
-import { API_BASE_URL } from '../config';
+import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import '../styles/SeatSelection.css';
 
@@ -25,7 +24,8 @@ function SeatSelection() {
         if (!date || !trainId) return;
 
         // Fetch seat layout with real availability
-        axios.get(`${API_BASE_URL}/api/seats`, {
+        // Fetch seat layout with real availability
+        api.get('/seats', {
             params: {
                 trainId: trainId,
                 date: date,
@@ -34,8 +34,7 @@ function SeatSelection() {
                 // Assuming backend handles missing seq gracefully or we'd need to fetch stations.
                 startSeq: 1,
                 endSeq: 10
-            },
-            headers: user ? { Authorization: `Bearer ${user.token}` } : {}
+            }
         })
             .then(res => setSeatRows(res.data))
             .catch(err => console.error("Failed to load seats", err));
@@ -64,20 +63,26 @@ function SeatSelection() {
 
         setBookingLoading(true);
         try {
-            await axios.post(`${API_BASE_URL}/api/bookings`, {
+            // Validate Station IDs
+            const sId = trainData?.sourceStationId;
+            const dId = trainData?.destStationId;
+
+            if (!sId || !dId) {
+                throw new Error("Invalid Station IDs. Please search again.");
+            }
+
+            await api.post('/bookings', {
                 userId: user.userId,
                 trainId: trainId,
                 journeyDate: date,
-                sourceStationId: trainData.sourceStationId || 1, // Fallback if missing, but should be there
-                destStationId: trainData.destStationId || 3,     // Fallback
+                sourceStationId: sId,
+                destStationId: dId,
                 coachType: coachType,
                 selectedSeats: selectedSeats
-            }, {
-                headers: { Authorization: `Bearer ${user.token}` }
             });
 
             alert(`Booking Successful for ${selectedSeats.join(', ')}!`);
-            navigate('/dashboard');
+            navigate('/booking-success');
         } catch (err) {
             console.error(err);
             alert("Booking Failed: " + (err.response?.data?.message || err.message));

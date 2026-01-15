@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { API_BASE_URL } from '../config';
+import api from '../api/axios';
 import StationMap from '../components/StationMap';
 import TrainCard from '../components/TrainCard';
 import '../styles/SearchResults.css';
@@ -23,7 +22,7 @@ function SearchResults() {
             setLoading(true);
             setError(null);
             try {
-                const response = await axios.get(`${API_BASE_URL}/api/search`, {
+                const response = await api.get('/search', {
                     params: { from, to, date },
                 });
                 setResults(response.data);

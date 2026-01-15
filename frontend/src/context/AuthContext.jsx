@@ -18,7 +18,8 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
     }, []);
 
-    const login = (token, role, username, userId) => {
+    const login = (userData) => {
+        const { token, role, username, userId } = userData;
         localStorage.setItem('token', token);
         localStorage.setItem('role', role);
         localStorage.setItem('username', username);
@@ -34,8 +35,11 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
+    const isAuthenticated = !!user;
+    const isAdmin = user?.role === 'ADMIN';
+
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
+        <AuthContext.Provider value={{ user, login, logout, loading, isAuthenticated, isAdmin }}>
             {!loading && children}
         </AuthContext.Provider>
     );

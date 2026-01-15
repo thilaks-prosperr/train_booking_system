@@ -11,6 +11,7 @@ import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 
 import UserDashboard from './pages/UserDashboard';
+import BookingSuccess from './pages/BookingSuccess';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/booking-success" element={<BookingSuccess />} />
 
           {/* Protected Routes */}
           <Route element={<PrivateRoute />}>

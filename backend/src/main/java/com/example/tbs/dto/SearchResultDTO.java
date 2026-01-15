@@ -25,6 +25,11 @@ public class SearchResultDTO {
     // New field for Map Routing
     private List<StationPointDTO> path;
 
+    // IDs required for Booking API
+    private Long trainId;
+    private Long sourceStationId;
+    private Long destStationId;
+
     @Data
     @NoArgsConstructor
     @AllArgsConstructor

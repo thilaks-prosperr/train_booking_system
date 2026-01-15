@@ -157,8 +157,10 @@ public class TrainSearchService {
                                 true,
                                 null,
                                 null, // Segments
-                                path // Path
-                );
+                                path, // Path
+                                src.getTrain().getTrainId(),
+                                src.getStation().getStationId(),
+                                dst.getStation().getStationId());
         }
 
         private SearchResultDTO createLayoverDTO(TrainSchedule t1Src, TrainSchedule t1End, TrainSchedule t2Start,
@@ -216,6 +218,20 @@ public class TrainSearchService {
                                 false,
                                 t1End.getStation().getStationName(),
                                 segments,
-                                fullPath);
+                                fullPath,
+                                null, // trainId is ambiguous for layover, but primary booking might not be simple.
+                                      // Strategy: For layover, we might need composite booking.
+                                      // For now, let's keep it null or handle frontend logic to not book layover
+                                      // directly if not supported.
+                                      // Actually, the requirement implies simple booking. Let's pass the FIRST train
+                                      // details
+                                      // or maybe the user can't book layover easily yet.
+                                      // Let's pass null for now as safe default if layover booking isn't fully
+                                      // spec'd.
+                                      // User prompt doesn't explicitly detail layover booking structure.
+                                      // Let's pass the first train's ID for now, or null.
+                                      // Decision: Pass null.
+                                t1Src.getStation().getStationId(),
+                                t2End.getStation().getStationId());
         }
 }

@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import axios from 'axios';
-import { API_BASE_URL } from '../config';
+import api from '../api/axios';
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -17,18 +16,17 @@ function LoginPage() {
         e.preventDefault();
         setError('');
         try {
-            const res = await axios.post(`${API_BASE_URL}/api/auth/login`, { username, password });
-            const { token, role, userId } = res.data;
+            const res = await api.post('/auth/login', { username, password });
 
             // Optional: Check if role matches selected type
-            // if (role !== loginType) {
+            // if (res.data.role !== loginType) {
             //     setError(`You are not registered as an ${loginType}`);
             //     return;
             // }
 
-            login(token, role, username, userId);
+            login(res.data);
 
-            if (role === 'ADMIN') {
+            if (res.data.role === 'ADMIN') {
                 navigate('/admin');
             } else {
                 navigate('/');

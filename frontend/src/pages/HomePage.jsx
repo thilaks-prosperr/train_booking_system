@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { API_BASE_URL } from '../config';
+import api from '../api/axios';
 import '../styles/HomePage.css';
 
 function HomePage() {
@@ -12,7 +11,7 @@ function HomePage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`${API_BASE_URL}/api/stations`)
+        api.get('/stations')
             .then(res => setStations(res.data.map(s => s.code)))
             .catch(err => console.error(err));
     }, []);
