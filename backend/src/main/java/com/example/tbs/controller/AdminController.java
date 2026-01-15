@@ -121,18 +121,35 @@ public class AdminController {
     // 3. Booking Operations
     // ==========================================
 
+    @Autowired
+    private BookedSeatRepository bookedSeatRepository;
+
     @GetMapping("/bookings")
     public ResponseEntity<List<BookingService.BookingHistoryDTO>> getAllBookings() {
         List<BookingService.BookingHistoryDTO> dtos = bookingRepository.findAll().stream()
-                .map(b -> new BookingService.BookingHistoryDTO(
-                        b.getBookingId(),
-                        b.getTrain().getTrainName(),
-                        b.getTrain().getTrainNumber(),
-                        b.getSourceStation().getStationName(),
-                        b.getDestStation().getStationName(),
-                        b.getJourneyDate(),
-                        b.getBookingStatus()))
-                .toList();
+                .map(b -> {
+                    List<BookedSeat> seats = bookedSeatRepository.findByBooking(b);
+                    List<BookingService.BookedSeatDTO> seatDTOs = seats.stream()
+                            .map(s -> new BookingService.BookedSeatDTO(s.getSeatId(), s.getSeatNumber(),
+                                    s.getCoachType()))
+                            .collect(java.util.stream.Collectors.toList());
+
+                    return new BookingService.BookingHistoryDTO(
+                            b.getBookingId(),
+                            b.getUser().getUserId(),
+                            b.getTrain().getTrainId(),
+                            b.getJourneyDate(),
+                            b.getSourceStation().getStationId(),
+                            b.getDestStation().getStationId(),
+                            b.getBookingStatus(),
+                            b.getTrain(),
+                            b.getSourceStation(),
+                            b.getDestStation(),
+                            seatDTOs,
+                            b.getTrain().getTotalSeatsPerCoach() * 10.0 // Dummy price
+                    );
+                })
+                .collect(java.util.stream.Collectors.toList());
         return ResponseEntity.ok(dtos);
     }
 

@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { bookingApi } from '@/lib/api';
 import { Booking } from '@/types';
 import { useAuth } from '@/context/AuthContext';
+import { useToast } from '@/hooks/use-toast';
 
 const UserDashboard = () => {
   const navigate = useNavigate();
@@ -18,14 +19,37 @@ const UserDashboard = () => {
 
   const { user } = useAuth();
 
-  useEffect(() => {
+  const { toast } = useToast();
+
+  const fetchBookings = () => {
     if (user?.userId) {
       bookingApi.getUserBookings(user.userId)
         .then(res => setBookings(res.data))
         .catch(console.error)
         .finally(() => setLoading(false));
     }
+  };
+
+  useEffect(() => {
+    fetchBookings();
   }, [user]);
+
+  const handleCancel = async (bookingId: number) => {
+    try {
+      await bookingApi.cancel(bookingId);
+      toast({
+        title: "Booking Cancelled",
+        description: "Your ticket has been cancelled successfully.",
+      });
+      fetchBookings(); // Refresh list
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to cancel booking",
+        variant: "destructive"
+      });
+    }
+  };
 
   const upcomingBookings = bookings.filter(b =>
     b.bookingStatus === 'CONFIRMED' && new Date(b.journeyDate) >= new Date()
@@ -95,7 +119,7 @@ const UserDashboard = () => {
               <TabsContent value="upcoming" className="space-y-4">
                 {upcomingBookings.length > 0 ? (
                   upcomingBookings.map(booking => (
-                    <TicketCard key={booking.bookingId} booking={booking} />
+                    <TicketCard key={booking.bookingId} booking={booking} onCancel={handleCancel} />
                   ))
                 ) : (
                   <div className="glass-card p-12 text-center">

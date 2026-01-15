@@ -110,25 +110,55 @@ public class BookingService {
         }
 
         public java.util.List<BookingHistoryDTO> getUserBookings(Long userId) {
-                return bookingRepository.findByUserUserId(userId).stream().map(b -> new BookingHistoryDTO(
-                                b.getBookingId(),
-                                b.getTrain().getTrainName(),
-                                b.getTrain().getTrainNumber(),
-                                b.getSourceStation().getStationName(),
-                                b.getDestStation().getStationName(),
-                                b.getJourneyDate(),
-                                b.getBookingStatus())).collect(java.util.stream.Collectors.toList());
+                List<Booking> bookings = bookingRepository.findByUserUserId(userId);
+
+                return bookings.stream().map(b -> {
+                        List<BookedSeat> seats = bookedSeatRepository.findByBooking(b);
+                        List<BookedSeatDTO> seatDTOs = seats.stream()
+                                        .map(s -> new BookedSeatDTO(s.getSeatId(), s.getSeatNumber(), s.getCoachType()))
+                                        .collect(java.util.stream.Collectors.toList());
+
+                        return new BookingHistoryDTO(
+                                        b.getBookingId(),
+                                        b.getUser().getUserId(),
+                                        b.getTrain().getTrainId(),
+                                        b.getJourneyDate(),
+                                        b.getSourceStation().getStationId(),
+                                        b.getDestStation().getStationId(),
+                                        b.getBookingStatus(),
+                                        b.getTrain(),
+                                        b.getSourceStation(),
+                                        b.getDestStation(),
+                                        seatDTOs,
+                                        b.getTrain().getTotalSeatsPerCoach() * 10.0 // Dummy price or calc logic
+                        );
+                }).collect(java.util.stream.Collectors.toList());
         }
 
         @lombok.Data
         @lombok.AllArgsConstructor
         public static class BookingHistoryDTO {
                 private Long bookingId;
-                private String trainName;
-                private String trainNumber;
-                private String source;
-                private String dest;
-                private java.time.LocalDate date;
-                private String status;
+                private Long userId;
+                private Long trainId;
+                private java.time.LocalDate journeyDate;
+                private Long sourceStationId;
+                private Long destStationId;
+                private String bookingStatus;
+
+                // Nested objects for Frontend
+                private Train train;
+                private Station sourceStation;
+                private Station destStation;
+                private List<BookedSeatDTO> seats;
+                private Double totalPrice;
+        }
+
+        @lombok.Data
+        @lombok.AllArgsConstructor
+        public static class BookedSeatDTO {
+                private Long seatId;
+                private int seatNumber;
+                private String coachType;
         }
 }

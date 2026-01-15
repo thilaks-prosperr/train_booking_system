@@ -4,11 +4,14 @@ import { Booking } from '@/types';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
+import { Button } from '@/components/ui/button';
+
 interface TicketCardProps {
   booking: Booking;
+  onCancel?: (id: number) => void;
 }
 
-const TicketCard = ({ booking }: TicketCardProps) => {
+const TicketCard = ({ booking, onCancel }: TicketCardProps) => {
   const statusColors = {
     CONFIRMED: 'bg-success/20 text-success border-success/30',
     CANCELLED: 'bg-destructive/20 text-destructive border-destructive/30',
@@ -80,10 +83,18 @@ const TicketCard = ({ booking }: TicketCardProps) => {
         <div className="flex items-center justify-between pt-4 border-t border-border">
           <div>
             <p className="text-xs text-muted-foreground">PNR Number</p>
-            <p className="font-display font-bold text-lg gradient-text">{booking.pnr}</p>
+            <p className="font-display font-bold text-lg gradient-text">{booking.pnr || 'Generating...'}</p>
           </div>
-          <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center">
-            <QrCode className="w-12 h-12 text-background" />
+
+          <div className="flex items-center gap-4">
+            {booking.bookingStatus === 'CONFIRMED' && onCancel && (
+              <Button variant="destructive" size="sm" onClick={() => onCancel(booking.bookingId)}>
+                Cancel Ticket
+              </Button>
+            )}
+            <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center">
+              <QrCode className="w-12 h-12 text-background" />
+            </div>
           </div>
         </div>
       </div>
