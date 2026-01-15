@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Train, Loader2, X, GripVertical } from 'lucide-react';
 import AdminLayout from '@/components/AdminLayout';
@@ -21,18 +21,23 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useToast } from '@/hooks/use-toast';
-import { mockTrains, mockStations } from '@/data/mockData';
+import { trainApi, stationApi } from '@/lib/api';
 import { Train as TrainType, Station } from '@/types';
 
-interface RouteStop {
-  stationId: number;
-  arrivalTime: string;
-  departureTime: string;
-}
+// ...
 
 const ManageTrains = () => {
   const { toast } = useToast();
-  const [trains, setTrains] = useState<TrainType[]>(mockTrains);
+  const [trains, setTrains] = useState<TrainType[]>([]);
+  const [stations, setStations] = useState<Station[]>([]);
+
+  useEffect(() => {
+    // Fetch stations for the dropdown
+    stationApi.getAll().then(res => setStations(res.data)).catch(console.error);
+
+    // Fetch trains - assuming an endpoint exists or we leave empty for now
+    // trainApi.getAll().then(res => setTrains(res.data)).catch(console.error);
+  }, []);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     trainNumber: '',
@@ -183,7 +188,7 @@ const ManageTrains = () => {
                             <SelectValue placeholder="Select Station" />
                           </SelectTrigger>
                           <SelectContent className="bg-card border-border">
-                            {mockStations.map((station) => (
+                            {stations.map((station) => (
                               <SelectItem key={station.stationId} value={station.stationId.toString()}>
                                 {station.stationName} ({station.stationCode})
                               </SelectItem>
@@ -241,7 +246,7 @@ const ManageTrains = () => {
           className="admin-card"
         >
           <h2 className="font-display text-xl font-bold mb-6">Existing Trains ({trains.length})</h2>
-          
+
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
@@ -263,9 +268,9 @@ const ManageTrains = () => {
                         <Button variant="ghost" size="icon">
                           <Edit className="w-4 h-4" />
                         </Button>
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
+                        <Button
+                          variant="ghost"
+                          size="icon"
                           className="text-destructive"
                           onClick={() => handleDelete(train.trainId)}
                         >

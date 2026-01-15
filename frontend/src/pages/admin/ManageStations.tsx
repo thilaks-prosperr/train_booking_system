@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, MapPin, Loader2 } from 'lucide-react';
 import AdminLayout from '@/components/AdminLayout';
@@ -14,12 +14,18 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useToast } from '@/hooks/use-toast';
-import { mockStations } from '@/data/mockData';
+import { stationApi } from '@/lib/api';
 import { Station } from '@/types';
 
 const ManageStations = () => {
   const { toast } = useToast();
-  const [stations, setStations] = useState<Station[]>(mockStations);
+  const [stations, setStations] = useState<Station[]>([]);
+
+  useEffect(() => {
+    stationApi.getAll()
+      .then(res => setStations(res.data))
+      .catch(err => console.error("Failed to fetch stations", err));
+  }, []);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     stationName: '',
@@ -164,7 +170,7 @@ const ManageStations = () => {
           className="admin-card"
         >
           <h2 className="font-display text-xl font-bold mb-6">Existing Stations ({stations.length})</h2>
-          
+
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
@@ -190,9 +196,9 @@ const ManageStations = () => {
                         <Button variant="ghost" size="icon">
                           <Edit className="w-4 h-4" />
                         </Button>
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
+                        <Button
+                          variant="ghost"
+                          size="icon"
                           className="text-destructive"
                           onClick={() => handleDelete(station.stationId)}
                         >

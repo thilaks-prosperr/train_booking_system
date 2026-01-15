@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Seat } from '@/types';
-import { generateMockSeats } from '@/data/mockData';
+// import { generateMockSeats } from '@/data/mockData';
 import { cn } from '@/lib/utils';
+import { seatApi } from '@/lib/api';
 
 interface SeatSelectorProps {
   trainId: number;
@@ -15,11 +16,31 @@ interface SeatSelectorProps {
 const SeatSelector = ({ trainId, coach, date, selectedSeats, onSeatToggle }: SeatSelectorProps) => {
   const [seats, setSeats] = useState<Seat[]>([]);
 
+
+
+  // ...
+
   useEffect(() => {
-    // Mock booked and blocked seats for demo
-    const bookedSeats = [3, 7, 12, 15, 18, 23, 27, 31, 35, 38];
-    const blockedSeats = [5, 10, 20, 25];
-    setSeats(generateMockSeats(bookedSeats, blockedSeats));
+    const fetchLayout = async () => {
+      try {
+        const response = await seatApi.getLayout(trainId, date, coach);
+        const rows = response.data;
+        // Flatten rows to seat list
+        const allSeats: Seat[] = [];
+        rows.forEach((row: any) => {
+          row.seats.forEach((s: any) => {
+            allSeats.push({
+              seatNumber: parseInt(s.number),
+              status: s.isBooked ? 'booked' : 'available'
+            });
+          });
+        });
+        setSeats(allSeats);
+      } catch (err) {
+        console.error("Failed to fetch seat layout", err);
+      }
+    };
+    fetchLayout();
   }, [trainId, coach, date]);
 
   const getSeatClass = (seat: Seat) => {
@@ -39,10 +60,17 @@ const SeatSelector = ({ trainId, coach, date, selectedSeats, onSeatToggle }: Sea
     onSeatToggle(seat.seatNumber);
   };
 
-  // Create 2x2 grid layout
+  // Ensure 2x2 grid layout is respected - backend sends rows, we can prefer that or force grid
+  // Original logic was using rows. Let's reconstruct or use what we have in 'seats'
+  // If we flattened 'seats' above, we can re-chunk them for display if needed
+  // For now, let's keep the chunking logic consistent with 'seats' array
+
   const rows = [];
-  for (let i = 0; i < seats.length; i += 4) {
-    rows.push(seats.slice(i, i + 4));
+  // Sort by seat number to be safe
+  const sortedSeats = [...seats].sort((a, b) => a.seatNumber - b.seatNumber);
+
+  for (let i = 0; i < sortedSeats.length; i += 4) {
+    rows.push(sortedSeats.slice(i, i + 4));
   }
 
   return (

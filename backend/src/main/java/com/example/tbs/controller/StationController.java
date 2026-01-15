@@ -26,18 +26,18 @@ public class StationController {
 
     // Inner DTO for simplicity
     public static class StationDTO {
-        public Long id;
-        public String code;
-        public String name;
-        public double lat;
-        public double lng;
+        public Long stationId;
+        public String stationCode;
+        public String stationName;
+        public double latitude;
+        public double longitude;
 
-        public StationDTO(Long id, String code, String name, double lat, double lng) {
-            this.id = id;
-            this.code = code;
-            this.name = name;
-            this.lat = lat;
-            this.lng = lng;
+        public StationDTO(Long stationId, String stationCode, String stationName, double latitude, double longitude) {
+            this.stationId = stationId;
+            this.stationCode = stationCode;
+            this.stationName = stationName;
+            this.latitude = latitude;
+            this.longitude = longitude;
         }
     }
 }

@@ -9,14 +9,15 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/hooks/use-toast';
-import { mockTrains, mockStations } from '@/data/mockData';
+import { trainApi } from '@/lib/api';
+// import { mockTrains, mockStations } from '@/data/mockData';
 
 const SeatSelection = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const { toast } = useToast();
-  
+
   const [selectedCoach, setSelectedCoach] = useState('S1');
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -24,15 +25,40 @@ const SeatSelection = () => {
   const trainId = Number(searchParams.get('trainId'));
   const date = searchParams.get('date') || '';
   const price = Number(searchParams.get('price')) || 850;
-  
-  const train = mockTrains.find(t => t.trainId === trainId) || mockTrains[0];
-  const fromStation = mockStations.find(s => s.stationId === Number(searchParams.get('from')));
-  const toStation = mockStations.find(s => s.stationId === Number(searchParams.get('to')));
+
+  // State for train data
+  const [train, setTrain] = useState<any>(null); // Replace 'any' with Train type
+  const [loading, setLoading] = useState(true);
+
+  // Fetch train details
+  useEffect(() => {
+    const fetchTrainDetails = async () => {
+      if (!trainId) return;
+      try {
+        const response = await trainApi.getDetails(trainId);
+        setTrain(response.data);
+      } catch (err) {
+        toast({
+          title: "Error",
+          description: "Failed to load train details",
+          variant: "destructive"
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTrainDetails();
+  }, [trainId]);
+
+  // Derived station codes (you might want to fetch station details if needed, 
+  // or pass them via location state from search results)
+  const fromStationCode = searchParams.get('fromCode') || 'SRC';
+  const toStationCode = searchParams.get('toCode') || 'DEST';
 
   const coaches = ['S1', 'S2', 'S3'];
 
   const handleSeatToggle = (seatNumber: number) => {
-    setSelectedSeats(prev => 
+    setSelectedSeats(prev =>
       prev.includes(seatNumber)
         ? prev.filter(s => s !== seatNumber)
         : [...prev, seatNumber]
@@ -64,10 +90,18 @@ const SeatSelection = () => {
 
   const totalPrice = selectedSeats.length * price;
 
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+
+  if (!train) {
+    return <div className="min-h-screen flex items-center justify-center">Train not found</div>;
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       <div className="pt-20 px-4">
         <div className="container mx-auto py-8 max-w-4xl">
           {/* Header */}
@@ -84,7 +118,7 @@ const SeatSelection = () => {
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Results
             </Button>
-            
+
             <div className="glass-card p-6">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>

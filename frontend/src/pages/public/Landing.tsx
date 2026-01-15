@@ -1,140 +1,115 @@
-import { motion } from 'framer-motion';
-import heroImage from '@/assets/hero-train.jpg';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { stationApi } from '@/lib/api';
 import Navbar from '@/components/Navbar';
-import SearchCard from '@/components/SearchCard';
+
+interface Station {
+    stationCode: string;
+    stationName: string;
+}
 
 const Landing = () => {
-  return (
-    <div className="min-h-screen">
-      <Navbar />
-      
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        />
-        
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/50 to-background" />
-        
-        {/* Animated Particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 rounded-full bg-primary/50"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`
-              }}
-              animate={{ 
-                y: [0, -100],
-                opacity: [0, 1, 0]
-              }}
-              transition={{ 
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2
-              }}
-            />
-          ))}
+    const [from, setFrom] = useState('');
+    const [to, setTo] = useState('');
+    const [date, setDate] = useState('');
+    const [stations, setStations] = useState<Station[]>([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        stationApi.getAll()
+            .then(res => setStations(res.data))
+            .catch(err => console.error(err));
+    }, []);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (from && to && date) {
+            navigate(`/search?from=${from}&to=${to}&date=${date}`);
+        }
+    };
+
+    return (
+        <div className="min-h-screen flex flex-col relative overflow-hidden bg-background text-foreground">
+            <Navbar />
+
+            {/* Animated Background */}
+            <div className="animated-bg absolute inset-0 z-0 pointer-events-none"></div>
+
+            <main className="relative z-10 flex-1 flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto w-full px-6 gap-12 lg:gap-24">
+                {/* Hero Text */}
+                <div className="flex-1 text-center lg:text-left space-y-6">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide uppercase">
+                        <span className="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                        Live Booking System
+                    </div>
+                    <h1 className="text-5xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.1]">
+                        Travel with <br />
+                        <span className="gradient-text">Future Speed</span>
+                    </h1>
+                    <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Experience the next generation of railway booking. Seamless, fast, and designed for the modern traveler.
+                    </p>
+                </div>
+
+                {/* Search Card */}
+                <div className="flex-1 w-full max-w-md">
+                    <div className="glass-card p-8 relative overflow-hidden group">
+                        <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all duration-1000"></div>
+
+                        <h2 className="text-2xl font-bold mb-6 font-display">Start Your Journey</h2>
+
+                        <form onSubmit={handleSubmit} className="flex flex-col gap-5 relative z-10">
+                            <div className="space-y-1.5">
+                                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">From Station</label>
+                                <select
+                                    value={from}
+                                    onChange={(e) => setFrom(e.target.value)}
+                                    className="w-full bg-background/50 border border-input rounded-md p-3 focus:ring-2 focus:ring-primary outline-none transition-all"
+                                >
+                                    <option value="">Select Station</option>
+                                    {stations.map((s) => (
+                                        <option key={s.stationCode} value={s.stationCode}>{s.stationName} ({s.stationCode})</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="space-y-1.5">
+                                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">To Station</label>
+                                <select
+                                    value={to}
+                                    onChange={(e) => setTo(e.target.value)}
+                                    className="w-full bg-background/50 border border-input rounded-md p-3 focus:ring-2 focus:ring-primary outline-none transition-all"
+                                >
+                                    <option value="">Select Station</option>
+                                    {stations.map((s) => (
+                                        <option key={s.stationCode} value={s.stationCode}>{s.stationName} ({s.stationCode})</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="space-y-1.5">
+                                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Date</label>
+                                <input
+                                    type="date"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                    className="w-full bg-background/50 border border-input rounded-md p-3 focus:ring-2 focus:ring-primary outline-none transition-all"
+                                    required
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="w-full mt-4 py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-md shadow-lg hover:shadow-primary/25 transition-all transform hover:-translate-y-1"
+                            >
+                                Search Trains
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </main>
         </div>
-
-        {/* Content */}
-        <div className="relative z-10 text-center px-4">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
-          >
-            <span className="gradient-text">Travel Beyond</span>
-            <br />
-            <span className="text-foreground">Limits</span>
-          </motion.h1>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
-          >
-            Experience seamless train booking with real-time availability, 
-            smart seat selection, and instant digital tickets.
-          </motion.p>
-
-          {/* Search Card */}
-          <SearchCard />
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 rounded-full border-2 border-primary/50 flex items-start justify-center p-2"
-          >
-            <motion.div className="w-1.5 h-1.5 rounded-full bg-primary" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-24 px-4 animated-bg">
-        <div className="container mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display text-3xl md:text-4xl font-bold text-center mb-16"
-          >
-            Why Choose <span className="gradient-text">RailBook</span>
-          </motion.h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Real-Time Availability',
-                description: 'Get instant seat availability with live updates from our advanced booking system.',
-                icon: '⚡',
-              },
-              {
-                title: 'Smart Seat Selection',
-                description: 'Visual seat maps with preferences for window, aisle, or together booking.',
-                icon: '🎯',
-              },
-              {
-                title: 'Digital Tickets',
-                description: 'Eco-friendly paperless tickets with QR codes delivered instantly.',
-                icon: '📱',
-              },
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="glass-card p-8 text-center"
-              >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="font-display text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+    );
 };
 
 export default Landing;

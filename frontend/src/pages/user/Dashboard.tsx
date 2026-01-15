@@ -5,22 +5,35 @@ import TicketCard from '@/components/TicketCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { mockBookings } from '@/data/mockData';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { bookingApi } from '@/lib/api';
+import { Booking } from '@/types';
+
+// ...
 
 const UserDashboard = () => {
   const navigate = useNavigate();
-  const upcomingBookings = mockBookings.filter(b => 
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    bookingApi.getMyBookings()
+      .then(res => setBookings(res.data))
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, []);
+
+  const upcomingBookings = bookings.filter(b =>
     b.bookingStatus === 'CONFIRMED' && new Date(b.journeyDate) >= new Date()
   );
-  const pastBookings = mockBookings.filter(b => 
+  const pastBookings = bookings.filter(b =>
     new Date(b.journeyDate) < new Date() || b.bookingStatus === 'CANCELLED'
   );
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       <div className="pt-20 px-4">
         <div className="container mx-auto py-8">
           {/* Header */}

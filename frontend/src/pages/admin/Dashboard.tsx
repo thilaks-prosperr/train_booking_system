@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  TrendingUp, 
-  Train, 
-  CalendarCheck, 
+import {
+  TrendingUp,
+  Train,
+  CalendarCheck,
   Percent,
   Search,
   Filter,
@@ -30,42 +30,77 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { mockAdminStats, mockAdminBookings } from '@/data/mockData';
+import { bookingApi, stationApi } from '@/lib/api';
+// import { mockAdminStats, mockAdminBookings } from '@/data/mockData';
 import { cn } from '@/lib/utils';
+import { Booking } from '@/types';
 
 const AdminDashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [stats, setStats] = useState({
+    totalRevenue: 0,
+    activeTrains: 0,
+    totalBookings: 0,
+    occupancyPercentage: 0
+  });
 
-  const stats = [
-    { 
-      label: 'Total Revenue', 
-      value: `₹${(mockAdminStats.totalRevenue / 100000).toFixed(1)}L`, 
+  // Fetch dashboard data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // For now, we might not have dedicated admin endpoints in the backend provided
+        // So we will try to fetch what we can. 
+        // If there's no "getAllBookings" for admin, we might be limited.
+        // Let's assume for now we can atleast fetch some data or show 0.
+        // Ideally backend should have /admin/stats
+
+        // Placeholder for actual API calls
+        // const allBookings = await bookingApi.getAll(); // if exists
+        // setBookings(allBookings.data);
+
+        // For this task, since we removed mock data, we must initialize empty or fetch real.
+        // If backend lacks the endpoint, we render empty states.
+        // Checking api.ts, we don't have admin endpoints.
+        // We will just set empty for now to fix the build, or fetch what we can.
+
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const dashboardStats = [
+    {
+      label: 'Total Revenue',
+      value: `₹${(stats.totalRevenue / 100000).toFixed(1)}L`,
       icon: TrendingUp,
       color: 'text-success'
     },
-    { 
-      label: 'Active Trains', 
-      value: mockAdminStats.activeTrains, 
+    {
+      label: 'Active Trains',
+      value: stats.activeTrains,
       icon: Train,
       color: 'text-primary'
     },
-    { 
-      label: 'Total Bookings', 
-      value: mockAdminStats.totalBookings.toLocaleString(), 
+    {
+      label: 'Total Bookings',
+      value: stats.totalBookings.toLocaleString(),
       icon: CalendarCheck,
       color: 'text-secondary'
     },
-    { 
-      label: 'Occupancy Rate', 
-      value: `${mockAdminStats.occupancyPercentage}%`, 
+    {
+      label: 'Occupancy Rate',
+      value: `${stats.occupancyPercentage}%`,
       icon: Percent,
       color: 'text-warning'
     },
   ];
 
-  const filteredBookings = mockAdminBookings.filter(booking => {
-    const matchesSearch = 
+  const filteredBookings = bookings.filter(booking => {
+    const matchesSearch =
       booking.pnr?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       booking.train?.trainNumber.includes(searchTerm);
     const matchesStatus = statusFilter === 'all' || booking.bookingStatus === statusFilter;
@@ -83,7 +118,7 @@ const AdminDashboard = () => {
       <div className="space-y-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {stats.map((stat, index) => (
+          {dashboardStats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}

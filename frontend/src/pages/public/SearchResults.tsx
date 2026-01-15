@@ -7,7 +7,8 @@ import TrainCard from '@/components/TrainCard';
 import RouteVisualization from '@/components/RouteVisualization';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { mockSearchResults } from '@/data/mockData';
+// import { mockSearchResults } from '@/data/mockData';
+import { trainApi } from '@/lib/api';
 import { SearchResult } from '@/types';
 
 const SearchResults = () => {
@@ -22,11 +23,21 @@ const SearchResults = () => {
   const date = searchParams.get('date');
 
   useEffect(() => {
-    // Mock API call - replace with actual API
-    setResults(mockSearchResults);
+    const fetchResults = async () => {
+      if (!from || !to || !date) return;
+      try {
+        const response = await trainApi.search(from, to, date);
+        // Transform API response if necessary to match SearchResult type
+        // For now assuming API returns compatible list
+        setResults(response.data);
+      } catch (err) {
+        console.error("Failed to fetch trains:", err);
+      }
+    };
+    fetchResults();
   }, [from, to, date]);
 
-  const filteredResults = directOnly 
+  const filteredResults = directOnly
     ? results.filter(r => r.isDirect)
     : results;
 
@@ -44,7 +55,7 @@ const SearchResults = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       <div className="pt-20 px-4">
         <div className="container mx-auto py-8">
           {/* Header */}
@@ -97,7 +108,7 @@ const SearchResults = () => {
                   onCheckAvailability={() => handleCheckAvailability(result)}
                 />
               ))}
-              
+
               {filteredResults.length === 0 && (
                 <div className="glass-card p-12 text-center">
                   <p className="text-muted-foreground">No trains found matching your criteria</p>

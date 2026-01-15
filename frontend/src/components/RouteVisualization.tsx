@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { MapPin, Train } from 'lucide-react';
 import { SearchResult } from '@/types';
-import { mockStations } from '@/data/mockData';
+// import { mockStations } from '@/data/mockData';
 
 interface RouteVisualizationProps {
   result: SearchResult | null;
@@ -20,14 +20,22 @@ const RouteVisualization = ({ result }: RouteVisualizationProps) => {
   }
 
   // Mock route stops
-  const stops = [
-    { station: result.sourceStation, time: result.departureTime, isStop: true },
-    ...(result.isDirect ? [] : [
-      { station: mockStations[1], time: '08:30', isStop: true },
-      { station: mockStations[2], time: '10:00', isStop: false },
-    ]),
-    { station: result.destStation, time: result.arrivalTime, isStop: true },
-  ];
+  // Use real route data from result
+  // If route is empty or undefined, use source and dest only
+  const routeStops = result.route && result.route.length > 0
+    ? result.route
+    : [];
+
+  const stops = routeStops.length > 0
+    ? routeStops.map((stop, index) => ({
+      station: stop.station || { stationName: `Station ${stop.stationId}`, city: '', stationCode: '' } as any,
+      time: stop.departureTime || stop.arrivalTime,
+      isStop: true // simplified
+    }))
+    : [
+      { station: result.sourceStation, time: result.departureTime, isStop: true },
+      { station: result.destStation, time: result.arrivalTime, isStop: true }
+    ];
 
   return (
     <motion.div
@@ -54,13 +62,12 @@ const RouteVisualization = ({ result }: RouteVisualizationProps) => {
                 transition={{ delay: index * 0.1 }}
                 className="flex items-center gap-4"
               >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center z-10 ${
-                  index === 0 || index === stops.length - 1
-                    ? 'bg-gradient-to-br from-primary to-secondary'
-                    : stop.isStop
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center z-10 ${index === 0 || index === stops.length - 1
+                  ? 'bg-gradient-to-br from-primary to-secondary'
+                  : stop.isStop
                     ? 'bg-secondary/50 border-2 border-secondary'
                     : 'bg-muted border-2 border-border'
-                }`}>
+                  }`}>
                   <MapPin className="w-4 h-4 text-white" />
                 </div>
                 <div className="flex-1">

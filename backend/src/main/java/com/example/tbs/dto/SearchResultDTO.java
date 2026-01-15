@@ -30,6 +30,12 @@ public class SearchResultDTO {
     private Long sourceStationId;
     private Long destStationId;
 
+    // Station Details for Frontend Display
+    private String sourceStationName;
+    private String sourceStationCode;
+    private String destStationName;
+    private String destStationCode;
+
     @Data
     @NoArgsConstructor
     @AllArgsConstructor

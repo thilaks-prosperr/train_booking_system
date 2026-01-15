@@ -160,7 +160,11 @@ public class TrainSearchService {
                                 path, // Path
                                 src.getTrain().getTrainId(),
                                 src.getStation().getStationId(),
-                                dst.getStation().getStationId());
+                                dst.getStation().getStationId(),
+                                src.getStation().getStationName(),
+                                src.getStation().getStationCode(),
+                                dst.getStation().getStationName(),
+                                dst.getStation().getStationCode());
         }
 
         private SearchResultDTO createLayoverDTO(TrainSchedule t1Src, TrainSchedule t1End, TrainSchedule t2Start,
@@ -232,6 +236,10 @@ public class TrainSearchService {
                                       // Let's pass the first train's ID for now, or null.
                                       // Decision: Pass null.
                                 t1Src.getStation().getStationId(),
-                                t2End.getStation().getStationId());
+                                t2End.getStation().getStationId(),
+                                t1Src.getStation().getStationName(),
+                                t1Src.getStation().getStationCode(),
+                                t2End.getStation().getStationName(),
+                                t2End.getStation().getStationCode());
         }
 }
