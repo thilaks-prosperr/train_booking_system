@@ -40,12 +40,25 @@ function SeatSelection() {
             .catch(err => console.error("Failed to load seats", err));
     }, [coachType, trainId, date]);
 
-    const toggleSeat = (seatNumber) => {
-        if (selectedSeats.includes(seatNumber)) {
-            setSelectedSeats(selectedSeats.filter(s => s !== seatNumber));
+    const toggleSeat = (seatId) => {
+        if (selectedSeats.includes(seatId)) {
+            setSelectedSeats(selectedSeats.filter(id => id !== seatId));
         } else {
-            setSelectedSeats([...selectedSeats, seatNumber]);
+            setSelectedSeats([...selectedSeats, seatId]);
         }
+    };
+
+    // Helper to get formatted seat numbers for display
+    const getSelectedSeatNumbers = () => {
+        const numbers = [];
+        seatRows.forEach(row => {
+            row.seats.forEach(seat => {
+                if (selectedSeats.includes(seat.id)) {
+                    numbers.push(seat.number);
+                }
+            });
+        });
+        return numbers;
     };
 
     const handleBook = async () => {
@@ -78,10 +91,10 @@ function SeatSelection() {
                 sourceStationId: sId,
                 destStationId: dId,
                 coachType: coachType,
-                selectedSeats: selectedSeats
+                selectedSeats: selectedSeats // Now contains integers [1, 5, etc]
             });
 
-            alert(`Booking Successful for ${selectedSeats.join(', ')}!`);
+            alert(`Booking Successful for ${getSelectedSeatNumbers().join(', ')}!`);
             navigate('/booking-success');
         } catch (err) {
             console.error(err);
@@ -124,26 +137,26 @@ function SeatSelection() {
                             {/* Seat A */}
                             <Seat
                                 seat={row.seats[0]}
-                                isSelected={selectedSeats.includes(row.seats[0].number)}
-                                onToggle={() => toggleSeat(row.seats[0].number)}
+                                isSelected={selectedSeats.includes(row.seats[0].id)}
+                                onToggle={() => toggleSeat(row.seats[0].id)}
                             />
                             {/* Walkway */}
                             <div className="walkway"></div>
                             {/* Seats B, C, D */}
                             <Seat
                                 seat={row.seats[1]}
-                                isSelected={selectedSeats.includes(row.seats[1].number)}
-                                onToggle={() => toggleSeat(row.seats[1].number)}
+                                isSelected={selectedSeats.includes(row.seats[1].id)}
+                                onToggle={() => toggleSeat(row.seats[1].id)}
                             />
                             <Seat
                                 seat={row.seats[2]}
-                                isSelected={selectedSeats.includes(row.seats[2].number)}
-                                onToggle={() => toggleSeat(row.seats[2].number)}
+                                isSelected={selectedSeats.includes(row.seats[2].id)}
+                                onToggle={() => toggleSeat(row.seats[2].id)}
                             />
                             <Seat
                                 seat={row.seats[3]}
-                                isSelected={selectedSeats.includes(row.seats[3].number)}
-                                onToggle={() => toggleSeat(row.seats[3].number)}
+                                isSelected={selectedSeats.includes(row.seats[3].id)}
+                                onToggle={() => toggleSeat(row.seats[3].id)}
                             />
                         </div>
                     ))}
@@ -151,7 +164,7 @@ function SeatSelection() {
 
                 <div className="booking-footer">
                     <div className="selected-info">
-                        Selected: {selectedSeats.length > 0 ? selectedSeats.join(', ') : 'None'}
+                        Selected: {selectedSeats.length > 0 ? getSelectedSeatNumbers().join(', ') : 'None'}
                     </div>
                     <button
                         className="btn btn-primary"

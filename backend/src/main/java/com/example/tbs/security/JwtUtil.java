@@ -15,7 +15,11 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    private final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    // FIXED KEY for persistence across restarts
+    // Must be at least 256 bits (32 chars)
+    private static final String SECRET_STRING = "ChangeThisToSomethingVerySecureAndLongEnough123456";
+    private final SecretKey secretKey = Keys
+            .hmacShaKeyFor(SECRET_STRING.getBytes(java.nio.charset.StandardCharsets.UTF_8));
     private final long expirationTime = 1000 * 60 * 60 * 10; // 10 hours
 
     public String extractUsername(String token) {

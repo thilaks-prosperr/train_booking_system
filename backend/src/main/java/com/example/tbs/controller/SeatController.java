@@ -45,10 +45,12 @@ public class SeatController {
     }
 
     public static class SeatDTO {
+        public int id;
         public String number;
         public boolean isBooked;
 
-        public SeatDTO(String number, boolean isBooked) {
+        public SeatDTO(int id, String number, boolean isBooked) {
+            this.id = id;
             this.number = number;
             this.isBooked = isBooked;
         }
