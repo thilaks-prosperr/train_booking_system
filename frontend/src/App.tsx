@@ -1,58 +1,59 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import SearchResults from './pages/SearchResults';
-import SeatSelection from './pages/SeatSelection';
-import AboutPage from './pages/AboutPage';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-import { AuthProvider } from './context/AuthContext';
-import PrivateRoute from './components/PrivateRoute';
-import UserDashboard from './pages/UserDashboard';
-import BookingSuccess from './pages/BookingSuccess';
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@/context/AuthContext";
 
-// Admin Imports
-import AdminLayout from './layouts/AdminLayout';
-import StationsPage from './pages/admin/StationsPage';
-import TrainsPage from './pages/admin/TrainsPage';
-import StatsPage from './pages/admin/StatsPage';
-// import AdminDashboard from './pages/admin/AdminDashboard'; // Deprecated/Placeholder
+// Public Pages
+import Landing from "./pages/public/Landing";
+import SearchResults from "./pages/public/SearchResults";
+import SeatSelection from "./pages/public/SeatSelection";
+import Login from "./pages/public/Login";
+import Signup from "./pages/public/Signup";
 
-function App() {
-  return (
+// User Pages
+import UserDashboard from "./pages/user/Dashboard";
+
+// Admin Pages
+import AdminDashboard from "./pages/admin/Dashboard";
+import ManageStations from "./pages/admin/ManageStations";
+import ManageTrains from "./pages/admin/ManageTrains";
+
+import NotFound from "./pages/NotFound";
+
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          {/* User Routes (with Navbar) */}
-          <Route path="/" element={
-            <>
-              <Navbar />
-              <HomePage />
-            </>
-          } />
-          <Route path="/search" element={<><Navbar /><SearchResults /></>} />
-          <Route path="/book/:trainId" element={<><Navbar /><SeatSelection /></>} />
-          <Route path="/login" element={<><Navbar /><LoginPage /></>} />
-          <Route path="/signup" element={<><Navbar /><SignupPage /></>} />
-          <Route path="/about" element={<><Navbar /><AboutPage /></>} />
-          <Route path="/booking-success" element={<><Navbar /><BookingSuccess /></>} />
-
-          {/* Protected Parameters (User) */}
-          <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<><Navbar /><UserDashboard /></>} />
-          </Route>
-
-          {/* Admin Routes (Wrapped in AdminLayout) */}
-          <Route path="/admin" element={<PrivateRoute requiredRole="ADMIN"><AdminLayout /></PrivateRoute>}>
-            <Route index element={<Navigate to="/admin/stats" replace />} />
-            <Route path="stations" element={<StationsPage />} />
-            <Route path="trains" element={<TrainsPage />} />
-            <Route path="stats" element={<StatsPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Landing />} />
+            <Route path="/search" element={<SearchResults />} />
+            <Route path="/seats" element={<SeatSelection />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            
+            {/* User Routes */}
+            <Route path="/dashboard" element={<UserDashboard />} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/stations" element={<ManageStations />} />
+            <Route path="/admin/trains" element={<ManageTrains />} />
+            
+            {/* Catch-all */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
     </AuthProvider>
-  );
-}
+  </QueryClientProvider>
+);
 
 export default App;
