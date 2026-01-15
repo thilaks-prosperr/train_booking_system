@@ -133,6 +133,7 @@ function SearchResults() {
                     <div className="flex-1 border border-border border-t-0 rounded-b-lg overflow-hidden shadow-sm relative">
                         <StationMap
                             routeStations={selectedTrainRoute}
+                            onStationSelect={() => { }}
                             className="w-full h-full"
                             style={{ height: '100%', width: '100%' }}
                         />
