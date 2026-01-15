@@ -132,7 +132,7 @@ Authorization: Bearer {{adminToken}}
   "totalSeatsPerCoach": 60
 }
 
-###
+### nothing here random test
 # @name BlockSeatsAdmin
 POST http://localhost:8080/api/admin/seats/block
 Content-Type: application/json
