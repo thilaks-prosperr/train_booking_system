@@ -73,34 +73,72 @@ const ManageTrains = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // 1. Create Train
+      const trainPayload = {
+        trainNumber: formData.trainNumber,
+        trainName: formData.trainName,
+        totalSeatsPerCoach: parseInt(formData.totalSeatsPerCoach),
+      };
 
-    const newTrain: TrainType = {
-      trainId: trains.length + 1,
-      trainNumber: formData.trainNumber,
-      trainName: formData.trainName,
-      totalSeatsPerCoach: parseInt(formData.totalSeatsPerCoach),
-    };
+      const trainRes = await adminApi.createTrain(trainPayload);
+      const newTrain = trainRes.data;
 
-    setTrains([...trains, newTrain]);
-    setFormData({ trainNumber: '', trainName: '', totalSeatsPerCoach: '40' });
-    setRouteStops([]);
-    setIsLoading(false);
+      // 2. Add Schedules (if any)
+      if (routeStops.length > 0) {
+        // Sequentially add schedules to ensure order
+        for (let i = 0; i < routeStops.length; i++) {
+          const stop = routeStops[i];
+          const schedulePayload = {
+            station: { stationId: stop.stationId },
+            arrivalTime: stop.arrivalTime + ":00",
+            departureTime: stop.departureTime + ":00",
+            platformNumber: "1",
+            stopSequence: i + 1, // Correct sequence (1-based or 0-based, backend compared relative)
+            distanceFromStartKm: stop.distanceFromStartKm
+          };
+          await adminApi.addSchedule(newTrain.trainId, schedulePayload);
+        }
+      }
 
-    toast({
-      title: 'Train Added',
-      description: `${newTrain.trainName} has been added successfully.`,
-    });
+      setTrains([...trains, newTrain]);
+      setFormData({ trainNumber: '', trainName: '', totalSeatsPerCoach: '40' });
+      setRouteStops([]);
+
+      toast({
+        title: 'Train Added',
+        description: `${newTrain.trainName} has been added successfully with schedules.`,
+      });
+    } catch (error) {
+      console.error("Failed to create train:", error);
+      toast({
+        title: 'Error',
+        description: 'Failed to create train. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleDelete = (id: number) => {
-    setTrains(trains.filter(t => t.trainId !== id));
-    toast({
-      title: 'Train Deleted',
-      description: 'The train has been removed.',
-      variant: 'destructive',
-    });
+  const handleDelete = async (id: number) => {
+    try {
+      if (!confirm("Are you sure?")) return;
+      await adminApi.deleteTrain(id);
+      setTrains(trains.filter(t => t.trainId !== id));
+      toast({
+        title: 'Train Deleted',
+        description: 'The train has been removed.',
+        variant: 'destructive',
+      });
+    } catch (error) {
+      console.error("Failed to delete train", error);
+      toast({
+        title: "Error",
+        description: "Failed to delete train",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -185,7 +223,7 @@ const ManageTrains = () => {
                       <span className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </span>
-                      <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-3">
                         <Select
                           value={stop.stationId.toString()}
                           onValueChange={(v) => handleStopChange(index, 'stationId', parseInt(v))}
@@ -213,6 +251,13 @@ const ManageTrains = () => {
                           value={stop.departureTime}
                           onChange={(e) => handleStopChange(index, 'departureTime', e.target.value)}
                           placeholder="Departure"
+                          className="bg-muted/50"
+                        />
+                        <Input
+                          type="number"
+                          value={stop.distanceFromStartKm}
+                          onChange={(e) => handleStopChange(index, 'distanceFromStartKm', parseInt(e.target.value) || 0)}
+                          placeholder="Dist (km)"
                           className="bg-muted/50"
                         />
                       </div>

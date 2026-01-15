@@ -13,17 +13,17 @@ import java.util.stream.Collectors;
 public class TrainController {
 
     private final TrainScheduleRepository trainScheduleRepository;
+    private final com.example.tbs.repository.TrainRepository trainRepository;
 
-    public TrainController(TrainScheduleRepository trainScheduleRepository) {
+    public TrainController(TrainScheduleRepository trainScheduleRepository,
+            com.example.tbs.repository.TrainRepository trainRepository) {
         this.trainScheduleRepository = trainScheduleRepository;
+        this.trainRepository = trainRepository;
     }
 
     @GetMapping("/{trainId}")
     public com.example.tbs.entity.Train getTrainById(@PathVariable Long trainId) {
-        return trainScheduleRepository.findAll().stream()
-                .filter(ts -> ts.getTrain().getTrainId().equals(trainId))
-                .map(TrainSchedule::getTrain)
-                .findFirst()
+        return trainRepository.findById(trainId)
                 .orElseThrow(() -> new RuntimeException("Train not found"));
     }
 

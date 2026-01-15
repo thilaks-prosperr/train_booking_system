@@ -14,18 +14,23 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useToast } from '@/hooks/use-toast';
-import { stationApi } from '@/lib/api';
+import { stationApi, adminApi } from '@/lib/api';
 import { Station } from '@/types';
 
 const ManageStations = () => {
   const { toast } = useToast();
   const [stations, setStations] = useState<Station[]>([]);
 
-  useEffect(() => {
+  const fetchStations = () => {
     stationApi.getAll()
       .then(res => setStations(res.data))
       .catch(err => console.error("Failed to fetch stations", err));
+  };
+
+  useEffect(() => {
+    fetchStations();
   }, []);
+
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     stationName: '',
@@ -39,35 +44,56 @@ const ManageStations = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const payload = {
+        stationName: formData.stationName,
+        stationCode: formData.stationCode.toUpperCase(),
+        city: formData.city,
+        latitude: parseFloat(formData.latitude),
+        longitude: parseFloat(formData.longitude),
+      };
 
-    const newStation: Station = {
-      stationId: stations.length + 1,
-      stationName: formData.stationName,
-      stationCode: formData.stationCode.toUpperCase(),
-      city: formData.city,
-      latitude: parseFloat(formData.latitude),
-      longitude: parseFloat(formData.longitude),
-    };
+      await adminApi.createStation(payload);
 
-    setStations([...stations, newStation]);
-    setFormData({ stationName: '', stationCode: '', city: '', latitude: '', longitude: '' });
-    setIsLoading(false);
+      toast({
+        title: 'Station Added',
+        description: `${formData.stationName} has been added successfully.`,
+      });
 
-    toast({
-      title: 'Station Added',
-      description: `${newStation.stationName} has been added successfully.`,
-    });
+      setFormData({ stationName: '', stationCode: '', city: '', latitude: '', longitude: '' });
+      fetchStations();
+    } catch (error) {
+      console.error('Failed to create station:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to create station. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleDelete = (id: number) => {
-    setStations(stations.filter(s => s.stationId !== id));
-    toast({
-      title: 'Station Deleted',
-      description: 'The station has been removed.',
-      variant: 'destructive',
-    });
+  const handleDelete = async (id: number) => {
+    try {
+      if (!confirm('Are you sure you want to delete this station?')) return;
+
+      await adminApi.deleteStation(id);
+
+      toast({
+        title: 'Station Deleted',
+        description: 'The station has been removed.',
+        variant: 'destructive',
+      });
+      fetchStations();
+    } catch (error) {
+      console.error('Failed to delete station:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to delete station.',
+        variant: 'destructive',
+      });
+    }
   };
 
   return (

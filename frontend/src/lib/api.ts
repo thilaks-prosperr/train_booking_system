@@ -58,7 +58,8 @@ export const adminApi = {
     deleteStation: (id) => api.delete(`/admin/stations/${id}`),
     createTrain: (data) => api.post('/admin/trains', data),
     updateTrain: (id, data) => api.put(`/admin/trains/${id}`, data),
-    deleteTrain: (id) => api.delete(`/admin/trains/${id}`)
+    deleteTrain: (id) => api.delete(`/admin/trains/${id}`),
+    addSchedule: (trainId, data) => api.post(`/admin/trains/${trainId}/schedule`, data)
 };
 
 // Booking API endpoints

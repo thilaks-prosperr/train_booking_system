@@ -35,8 +35,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(org.springframework.security.config.Customizer.withDefaults()) // Use existing WebConfig CORS
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/api/search", "/api/stations", "/api/seats").permitAll() // Public
-                                                                                                                   // endpoints
+                        .requestMatchers("/api/auth/**", "/api/search", "/api/stations/**", "/api/trains/**",
+                                "/api/seats/**")
+                        .permitAll() // Public
+                        // endpoints
                         .requestMatchers("/api/admin/**").hasAuthority("ADMIN") // Admin only
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

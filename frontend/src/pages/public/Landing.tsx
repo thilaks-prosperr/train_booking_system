@@ -93,7 +93,9 @@ const Landing = () => {
                                     type="date"
                                     value={date}
                                     onChange={(e) => setDate(e.target.value)}
-                                    className="w-full bg-background/50 border border-input rounded-md p-3 focus:ring-2 focus:ring-primary outline-none transition-all"
+                                    // @ts-ignore
+                                    onClick={(e) => e.currentTarget.showPicker && e.currentTarget.showPicker()}
+                                    className="w-full bg-background/50 border border-input rounded-md p-3 focus:ring-2 focus:ring-primary outline-none transition-all cursor-pointer"
                                     required
                                 />
                             </div>
