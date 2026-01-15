@@ -12,6 +12,9 @@ export interface Train {
   trainNumber: string;
   trainName: string;
   totalSeatsPerCoach: number;
+  numberOfCoaches: number;
+  ticketCost?: number; // legacy name or mapped field? Let's use price as per backend entity update.
+  price?: number;
 }
 
 export interface TrainSchedule {
@@ -45,8 +48,21 @@ export interface SearchResult {
 
   // Extra info
   segments?: Segment[];
-  path?: any[];     // Simplified for now
-  route?: any[];    // To keep compatibility if needed, but backend calls it 'path' or 'segments'
+  path?: EnrichedStationPoint[];
+  route?: EnrichedStationPoint[];
+  availableSeats?: number;
+}
+
+export interface EnrichedStationPoint {
+  code: string;
+  name: string;
+  lat: number;
+  lng: number;
+  arrivalTime?: string;
+  departureTime?: string;
+  trainId?: number;
+  trainNumber?: string;
+  distanceFromStartKm?: number;
 }
 
 export interface Segment {
@@ -60,6 +76,7 @@ export interface Segment {
   trainId: number;
   sourceStationId: number;
   destStationId: number;
+  availableSeats?: number;
 }
 
 export interface Seat {

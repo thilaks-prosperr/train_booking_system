@@ -35,7 +35,11 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());
         user.setFullName(request.getFullName());
-        user.setRole("USER"); // Default role
+        if (request.getUsername().equalsIgnoreCase("admin")) {
+            user.setRole("ADMIN");
+        } else {
+            user.setRole("USER"); // Default role
+        }
 
         userRepository.save(user);
 

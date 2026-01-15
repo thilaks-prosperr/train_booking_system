@@ -36,5 +36,14 @@ public interface BookedSeatRepository extends JpaRepository<BookedSeat, Long> {
                         @Param("coachType") String coachType,
                         @Param("seatNumbers") List<Integer> seatNumbers);
 
+        @Query("SELECT COUNT(b) FROM BookedSeat b WHERE b.booking.train.trainId = :trainId " +
+                        "AND b.booking.journeyDate = :journeyDate " +
+                        "AND b.fromSeq < :endSeq " +
+                        "AND b.toSeq > :startSeq")
+        long countOverlappingBookings(@Param("trainId") Long trainId,
+                        @Param("journeyDate") LocalDate journeyDate,
+                        @Param("startSeq") int startSeq,
+                        @Param("endSeq") int endSeq);
+
         List<BookedSeat> findByBooking(com.example.tbs.entity.Booking booking);
 }

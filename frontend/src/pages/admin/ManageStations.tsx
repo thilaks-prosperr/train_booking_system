@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Edit, Trash2, MapPin, Loader2 } from 'lucide-react';
+import { Plus, Edit, Trash2, MapPin, Loader2, X } from 'lucide-react';
 import AdminLayout from '@/components/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,6 +16,61 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { stationApi, adminApi } from '@/lib/api';
 import { Station } from '@/types';
+
+interface EditStationDialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  formData: any;
+  setFormData: (data: any) => void;
+  onSave: (e: React.FormEvent) => void;
+  isLoading: boolean;
+}
+
+const EditStationDialog = ({ isOpen, onClose, formData, setFormData, onSave, isLoading }: EditStationDialogProps) => {
+  if (!isOpen) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in">
+      <div className="bg-card border border-border p-6 rounded-lg w-full max-w-lg shadow-lg relative">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
+        >
+          <X className="w-5 h-5" />
+        </button>
+        <h2 className="text-xl font-bold mb-4">Edit Station</h2>
+        <form onSubmit={onSave} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="edit-stationName">Station Name</Label>
+            <Input id="edit-stationName" value={formData.stationName} onChange={(e) => setFormData({ ...formData, stationName: e.target.value })} required className="bg-muted/50" />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="edit-stationCode">Code</Label>
+              <Input id="edit-stationCode" value={formData.stationCode} onChange={(e) => setFormData({ ...formData, stationCode: e.target.value })} required className="bg-muted/50 uppercase" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-city">City</Label>
+              <Input id="edit-city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} required className="bg-muted/50" />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="edit-lat">Latitude</Label>
+              <Input id="edit-lat" type="number" step="any" value={formData.latitude} onChange={(e) => setFormData({ ...formData, latitude: e.target.value })} required className="bg-muted/50" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-long">Longitude</Label>
+              <Input id="edit-long" type="number" step="any" value={formData.longitude} onChange={(e) => setFormData({ ...formData, longitude: e.target.value })} required className="bg-muted/50" />
+            </div>
+          </div>
+          <Button type="submit" variant="hero" disabled={isLoading} className="w-full">
+            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Save Changes"}
+          </Button>
+        </form>
+      </div>
+    </div>
+  )
+};
 
 const ManageStations = () => {
   const { toast } = useToast();
@@ -96,9 +151,77 @@ const ManageStations = () => {
     }
   };
 
+
+
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [editingStation, setEditingStation] = useState<Station | null>(null);
+
+  // Dialog Component for Edit - Moved outside/before usage
+
+
+  const handleEditClick = (station: Station) => {
+    setEditingStation(station);
+    setFormData({
+      stationName: station.stationName,
+      stationCode: station.stationCode,
+      city: station.city,
+      latitude: station.latitude?.toString() || '',
+      longitude: station.longitude?.toString() || '',
+    });
+    setIsEditOpen(true);
+  };
+
+  const handleUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingStation) return;
+    setIsLoading(true);
+
+    try {
+      const payload = {
+        stationId: editingStation.stationId,
+        stationName: formData.stationName,
+        stationCode: formData.stationCode.toUpperCase(),
+        city: formData.city,
+        latitude: parseFloat(formData.latitude),
+        longitude: parseFloat(formData.longitude),
+      };
+
+      await adminApi.updateStation(payload.stationId, payload);
+
+      toast({
+        title: 'Station Updated',
+        description: `${formData.stationName} has been updated successfully.`,
+      });
+
+      setIsEditOpen(false);
+      setEditingStation(null);
+      setFormData({ stationName: '', stationCode: '', city: '', latitude: '', longitude: '' });
+      fetchStations();
+    } catch (error) {
+      console.error('Failed to update station:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to update station.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <AdminLayout>
       <div className="space-y-6">
+        {/* Edit Modal */}
+        <EditStationDialog
+          isOpen={isEditOpen}
+          onClose={() => { setIsEditOpen(false); setEditingStation(null); setFormData({ stationName: '', stationCode: '', city: '', latitude: '', longitude: '' }); }}
+          formData={formData}
+          setFormData={setFormData}
+          onSave={handleUpdate}
+          isLoading={isLoading}
+        />
+
         {/* Add Station Form */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -219,7 +342,7 @@ const ManageStations = () => {
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-2">
-                        <Button variant="ghost" size="icon">
+                        <Button variant="ghost" size="icon" onClick={() => handleEditClick(station)}>
                           <Edit className="w-4 h-4" />
                         </Button>
                         <Button

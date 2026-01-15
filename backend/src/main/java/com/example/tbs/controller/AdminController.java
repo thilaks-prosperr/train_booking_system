@@ -87,6 +87,10 @@ public class AdminController {
         train.setTrainNumber(trainDetails.getTrainNumber());
         train.setTrainName(trainDetails.getTrainName());
         train.setTotalSeatsPerCoach(trainDetails.getTotalSeatsPerCoach());
+        train.setNumberOfCoaches(trainDetails.getNumberOfCoaches());
+        if (trainDetails.getPrice() != null) {
+            train.setPrice(trainDetails.getPrice());
+        }
 
         return ResponseEntity.ok(trainRepository.save(train));
     }
@@ -104,11 +108,43 @@ public class AdminController {
                 .orElseThrow(() -> new RuntimeException("Train not found"));
         schedule.setTrain(train);
 
-        // If station ID is provided in the nested object, ensure it's loaded?
-        // JPA usually handles ID ref if properly set.
-        // Just saving should work if the frontend sends { station: { stationId: 1 } }
+        // Fetch the full station object to get coordinates
+        Station currentStation = stationRepository.findById(schedule.getStation().getStationId())
+                .orElseThrow(() -> new RuntimeException("Station not found"));
+        schedule.setStation(currentStation);
+
+        // Auto-calculate distance if not provided or 0
+        if (schedule.getDistanceFromStartKm() == 0) {
+            List<TrainSchedule> existingSchedules = trainScheduleRepository.findByTrain(train);
+
+            if (existingSchedules.isEmpty()) {
+                schedule.setDistanceFromStartKm(0);
+            } else {
+                // Find the schedule with the highest stopSequence
+                TrainSchedule lastStop = existingSchedules.stream()
+                        .max(java.util.Comparator.comparingInt(TrainSchedule::getStopSequence))
+                        .orElseThrow(); // Should not happen given isEmpty check
+
+                double distFromPrev = calculateHaversineDistance(
+                        lastStop.getStation().getLatitude(), lastStop.getStation().getLongitude(),
+                        currentStation.getLatitude(), currentStation.getLongitude());
+
+                schedule.setDistanceFromStartKm(lastStop.getDistanceFromStartKm() + (int) Math.round(distFromPrev));
+            }
+        }
 
         return ResponseEntity.ok(trainScheduleRepository.save(schedule));
+    }
+
+    private double calculateHaversineDistance(double lat1, double lon1, double lat2, double lon2) {
+        final int R = 6371; // Earth radius in km
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                        * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c;
     }
 
     // Legacy method for retrieving all

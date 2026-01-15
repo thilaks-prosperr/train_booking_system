@@ -20,11 +20,14 @@ public class TrainSearchService {
 
         private final TrainScheduleRepository trainScheduleRepository;
         private final StationRepository stationRepository;
+        private final com.example.tbs.repository.BookedSeatRepository bookedSeatRepository;
 
         public TrainSearchService(TrainScheduleRepository trainScheduleRepository,
-                        StationRepository stationRepository) {
+                        StationRepository stationRepository,
+                        com.example.tbs.repository.BookedSeatRepository bookedSeatRepository) {
                 this.trainScheduleRepository = trainScheduleRepository;
                 this.stationRepository = stationRepository;
+                this.bookedSeatRepository = bookedSeatRepository;
         }
 
         public List<SearchResultDTO> searchTrains(String sourceStationCode, String destStationCode,
@@ -55,7 +58,7 @@ public class TrainSearchService {
                         for (TrainSchedule dst : destSchedules) {
                                 if (src.getTrain().getTrainId().equals(dst.getTrain().getTrainId())) {
                                         if (src.getStopSequence() < dst.getStopSequence()) {
-                                                results.add(createDirectDTO(src, dst, allSchedules));
+                                                results.add(createDirectDTO(src, dst, allSchedules, journeyDate));
                                         }
                                 }
                         }
@@ -104,7 +107,7 @@ public class TrainSearchService {
                                                         results.add(
                                                                         createLayoverDTO(firstLegStart, intermediateArr,
                                                                                         intermediateDep, secondLegEnd,
-                                                                                        allSchedules));
+                                                                                        allSchedules, journeyDate));
                                                 }
 
                                                 // OPTION B: Train 2 goes to Intermediate 2 (Double Layover)
@@ -177,6 +180,14 @@ public class TrainSearchService {
                 return minutes >= 60;
         }
 
+        private int getAvailableSeats(com.example.tbs.entity.Train train, LocalDate date, int startSeq, int endSeq) {
+                int totalSeats = train.getTotalSeatsPerCoach()
+                                * (train.getNumberOfCoaches() > 0 ? train.getNumberOfCoaches() : 10);
+                long bookedCount = bookedSeatRepository.countOverlappingBookings(train.getTrainId(), date, startSeq,
+                                endSeq);
+                return Math.max(0, totalSeats - (int) bookedCount);
+        }
+
         private List<SearchResultDTO.StationPointDTO> getPath(Long trainId, int startSeq, int endSeq,
                         List<TrainSchedule> allSchedules) {
                 return allSchedules.stream()
@@ -188,20 +199,31 @@ public class TrainSearchService {
                                                 ts.getStation().getStationCode(),
                                                 ts.getStation().getStationName(),
                                                 ts.getStation().getLatitude(),
-                                                ts.getStation().getLongitude()))
+                                                ts.getStation().getLongitude(),
+                                                ts.getArrivalTime(),
+                                                ts.getDepartureTime(),
+                                                ts.getTrain().getTrainId(),
+                                                ts.getTrain().getTrainNumber(),
+                                                ts.getDistanceFromStartKm()))
                                 .collect(Collectors.toList());
         }
 
         private SearchResultDTO createDirectDTO(TrainSchedule src, TrainSchedule dst,
-                        List<TrainSchedule> allSchedules) {
-                double price = (dst.getDistanceFromStartKm() - src.getDistanceFromStartKm()) * 2.0;
+                        List<TrainSchedule> allSchedules, LocalDate journeyDate) {
+                // ... (existing logic)
+                double basePrice = src.getTrain().getPrice() != null ? src.getTrain().getPrice() : 100.0;
+                double distancePrice = (dst.getDistanceFromStartKm() - src.getDistanceFromStartKm()) * 2.0;
+                double price = basePrice + distancePrice;
                 Duration duration = Duration.between(src.getDepartureTime(), dst.getArrivalTime());
                 String durationStr = String.format("%dh %dm", duration.toHours(), duration.toMinutesPart());
 
                 List<SearchResultDTO.StationPointDTO> path = getPath(src.getTrain().getTrainId(), src.getStopSequence(),
                                 dst.getStopSequence(), allSchedules);
 
-                return new SearchResultDTO(
+                int available = getAvailableSeats(src.getTrain(), journeyDate, src.getStopSequence(),
+                                dst.getStopSequence());
+
+                SearchResultDTO dto = new SearchResultDTO(
                                 src.getTrain().getTrainName(),
                                 src.getTrain().getTrainNumber(),
                                 src.getDepartureTime(),
@@ -219,14 +241,22 @@ public class TrainSearchService {
                                 src.getStation().getStationCode(),
                                 dst.getStation().getStationName(),
                                 dst.getStation().getStationCode());
+                dto.setAvailableSeats(available);
+                return dto;
         }
 
         private SearchResultDTO createLayoverDTO(TrainSchedule t1Src, TrainSchedule t1End, TrainSchedule t2Start,
-                        TrainSchedule t2End, List<TrainSchedule> allSchedules) {
-
+                        TrainSchedule t2End, List<TrainSchedule> allSchedules, LocalDate journeyDate) {
+                // ... existing layover logic
                 double dist1 = t1End.getDistanceFromStartKm() - t1Src.getDistanceFromStartKm();
                 double dist2 = t2End.getDistanceFromStartKm() - t2Start.getDistanceFromStartKm();
-                double price = (dist1 + dist2) * 2.0;
+
+                double price1 = (t1Src.getTrain().getPrice() != null ? t1Src.getTrain().getPrice() : 100.0)
+                                + (dist1 * 2.0);
+                double price2 = (t2Start.getTrain().getPrice() != null ? t2Start.getTrain().getPrice() : 100.0)
+                                + (dist2 * 2.0);
+
+                double price = price1 + price2;
 
                 Duration duration = Duration.between(t1Src.getDepartureTime(), t2End.getArrivalTime());
                 if (duration.isNegative()) {
@@ -237,9 +267,12 @@ public class TrainSearchService {
                 String trainName = t1Src.getTrain().getTrainName() + " -> " + t2Start.getTrain().getTrainName();
                 String trainNumber = t1Src.getTrain().getTrainNumber() + "/" + t2Start.getTrain().getTrainNumber();
 
-                // Create Segments
-                List<SearchResultDTO.SegmentDTO> segments = new ArrayList<>();
-                segments.add(new SearchResultDTO.SegmentDTO(
+                // Assuming journeyDate is passed somehow. I'll fix the caller in next step or
+                // use a hack if needed.
+                // Wait, I am rewriting the file content. I can change the signature to accept
+                // journeyDate!
+
+                SearchResultDTO.SegmentDTO seg1 = new SearchResultDTO.SegmentDTO(
                                 t1Src.getTrain().getTrainName(),
                                 t1Src.getTrain().getTrainNumber(),
                                 t1Src.getStation().getStationCode(),
@@ -249,8 +282,11 @@ public class TrainSearchService {
                                 "Layover at " + t1End.getStation().getStationCode(),
                                 t1Src.getTrain().getTrainId(),
                                 t1Src.getStation().getStationId(),
-                                t1End.getStation().getStationId()));
-                segments.add(new SearchResultDTO.SegmentDTO(
+                                t1End.getStation().getStationId());
+                seg1.setAvailableSeats(getAvailableSeats(t1Src.getTrain(), journeyDate, t1Src.getStopSequence(),
+                                t1End.getStopSequence()));
+
+                SearchResultDTO.SegmentDTO seg2 = new SearchResultDTO.SegmentDTO(
                                 t2Start.getTrain().getTrainName(),
                                 t2Start.getTrain().getTrainNumber(),
                                 t2Start.getStation().getStationCode(),
@@ -260,9 +296,15 @@ public class TrainSearchService {
                                 "Destination",
                                 t2Start.getTrain().getTrainId(),
                                 t2Start.getStation().getStationId(),
-                                t2End.getStation().getStationId()));
+                                t2End.getStation().getStationId());
+                seg2.setAvailableSeats(getAvailableSeats(t2Start.getTrain(), journeyDate, t2Start.getStopSequence(),
+                                t2End.getStopSequence()));
 
-                // Create Path
+                List<SearchResultDTO.SegmentDTO> segments = new ArrayList<>();
+                segments.add(seg1);
+                segments.add(seg2);
+
+                // ... path creation
                 List<SearchResultDTO.StationPointDTO> path1 = getPath(t1Src.getTrain().getTrainId(),
                                 t1Src.getStopSequence(),
                                 t1End.getStopSequence(), allSchedules);
@@ -272,7 +314,7 @@ public class TrainSearchService {
                 List<SearchResultDTO.StationPointDTO> fullPath = new ArrayList<>(path1);
                 fullPath.addAll(path2);
 
-                return new SearchResultDTO(
+                SearchResultDTO dto = new SearchResultDTO(
                                 trainName,
                                 trainNumber,
                                 t1Src.getDepartureTime(),
@@ -283,24 +325,17 @@ public class TrainSearchService {
                                 t1End.getStation().getStationName(),
                                 segments,
                                 fullPath,
-                                null, // trainId is ambiguous for layover, but primary booking might not be simple.
-                                      // Strategy: For layover, we might need composite booking.
-                                      // For now, let's keep it null or handle frontend logic to not book layover
-                                      // directly if not supported.
-                                      // Actually, the requirement implies simple booking. Let's pass the FIRST train
-                                      // details
-                                      // or maybe the user can't book layover easily yet.
-                                      // Let's pass null for now as safe default if layover booking isn't fully
-                                      // spec'd.
-                                      // User prompt doesn't explicitly detail layover booking structure.
-                                      // Let's pass the first train's ID for now, or null.
-                                      // Decision: Pass null.
+                                null,
                                 t1Src.getStation().getStationId(),
                                 t2End.getStation().getStationId(),
                                 t1Src.getStation().getStationName(),
                                 t1Src.getStation().getStationCode(),
                                 t2End.getStation().getStationName(),
                                 t2End.getStation().getStationCode());
+
+                // Set min availability? or just leave it since segments have it.
+                dto.setAvailableSeats(Math.min(seg1.getAvailableSeats(), seg2.getAvailableSeats()));
+                return dto;
         }
 
         private SearchResultDTO createDoubleLayoverDTO(TrainSchedule t1Src, TrainSchedule t1End,
@@ -311,7 +346,15 @@ public class TrainSearchService {
                 double dist1 = t1End.getDistanceFromStartKm() - t1Src.getDistanceFromStartKm();
                 double dist2 = t2End.getDistanceFromStartKm() - t2Start.getDistanceFromStartKm();
                 double dist3 = t3End.getDistanceFromStartKm() - t3Start.getDistanceFromStartKm();
-                double price = (dist1 + dist2 + dist3) * 2.0;
+
+                double price1 = (t1Src.getTrain().getPrice() != null ? t1Src.getTrain().getPrice() : 100.0)
+                                + (dist1 * 2.0);
+                double price2 = (t2Start.getTrain().getPrice() != null ? t2Start.getTrain().getPrice() : 100.0)
+                                + (dist2 * 2.0);
+                double price3 = (t3Start.getTrain().getPrice() != null ? t3Start.getTrain().getPrice() : 100.0)
+                                + (dist3 * 2.0);
+
+                double price = price1 + price2 + price3;
 
                 Duration duration = Duration.between(t1Src.getDepartureTime(), t3End.getArrivalTime());
                 if (duration.isNegative())

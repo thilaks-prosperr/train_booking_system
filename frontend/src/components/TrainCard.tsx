@@ -36,7 +36,7 @@ const TrainCard = ({ result, isSelected, onSelect, onCheckAvailability }: TrainC
               <p className="text-sm text-muted-foreground">#{result.trainNumber}</p>
             </div>
           </div>
-          <Badge variant={result.isDirect ? "default" : "secondary"}>
+          <Badge variant={result.isDirect ? "default" : "secondary"} className={result.isDirect ? "bg-blue-500 hover:bg-blue-600" : ""}>
             {result.isDirect ? 'Direct' : 'Via'}
           </Badge>
         </div>

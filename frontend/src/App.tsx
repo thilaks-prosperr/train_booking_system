@@ -16,9 +16,9 @@ import Signup from "@/pages/public/Signup";
 import UserDashboard from "./pages/user/Dashboard";
 
 // Admin Pages
-import AdminDashboard from "./pages/admin/Dashboard";
-import ManageStations from "./pages/admin/ManageStations";
-import ManageTrains from "./pages/admin/ManageTrains";
+import AdminDashboard from "@/pages/admin/Dashboard";
+import ManageStations from "@/pages/admin/ManageStations";
+import ManageTrains from "@/pages/admin/ManageTrains";
 
 import NotFound from "./pages/NotFound";
 
