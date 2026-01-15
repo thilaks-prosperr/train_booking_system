@@ -112,10 +112,20 @@
     }
 
     .glass-card {
-        background-color: hsl(var(--card) / 0.4);
-        backdrop-filter: blur(12px);
+        background-color: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow:
+            0 25px 50px -12px rgba(0, 0, 0, 0.5),
+            0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    }
+
+    .glass-panel {
+        background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+        backdrop-filter: blur(24px);
         border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
     }
 
     .glow-primary {
@@ -123,23 +133,32 @@
     }
 
     .input-glass {
-        border-radius: 0.5rem;
-        padding: 0.5rem 1rem;
+        border-radius: 0.75rem;
+        padding: 0.75rem 1rem;
         width: 100%;
-        transition: all 0.2s;
-        background-color: rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background-color: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         color: hsl(var(--foreground));
+        font-weight: 500;
+        backdrop-filter: blur(4px);
     }
 
     .input-glass::placeholder {
-        color: hsl(var(--muted-foreground));
+        color: rgba(255, 255, 255, 0.4);
     }
 
     .input-glass:focus {
         outline: none;
-        box-shadow: 0 0 0 2px hsl(var(--primary) / 0.5);
-        border-color: hsl(var(--primary) / 0.5);
+        background-color: rgba(255, 255, 255, 0.08);
+        border-color: #8b5cf6;
+        box-shadow: 0 0 20px -5px rgba(139, 92, 246, 0.3);
+        transform: translateY(-1px);
+    }
+
+    .input-glass:hover {
+        background-color: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.2);
     }
 
     .btn-gradient {
@@ -304,9 +323,30 @@
     }
 
     .gradient-bg-animated {
-        background-color: hsl(var(--background));
+        background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #020617 100%);
         position: relative;
         overflow: hidden;
+    }
+
+    .gradient-bg-animated::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background-image:
+            linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        pointer-events: none;
+    }
+
+    .grid-pattern {
+        background-size: 40px 40px;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     }
 
     .gradient-border {
