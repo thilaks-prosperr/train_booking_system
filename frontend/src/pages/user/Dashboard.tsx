@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, Search } from 'lucide-react';
 import Navbar from '@/components/Navbar';

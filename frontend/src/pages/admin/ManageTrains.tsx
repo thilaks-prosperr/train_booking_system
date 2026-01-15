@@ -24,6 +24,12 @@ import { useToast } from '@/hooks/use-toast';
 import { trainApi, stationApi } from '@/lib/api';
 import { Train as TrainType, Station } from '@/types';
 
+interface RouteStop {
+  stationId: number;
+  arrivalTime: string;
+  departureTime: string;
+}
+
 // ...
 
 const ManageTrains = () => {

@@ -33,8 +33,8 @@ const RouteVisualization = ({ result }: RouteVisualizationProps) => {
       isStop: true // simplified
     }))
     : [
-      { station: result.sourceStation, time: result.departureTime, isStop: true },
-      { station: result.destStation, time: result.arrivalTime, isStop: true }
+      { station: { stationName: result.sourceStationName, stationCode: result.sourceStationCode, city: '' } as any, time: result.sourceTime, isStop: true },
+      { station: { stationName: result.destStationName, stationCode: result.destStationCode, city: '' } as any, time: result.destTime, isStop: true }
     ];
 
   return (
@@ -45,7 +45,7 @@ const RouteVisualization = ({ result }: RouteVisualizationProps) => {
     >
       <div className="glass-card p-6 h-full">
         <h3 className="font-display text-xl font-bold mb-6 gradient-text">
-          Route: {result.train.trainName}
+          Route: {result.trainName}
         </h3>
 
         <div className="relative">

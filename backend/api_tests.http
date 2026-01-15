@@ -33,6 +33,14 @@ GET http://localhost:8080/api/stations
 # @name SearchTrains
 GET http://localhost:8080/api/search?from=CEN&to=NDLS&date=2026-01-20
 
+### Train API ###
+# @name GetTrainDetails
+GET http://localhost:8080/api/trains/1
+
+###
+# @name GetTrainRoute
+GET http://localhost:8080/api/trains/1/route
+
 ### Seat API ###
 # @name GetSeats
 GET http://localhost:8080/api/seats?trainId=1&date=2026-01-20&coach=S1
@@ -58,6 +66,10 @@ Authorization: Bearer {{authToken}}
 GET http://localhost:8080/api/bookings/user/{{userId}}
 Authorization: Bearer {{authToken}}
 
+###
+# @name CancelBooking
+DELETE http://localhost:8080/api/bookings/1
+Authorization: Bearer {{authToken}}
 
 ### Admin API ###
 # @name AdminLogin
@@ -79,6 +91,69 @@ GET http://localhost:8080/api/admin/stats
 Authorization: Bearer {{adminToken}}
 
 ###
-# @name GetAllBookings
+# @name GetOccupancy
+GET http://localhost:8080/api/admin/occupancy?trainId=1&date=2026-01-20
+Authorization: Bearer {{adminToken}}
+
+###
+# @name GetAllBookingsAdmin
 GET http://localhost:8080/api/admin/bookings
 Authorization: Bearer {{adminToken}}
+
+###
+# @name GetBookingDetailsAdmin
+GET http://localhost:8080/api/admin/bookings/1
+Authorization: Bearer {{adminToken}}
+
+###
+# @name CancelBookingAdmin
+PUT http://localhost:8080/api/admin/bookings/1/cancel
+Authorization: Bearer {{adminToken}}
+
+###
+# @name RefundBookingAdmin
+PUT http://localhost:8080/api/admin/bookings/1/refund
+Authorization: Bearer {{adminToken}}
+
+###
+# @name GetAllTrainsAdmin
+GET http://localhost:8080/api/admin/trains
+Authorization: Bearer {{adminToken}}
+
+###
+# @name CreateTrainAdmin
+POST http://localhost:8080/api/admin/trains
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "trainNumber": "99999",
+  "trainName": "Test Express",
+  "totalSeatsPerCoach": 60
+}
+
+###
+# @name BlockSeatsAdmin
+POST http://localhost:8080/api/admin/seats/block
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "trainId": 1,
+  "date": "2026-01-20",
+  "coach": "S1",
+  "seatNumbers": [10, 11, 12]
+}
+
+###
+# @name UnblockSeatsAdmin
+DELETE http://localhost:8080/api/admin/seats/block
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "trainId": 1,
+  "date": "2026-01-20",
+  "coach": "S1",
+  "seatNumbers": [10, 11, 12]
+}

@@ -43,9 +43,11 @@ const SearchResults = () => {
 
   const handleCheckAvailability = (result: SearchResult) => {
     const params = new URLSearchParams({
-      trainId: result.train.trainId.toString(),
-      from: result.sourceStation.stationId.toString(),
-      to: result.destStation.stationId.toString(),
+      trainId: result.trainId.toString(),
+      from: result.sourceStationId.toString(),
+      to: result.destStationId.toString(),
+      fromCode: result.sourceStationCode,
+      toCode: result.destStationCode,
       date: date || '',
       price: result.price.toString(),
     });
@@ -101,9 +103,9 @@ const SearchResults = () => {
             <div className="space-y-4">
               {filteredResults.map((result, index) => (
                 <TrainCard
-                  key={result.train.trainId}
+                  key={result.trainId}
                   result={result}
-                  isSelected={selectedTrain?.train.trainId === result.train.trainId}
+                  isSelected={selectedTrain?.trainId === result.trainId}
                   onSelect={() => setSelectedTrain(result)}
                   onCheckAvailability={() => handleCheckAvailability(result)}
                 />

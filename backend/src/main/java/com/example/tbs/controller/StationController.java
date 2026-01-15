@@ -19,7 +19,8 @@ public class StationController {
     @GetMapping
     public List<StationDTO> getAllStations() {
         return stationRepository.findAll().stream()
-                .map(s -> new StationDTO(s.getStationId(), s.getStationCode(), s.getStationName(), s.getLatitude(),
+                .map(s -> new StationDTO(s.getStationId(), s.getStationCode(), s.getStationName(), s.getCity(),
+                        s.getLatitude(),
                         s.getLongitude()))
                 .collect(java.util.stream.Collectors.toList());
     }
@@ -29,13 +30,16 @@ public class StationController {
         public Long stationId;
         public String stationCode;
         public String stationName;
+        public String city;
         public double latitude;
         public double longitude;
 
-        public StationDTO(Long stationId, String stationCode, String stationName, double latitude, double longitude) {
+        public StationDTO(Long stationId, String stationCode, String stationName, String city, double latitude,
+                double longitude) {
             this.stationId = stationId;
             this.stationCode = stationCode;
             this.stationName = stationName;
+            this.city = city;
             this.latitude = latitude;
             this.longitude = longitude;
         }

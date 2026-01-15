@@ -12,7 +12,9 @@ import java.util.List;
 public class SearchResultDTO {
     private String trainName;
     private String trainNumber;
+    @com.fasterxml.jackson.annotation.JsonFormat(pattern = "HH:mm")
     private LocalTime sourceTime;
+    @com.fasterxml.jackson.annotation.JsonFormat(pattern = "HH:mm")
     private LocalTime destTime;
     private String duration; // e.g., "4h 10m"
     private double price;
@@ -44,7 +46,9 @@ public class SearchResultDTO {
         private String trainNumber;
         private String sourceStation;
         private String destStation;
+        @com.fasterxml.jackson.annotation.JsonFormat(pattern = "HH:mm")
         private LocalTime departureTime;
+        @com.fasterxml.jackson.annotation.JsonFormat(pattern = "HH:mm")
         private LocalTime arrivalTime;
         private String waitTimeAtDest; // e.g. "2hr Wait at UBL"
     }

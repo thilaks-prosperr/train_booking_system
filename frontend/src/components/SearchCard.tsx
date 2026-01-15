@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Calendar, Search, ArrowRight } from 'lucide-react';
@@ -18,13 +18,19 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
-import { mockStations } from '@/data/mockData';
+import { stationApi } from '@/lib/api';
+import { Station } from '@/types';
 
 const SearchCard = () => {
   const navigate = useNavigate();
   const [fromStation, setFromStation] = useState('');
   const [toStation, setToStation] = useState('');
   const [date, setDate] = useState<Date>();
+  const [stations, setStations] = useState<Station[]>([]);
+
+  useEffect(() => {
+    stationApi.getAll().then(res => setStations(res.data)).catch(console.error);
+  }, []);
 
   const handleSearch = () => {
     if (fromStation && toStation && date) {
@@ -47,7 +53,7 @@ const SearchCard = () => {
       <h2 className="font-display text-2xl font-bold mb-6 text-center gradient-text">
         Find Your Journey
       </h2>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         {/* From Station */}
         <div className="space-y-2">
@@ -60,7 +66,7 @@ const SearchCard = () => {
               <SelectValue placeholder="Select departure" />
             </SelectTrigger>
             <SelectContent className="bg-card border-border z-50">
-              {mockStations.map((station) => (
+              {stations.map((station) => (
                 <SelectItem key={station.stationId} value={station.stationCode}>
                   {station.stationName} ({station.stationCode})
                 </SelectItem>
@@ -80,7 +86,7 @@ const SearchCard = () => {
               <SelectValue placeholder="Select destination" />
             </SelectTrigger>
             <SelectContent className="bg-card border-border z-50">
-              {mockStations.filter(s => s.stationCode !== fromStation).map((station) => (
+              {stations.filter(s => s.stationCode !== fromStation).map((station) => (
                 <SelectItem key={station.stationId} value={station.stationCode}>
                   {station.stationName} ({station.stationCode})
                 </SelectItem>

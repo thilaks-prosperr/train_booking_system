@@ -18,6 +18,15 @@ public class TrainController {
         this.trainScheduleRepository = trainScheduleRepository;
     }
 
+    @GetMapping("/{trainId}")
+    public com.example.tbs.entity.Train getTrainById(@PathVariable Long trainId) {
+        return trainScheduleRepository.findAll().stream()
+                .filter(ts -> ts.getTrain().getTrainId().equals(trainId))
+                .map(TrainSchedule::getTrain)
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Train not found"));
+    }
+
     @GetMapping("/{trainId}/route")
     public List<RoutePointDTO> getTrainRoute(@PathVariable Long trainId) {
         List<TrainSchedule> schedules = trainScheduleRepository.findAll().stream()

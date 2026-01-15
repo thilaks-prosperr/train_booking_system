@@ -26,15 +26,27 @@ export interface TrainSchedule {
 }
 
 export interface SearchResult {
-  train: Train;
-  departureTime: string;
-  arrivalTime: string;
+  trainId: number;
+  trainName: string;
+  trainNumber: string;
+  sourceTime: string;
+  destTime: string;
   duration: string;
   price: number;
-  sourceStation: Station;
-  destStation: Station;
-  route: TrainSchedule[];
   isDirect: boolean;
+
+  // Station Details
+  sourceStationId: number;
+  destStationId: number;
+  sourceStationName: string;
+  sourceStationCode: string;
+  destStationName: string;
+  destStationCode: string;
+
+  // Extra info
+  segments?: any[]; // Simplified for now
+  path?: any[];     // Simplified for now
+  route?: any[];    // To keep compatibility if needed, but backend calls it 'path' or 'segments'
 }
 
 export interface Seat {

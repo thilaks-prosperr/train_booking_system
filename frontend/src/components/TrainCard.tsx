@@ -32,8 +32,8 @@ const TrainCard = ({ result, isSelected, onSelect, onCheckAvailability }: TrainC
               <Train className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h3 className="font-semibold">{result.train.trainName}</h3>
-              <p className="text-sm text-muted-foreground">#{result.train.trainNumber}</p>
+              <h3 className="font-semibold">{result.trainName}</h3>
+              <p className="text-sm text-muted-foreground">#{result.trainNumber}</p>
             </div>
           </div>
           <Badge variant={result.isDirect ? "default" : "secondary"}>
@@ -44,8 +44,8 @@ const TrainCard = ({ result, isSelected, onSelect, onCheckAvailability }: TrainC
         {/* Time & Route */}
         <div className="flex items-center justify-between">
           <div className="text-center">
-            <p className="text-2xl font-bold">{result.departureTime}</p>
-            <p className="text-xs text-muted-foreground">{result.sourceStation.stationCode}</p>
+            <p className="text-2xl font-bold">{result.sourceTime}</p>
+            <p className="text-xs text-muted-foreground">{result.sourceStationCode}</p>
           </div>
           <div className="flex-1 px-4">
             <div className="flex items-center justify-center gap-2 text-muted-foreground">
@@ -59,8 +59,8 @@ const TrainCard = ({ result, isSelected, onSelect, onCheckAvailability }: TrainC
             <ArrowRight className="w-4 h-4 mx-auto mt-1 text-primary" />
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold">{result.arrivalTime}</p>
-            <p className="text-xs text-muted-foreground">{result.destStation.stationCode}</p>
+            <p className="text-2xl font-bold">{result.destTime}</p>
+            <p className="text-xs text-muted-foreground">{result.destStationCode}</p>
           </div>
         </div>
 
@@ -71,8 +71,8 @@ const TrainCard = ({ result, isSelected, onSelect, onCheckAvailability }: TrainC
             <span className="text-xl font-bold">{result.price}</span>
             <span className="text-sm text-muted-foreground">/seat</span>
           </div>
-          <Button 
-            variant="hero" 
+          <Button
+            variant="hero"
             size="sm"
             onClick={(e) => {
               e.stopPropagation();

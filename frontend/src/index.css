@@ -1,9 +1,9 @@
+/* RailBook Modern Futuristic Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* RailBook Modern Futuristic Design System */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
@@ -53,12 +53,12 @@
     --gradient-hero: linear-gradient(180deg, hsla(222, 47%, 6%, 0.3) 0%, hsla(222, 47%, 6%, 0.95) 100%);
     --gradient-card: linear-gradient(135deg, hsla(217, 33%, 17%, 0.6) 0%, hsla(270, 70%, 55%, 0.1) 100%);
     --gradient-glow: linear-gradient(135deg, hsl(217 91% 60% / 0.3) 0%, hsl(270 70% 55% / 0.3) 100%);
-    
+
     /* Glass Effect */
     --glass-bg: hsla(222, 47%, 11%, 0.7);
     --glass-border: hsla(217, 91%, 60%, 0.2);
     --glass-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.4);
-    
+
     /* Seat Colors */
     --seat-available: 217 33% 25%;
     --seat-booked: 0 84% 45%;
@@ -119,12 +119,16 @@
     font-family: 'Inter', sans-serif;
   }
 
-  h1, h2, h3, .font-display {
+  h1,
+  h2,
+  h3,
+  .font-display {
     font-family: 'Orbitron', sans-serif;
   }
 }
 
 @layer components {
+
   /* Glass Card Component */
   .glass-card {
     background: var(--glass-bg);
@@ -147,6 +151,7 @@
   .gradient-border {
     position: relative;
   }
+
   .gradient-border::before {
     content: '';
     position: absolute;
@@ -169,24 +174,26 @@
   .seat {
     @apply w-10 h-10 rounded-md flex items-center justify-center text-xs font-medium transition-all duration-200 cursor-pointer;
   }
+
   .seat-available {
     @apply bg-muted hover:bg-primary/30 border border-border;
   }
+
   .seat-booked {
     @apply bg-destructive/80 cursor-not-allowed;
   }
+
   .seat-selected {
     @apply bg-success text-success-foreground;
   }
+
   .seat-blocked {
     @apply bg-muted-foreground/30 cursor-not-allowed;
-    background-image: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 4px,
-      hsla(0, 0%, 50%, 0.2) 4px,
-      hsla(0, 0%, 50%, 0.2) 8px
-    );
+    background-image: repeating-linear-gradient(45deg,
+        transparent,
+        transparent 4px,
+        hsla(0, 0%, 50%, 0.2) 4px,
+        hsla(0, 0%, 50%, 0.2) 8px);
   }
 
   /* Admin Card */
@@ -199,6 +206,7 @@
   .metric-card {
     @apply admin-card relative overflow-hidden;
   }
+
   .metric-card::before {
     content: '';
     position: absolute;
@@ -217,18 +225,26 @@
     position: relative;
     overflow: hidden;
   }
+
   .animated-bg::before {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at 20% 80%, hsla(217, 91%, 60%, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, hsla(270, 70%, 55%, 0.15) 0%, transparent 50%);
+      radial-gradient(circle at 80% 20%, hsla(270, 70%, 55%, 0.15) 0%, transparent 50%);
     animation: pulse-bg 8s ease-in-out infinite;
   }
 
   @keyframes pulse-bg {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+
+    0%,
+    100% {
+      opacity: 0.5;
+    }
+
+    50% {
+      opacity: 1;
+    }
   }
 }
 

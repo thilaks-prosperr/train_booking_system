@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, IndianRupee, Check } from 'lucide-react';
@@ -128,12 +128,12 @@ const SeatSelection = () => {
                 <div className="flex items-center gap-4 text-sm">
                   <div>
                     <p className="text-muted-foreground">From</p>
-                    <p className="font-semibold">{fromStation?.stationCode || 'CEN'}</p>
+                    <p className="font-semibold">{fromStationCode}</p>
                   </div>
                   <div className="text-2xl">→</div>
                   <div>
                     <p className="text-muted-foreground">To</p>
-                    <p className="font-semibold">{toStation?.stationCode || 'NDLS'}</p>
+                    <p className="font-semibold">{toStationCode}</p>
                   </div>
                   <div className="border-l border-border pl-4 ml-2">
                     <p className="text-muted-foreground">Date</p>
