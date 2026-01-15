@@ -91,8 +91,22 @@ public class BookingService {
                 return savedBooking.getBookingId();
         }
 
+        @Transactional
         public void cancelBooking(Long bookingId) {
-                bookingRepository.deleteById(bookingId);
+                Booking booking = bookingRepository.findById(bookingId)
+                                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+                // 1. Free up the seats (Delete them so others can book)
+                // Note: We need a method in Repository or use a custom query.
+                // Since we don't have direct deleteByBooking in interface yet, let's fetch and
+                // delete.
+                // Ideally, add deleteByBooking to Repository for efficiency.
+                List<BookedSeat> seats = bookedSeatRepository.findByBooking(booking);
+                bookedSeatRepository.deleteAll(seats);
+
+                // 2. Update Status to CANCELLED
+                booking.setBookingStatus("CANCELLED");
+                bookingRepository.save(booking);
         }
 
         public java.util.List<BookingHistoryDTO> getUserBookings(Long userId) {

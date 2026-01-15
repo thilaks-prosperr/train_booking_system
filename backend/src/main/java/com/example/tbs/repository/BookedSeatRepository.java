@@ -26,4 +26,6 @@ public interface BookedSeatRepository extends JpaRepository<BookedSeat, Long> {
 
         @Query("SELECT COUNT(b) FROM BookedSeat b WHERE b.booking.train.trainId = :trainId AND b.booking.journeyDate = :journeyDate")
         long countBookedSeats(@Param("trainId") Long trainId, @Param("journeyDate") LocalDate journeyDate);
+
+        List<BookedSeat> findByBooking(com.example.tbs.entity.Booking booking);
 }
