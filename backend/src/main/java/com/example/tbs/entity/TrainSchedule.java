@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalTime;
 
 @Entity
+@Table(name = "train_schedule", schema = "karbs")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

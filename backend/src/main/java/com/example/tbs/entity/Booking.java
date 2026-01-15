@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "booking", schema = "karbs")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
