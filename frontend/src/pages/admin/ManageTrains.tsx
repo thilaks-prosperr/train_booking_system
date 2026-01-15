@@ -21,7 +21,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useToast } from '@/hooks/use-toast';
-import { trainApi, stationApi } from '@/lib/api';
+import { trainApi, stationApi, adminApi } from '@/lib/api';
 import { Train as TrainType, Station } from '@/types';
 
 interface RouteStop {
@@ -41,8 +41,8 @@ const ManageTrains = () => {
     // Fetch stations for the dropdown
     stationApi.getAll().then(res => setStations(res.data)).catch(console.error);
 
-    // Fetch trains - assuming an endpoint exists or we leave empty for now
-    // trainApi.getAll().then(res => setTrains(res.data)).catch(console.error);
+    // Fetch trains
+    adminApi.getTrains().then(res => setTrains(res.data)).catch(console.error);
   }, []);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({

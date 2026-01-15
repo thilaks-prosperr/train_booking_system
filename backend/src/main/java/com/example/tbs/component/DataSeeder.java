@@ -9,6 +9,7 @@ import com.example.tbs.repository.TrainRepository;
 import com.example.tbs.repository.TrainScheduleRepository;
 import com.example.tbs.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
@@ -25,14 +26,17 @@ public class DataSeeder implements CommandLineRunner {
     private final TrainRepository trainRepository;
     private final TrainScheduleRepository trainScheduleRepository;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
     private final Random random = new Random();
 
     public DataSeeder(StationRepository stationRepository, TrainRepository trainRepository,
-            TrainScheduleRepository trainScheduleRepository, UserRepository userRepository) {
+            TrainScheduleRepository trainScheduleRepository, UserRepository userRepository,
+            PasswordEncoder passwordEncoder) {
         this.stationRepository = stationRepository;
         this.trainRepository = trainRepository;
         this.trainScheduleRepository = trainScheduleRepository;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -46,11 +50,20 @@ public class DataSeeder implements CommandLineRunner {
     }
 
     private void seedUsers() {
-        if (userRepository.count() == 0) {
-            User user = new User(null, "user", "password", "USER", "user@example.com", "Test User");
-            User admin = new User(null, "admin", "admin", "ADMIN", "admin@example.com", "Admin User");
-            userRepository.save(user);
+        // Always seed admin user if not exists
+        if (!userRepository.existsByUsername("admin")) {
+            User admin = new User(null, "admin", passwordEncoder.encode("admin"), "ADMIN", "admin@example.com",
+                    "Admin User");
             userRepository.save(admin);
+            System.out.println("Created admin user");
+        }
+
+        // Seed regular user if not exists
+        if (!userRepository.existsByUsername("user")) {
+            User user = new User(null, "user", passwordEncoder.encode("password"), "USER", "user@example.com",
+                    "Test User");
+            userRepository.save(user);
+            System.out.println("Created regular user");
         }
     }
 
