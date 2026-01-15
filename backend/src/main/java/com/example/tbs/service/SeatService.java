@@ -43,10 +43,14 @@ public class SeatService {
             // Seat Numbers logic matches frontend expectation
             int baseSeatNum = (i - 1) * seatsPerRow;
 
-            seats.add(new SeatDTO(baseSeatNum + 1, "A" + i, bookedSeatNumbers.contains(baseSeatNum + 1)));
-            seats.add(new SeatDTO(baseSeatNum + 2, "B" + i, bookedSeatNumbers.contains(baseSeatNum + 2)));
-            seats.add(new SeatDTO(baseSeatNum + 3, "C" + i, bookedSeatNumbers.contains(baseSeatNum + 3)));
-            seats.add(new SeatDTO(baseSeatNum + 4, "D" + i, bookedSeatNumbers.contains(baseSeatNum + 4)));
+            seats.add(new SeatDTO(baseSeatNum + 1, String.valueOf(baseSeatNum + 1),
+                    bookedSeatNumbers.contains(baseSeatNum + 1)));
+            seats.add(new SeatDTO(baseSeatNum + 2, String.valueOf(baseSeatNum + 2),
+                    bookedSeatNumbers.contains(baseSeatNum + 2)));
+            seats.add(new SeatDTO(baseSeatNum + 3, String.valueOf(baseSeatNum + 3),
+                    bookedSeatNumbers.contains(baseSeatNum + 3)));
+            seats.add(new SeatDTO(baseSeatNum + 4, String.valueOf(baseSeatNum + 4),
+                    bookedSeatNumbers.contains(baseSeatNum + 4)));
 
             rows.add(new SeatRowDTO(i, seats));
         }
