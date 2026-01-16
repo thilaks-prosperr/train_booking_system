@@ -20,7 +20,7 @@ public class JwtUtil {
     private static final String SECRET_STRING = "ChangeThisToSomethingVerySecureAndLongEnough123456";
     private final SecretKey secretKey = Keys
             .hmacShaKeyFor(SECRET_STRING.getBytes(java.nio.charset.StandardCharsets.UTF_8));
-    private final long expirationTime = 1000 * 60 * 60 * 10; // 10 hours
+    private final long expirationTime = 1000 * 60 * 60; // 10 hours
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

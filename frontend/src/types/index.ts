@@ -29,6 +29,7 @@ export interface TrainSchedule {
 }
 
 export interface SearchResult {
+  id?: string; // Frontend generated unique ID
   trainId: number;
   trainName: string;
   trainNumber: string;

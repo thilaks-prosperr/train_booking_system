@@ -29,7 +29,11 @@ const SearchResults = () => {
         const response = await trainApi.search(from, to, date);
         // Transform API response if necessary to match SearchResult type
         // For now assuming API returns compatible list
-        setResults(response.data);
+        const resultsWithIds = response.data.map((r: SearchResult, index: number) => ({
+          ...r,
+          id: `${r.trainNumber}-${index}-${Date.now()}` // Generate unique ID
+        }));
+        setResults(resultsWithIds);
       } catch (err) {
         console.error("Failed to fetch trains:", err);
       }
@@ -108,9 +112,9 @@ const SearchResults = () => {
             <div className="space-y-4">
               {filteredResults.map((result, index) => (
                 <TrainCard
-                  key={result.trainId}
+                  key={result.id || index}
                   result={result}
-                  isSelected={selectedTrain?.trainId === result.trainId}
+                  isSelected={selectedTrain?.id === result.id}
                   onSelect={() => setSelectedTrain(result)}
                   onCheckAvailability={() => handleCheckAvailability(result)}
                 />
