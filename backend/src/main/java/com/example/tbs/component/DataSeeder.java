@@ -253,8 +253,8 @@ public class DataSeeder implements CommandLineRunner {
         Train t = new Train();
         t.setTrainNumber(number);
         t.setTrainName(name);
-        t.setTotalSeatsPerCoach(seats);
-        t.setNumberOfCoaches(8);
+        t.setTotalSeatsPerCoach(40); // User requested fixed 40
+        t.setNumberOfCoaches(3); // User requested fixed 3
         t.setPrice((long) Math.max(50, Math.ceil(price))); // Min price 50
         return trainRepository.save(t);
     }

@@ -36,7 +36,8 @@ public interface BookedSeatRepository extends JpaRepository<BookedSeat, Long> {
                         @Param("coachType") String coachType,
                         @Param("seatNumbers") List<Integer> seatNumbers);
 
-        @Query("SELECT COUNT(b) FROM BookedSeat b WHERE b.booking.train.trainId = :trainId " +
+        @Query("SELECT COUNT(DISTINCT CONCAT(b.coachType, '-', b.seatNumber)) FROM BookedSeat b WHERE b.booking.train.trainId = :trainId "
+                        +
                         "AND b.booking.journeyDate = :journeyDate " +
                         "AND b.fromSeq < :endSeq " +
                         "AND b.toSeq > :startSeq")
