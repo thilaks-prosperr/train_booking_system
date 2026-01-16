@@ -9628,3 +9628,32 @@ DEBUG: User loaded: vk
 DEBUG: Authorities: [ROLE_USER]
 DEBUG: Authentication set in context for: vk
 Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+DEBUG: Authentication set in context for: vk
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: joad
+DEBUG: Authorities: [ROLE_ADMIN]
+DEBUG: Authentication set in context for: joad
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:37 h
+[INFO] Finished at: 2026-01-16T11:56:57+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.4.1:run (default-cli) on project demo: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
