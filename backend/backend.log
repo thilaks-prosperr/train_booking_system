@@ -8484,3 +8484,1147 @@ Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq
 Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
 Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
 Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+DEBUG: Found direct train: 121212
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=121212 Date=2026-01-18 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+DEBUG: Found direct train: 90909
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=90909 Date=2026-01-18 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+DEBUG: Found direct train: 121212
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=121212 Date=2026-01-18 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+DEBUG: Found direct train: 90909
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=90909 Date=2026-01-18 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: thilakjojo
+DEBUG: User loaded: thilakjojo
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: User loaded: thilakjojo
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: thilakjojo
+DEBUG: Authentication set in context for: thilakjojo
+DEBUG: Authentication set in context for: thilakjojo
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.journey_date=? and b1_0.train_id=? and bs1_0.coach_type=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.journey_date=? and b1_0.train_id=? and bs1_0.coach_type=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.journey_date=? and b1_0.train_id=? and bs1_0.coach_type=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+Hibernate: select b1_0.booking_id,b1_0.booking_status,ds1_0.station_id,ds1_0.city,ds1_0.latitude,ds1_0.longitude,ds1_0.station_code,ds1_0.station_name,b1_0.journey_date,b1_0.pnr,ss1_0.station_id,ss1_0.city,ss1_0.latitude,ss1_0.longitude,ss1_0.station_code,ss1_0.station_name,b1_0.total_fare,t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number,u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.booking b1_0 left join karbs.station ds1_0 on ds1_0.station_id=b1_0.dest_station_id left join karbs.station ss1_0 on ss1_0.station_id=b1_0.source_station_id left join karbs.train t1_0 on t1_0.train_id=b1_0.train_id left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where b1_0.booking_id=?
+Hibernate: select b1_0.booking_id,b1_0.booking_status,ds1_0.station_id,ds1_0.city,ds1_0.latitude,ds1_0.longitude,ds1_0.station_code,ds1_0.station_name,b1_0.journey_date,b1_0.pnr,ss1_0.station_id,ss1_0.city,ss1_0.latitude,ss1_0.longitude,ss1_0.station_code,ss1_0.station_name,b1_0.total_fare,t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number,u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.booking b1_0 left join karbs.station ds1_0 on ds1_0.station_id=b1_0.dest_station_id left join karbs.station ss1_0 on ss1_0.station_id=b1_0.source_station_id left join karbs.train t1_0 on t1_0.train_id=b1_0.train_id left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where b1_0.booking_id=?
+Hibernate: select b1_0.booking_id,b1_0.booking_status,ds1_0.station_id,ds1_0.city,ds1_0.latitude,ds1_0.longitude,ds1_0.station_code,ds1_0.station_name,b1_0.journey_date,b1_0.pnr,ss1_0.station_id,ss1_0.city,ss1_0.latitude,ss1_0.longitude,ss1_0.station_code,ss1_0.station_name,b1_0.total_fare,t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number,u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.booking b1_0 left join karbs.station ds1_0 on ds1_0.station_id=b1_0.dest_station_id left join karbs.station ss1_0 on ss1_0.station_id=b1_0.source_station_id left join karbs.train t1_0 on t1_0.train_id=b1_0.train_id left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where b1_0.booking_id=?
+Hibernate: select b1_0.booking_id,b1_0.booking_status,ds1_0.station_id,ds1_0.city,ds1_0.latitude,ds1_0.longitude,ds1_0.station_code,ds1_0.station_name,b1_0.journey_date,b1_0.pnr,ss1_0.station_id,ss1_0.city,ss1_0.latitude,ss1_0.longitude,ss1_0.station_code,ss1_0.station_name,b1_0.total_fare,t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number,u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.booking b1_0 left join karbs.station ds1_0 on ds1_0.station_id=b1_0.dest_station_id left join karbs.station ss1_0 on ss1_0.station_id=b1_0.source_station_id left join karbs.train t1_0 on t1_0.train_id=b1_0.train_id left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where b1_0.booking_id=?
+Hibernate: select b1_0.booking_id,b1_0.booking_status,ds1_0.station_id,ds1_0.city,ds1_0.latitude,ds1_0.longitude,ds1_0.station_code,ds1_0.station_name,b1_0.journey_date,b1_0.pnr,ss1_0.station_id,ss1_0.city,ss1_0.latitude,ss1_0.longitude,ss1_0.station_code,ss1_0.station_name,b1_0.total_fare,t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number,u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.booking b1_0 left join karbs.station ds1_0 on ds1_0.station_id=b1_0.dest_station_id left join karbs.station ss1_0 on ss1_0.station_id=b1_0.source_station_id left join karbs.train t1_0 on t1_0.train_id=b1_0.train_id left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where b1_0.booking_id=?
+Hibernate: select b1_0.booking_id,b1_0.booking_status,ds1_0.station_id,ds1_0.city,ds1_0.latitude,ds1_0.longitude,ds1_0.station_code,ds1_0.station_name,b1_0.journey_date,b1_0.pnr,ss1_0.station_id,ss1_0.city,ss1_0.latitude,ss1_0.longitude,ss1_0.station_code,ss1_0.station_name,b1_0.total_fare,t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number,u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.booking b1_0 left join karbs.station ds1_0 on ds1_0.station_id=b1_0.dest_station_id left join karbs.station ss1_0 on ss1_0.station_id=b1_0.source_station_id left join karbs.train t1_0 on t1_0.train_id=b1_0.train_id left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where b1_0.booking_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: thilakjojo
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: thilakjojo
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=10552 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=04198 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=10552 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=03308 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=15994 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=04198 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=15994 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=03308 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=16511 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=03308 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=14501 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=04198 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=14501 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=03308 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=16455 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=04198 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=16455 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=03308 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=10728 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=04198 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=10728 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=03308 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=15247 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=04198 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=15247 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=03308 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=15769 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=04198 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=15769 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=03308 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=10331 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=04198 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=10331 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=03308 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=18679 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=04198 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=2
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=18679 Date=2026-01-20 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=03308 Date=2026-01-20 Coaches=3 Seats/Coach=40 Total=120 Booked=0
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: thilakjojo
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: thilakjojo
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: thilakjojo
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: thilakjojo
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+DEBUG: Found direct train: 90003
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=90003 Date=2026-01-30 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: thilakjojo
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: thilakjojo
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: thilakjojo
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: thilakjojo
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.journey_date=? and b1_0.train_id=? and bs1_0.coach_type=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: thilakjojo
+DEBUG: User loaded: thilakjojo
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: thilakjojo
+DEBUG: Authentication set in context for: thilakjojo
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.user_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.user_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0 where ts1_0.train_id=? and ts1_0.station_id=?
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0 where ts1_0.train_id=? and ts1_0.station_id=?
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0 where ts1_0.train_id=? and ts1_0.station_id=?
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0 where ts1_0.train_id=? and ts1_0.station_id=?
+Hibernate: insert into karbs.booking (booking_status,dest_station_id,journey_date,pnr,source_station_id,total_fare,train_id,user_id) values (?,?,?,?,?,?,?,?)
+Hibernate: insert into karbs.booking (booking_status,dest_station_id,journey_date,pnr,source_station_id,total_fare,train_id,user_id) values (?,?,?,?,?,?,?,?)
+Hibernate: insert into karbs.booked_seat (booking_id,coach_type,from_seq,seat_number,to_seq) values (?,?,?,?,?)
+Hibernate: insert into karbs.booked_seat (booking_id,coach_type,from_seq,seat_number,to_seq) values (?,?,?,?,?)
+Blocked Seat 1 from seq 1 to 2
+Blocked Seat 1 from seq 1 to 2
+Hibernate: insert into karbs.booked_seat (booking_id,coach_type,from_seq,seat_number,to_seq) values (?,?,?,?,?)
+Hibernate: insert into karbs.booked_seat (booking_id,coach_type,from_seq,seat_number,to_seq) values (?,?,?,?,?)
+Blocked Seat 11 from seq 1 to 2
+Blocked Seat 11 from seq 1 to 2
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: thilakjojo
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: thilakjojo
+Hibernate: select b1_0.booking_id,b1_0.booking_status,b1_0.dest_station_id,b1_0.journey_date,b1_0.pnr,b1_0.source_station_id,b1_0.total_fare,b1_0.train_id,b1_0.user_id from karbs.booking b1_0 left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where u1_0.user_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.user_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+Hibernate: insert into karbs.users (email,full_name,password,role,username) values (?,?,?,?,?)
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+DEBUG: Found direct train: 90002
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=90002 Date=2026-01-21 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.journey_date=? and b1_0.train_id=? and bs1_0.coach_type=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+DEBUG: Authentication set in context for: vk
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.user_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.user_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0 where ts1_0.train_id=? and ts1_0.station_id=?
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0 where ts1_0.train_id=? and ts1_0.station_id=?
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0 where ts1_0.train_id=? and ts1_0.station_id=?
+Hibernate: insert into karbs.booking (booking_status,dest_station_id,journey_date,pnr,source_station_id,total_fare,train_id,user_id) values (?,?,?,?,?,?,?,?)
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0 where ts1_0.train_id=? and ts1_0.station_id=?
+Hibernate: insert into karbs.booked_seat (booking_id,coach_type,from_seq,seat_number,to_seq) values (?,?,?,?,?)
+Hibernate: insert into karbs.booking (booking_status,dest_station_id,journey_date,pnr,source_station_id,total_fare,train_id,user_id) values (?,?,?,?,?,?,?,?)
+Blocked Seat 1 from seq 1 to 2
+Hibernate: insert into karbs.booked_seat (booking_id,coach_type,from_seq,seat_number,to_seq) values (?,?,?,?,?)
+Hibernate: insert into karbs.booked_seat (booking_id,coach_type,from_seq,seat_number,to_seq) values (?,?,?,?,?)
+Blocked Seat 1 from seq 1 to 2
+Blocked Seat 3 from seq 1 to 2
+Hibernate: insert into karbs.booked_seat (booking_id,coach_type,from_seq,seat_number,to_seq) values (?,?,?,?,?)
+Blocked Seat 3 from seq 1 to 2
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select b1_0.booking_id,b1_0.booking_status,b1_0.dest_station_id,b1_0.journey_date,b1_0.pnr,b1_0.source_station_id,b1_0.total_fare,b1_0.train_id,b1_0.user_id from karbs.booking b1_0 left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where u1_0.user_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.user_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.journey_date=? and b1_0.train_id=? and bs1_0.coach_type=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+Hibernate: select b1_0.booking_id,b1_0.booking_status,ds1_0.station_id,ds1_0.city,ds1_0.latitude,ds1_0.longitude,ds1_0.station_code,ds1_0.station_name,b1_0.journey_date,b1_0.pnr,ss1_0.station_id,ss1_0.city,ss1_0.latitude,ss1_0.longitude,ss1_0.station_code,ss1_0.station_name,b1_0.total_fare,t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number,u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.booking b1_0 left join karbs.station ds1_0 on ds1_0.station_id=b1_0.dest_station_id left join karbs.station ss1_0 on ss1_0.station_id=b1_0.source_station_id left join karbs.train t1_0 on t1_0.train_id=b1_0.train_id left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where b1_0.booking_id=?
+Hibernate: select b1_0.booking_id,b1_0.booking_status,ds1_0.station_id,ds1_0.city,ds1_0.latitude,ds1_0.longitude,ds1_0.station_code,ds1_0.station_name,b1_0.journey_date,b1_0.pnr,ss1_0.station_id,ss1_0.city,ss1_0.latitude,ss1_0.longitude,ss1_0.station_code,ss1_0.station_name,b1_0.total_fare,t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number,u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.booking b1_0 left join karbs.station ds1_0 on ds1_0.station_id=b1_0.dest_station_id left join karbs.station ss1_0 on ss1_0.station_id=b1_0.source_station_id left join karbs.train t1_0 on t1_0.train_id=b1_0.train_id left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where b1_0.booking_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.journey_date=? and b1_0.train_id=? and bs1_0.coach_type=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+Hibernate: select b1_0.booking_id,b1_0.booking_status,ds1_0.station_id,ds1_0.city,ds1_0.latitude,ds1_0.longitude,ds1_0.station_code,ds1_0.station_name,b1_0.journey_date,b1_0.pnr,ss1_0.station_id,ss1_0.city,ss1_0.latitude,ss1_0.longitude,ss1_0.station_code,ss1_0.station_name,b1_0.total_fare,t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number,u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.booking b1_0 left join karbs.station ds1_0 on ds1_0.station_id=b1_0.dest_station_id left join karbs.station ss1_0 on ss1_0.station_id=b1_0.source_station_id left join karbs.train t1_0 on t1_0.train_id=b1_0.train_id left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where b1_0.booking_id=?
+Hibernate: select b1_0.booking_id,b1_0.booking_status,ds1_0.station_id,ds1_0.city,ds1_0.latitude,ds1_0.longitude,ds1_0.station_code,ds1_0.station_name,b1_0.journey_date,b1_0.pnr,ss1_0.station_id,ss1_0.city,ss1_0.latitude,ss1_0.longitude,ss1_0.station_code,ss1_0.station_name,b1_0.total_fare,t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number,u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.booking b1_0 left join karbs.station ds1_0 on ds1_0.station_id=b1_0.dest_station_id left join karbs.station ss1_0 on ss1_0.station_id=b1_0.source_station_id left join karbs.train t1_0 on t1_0.train_id=b1_0.train_id left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where b1_0.booking_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+DEBUG: Found direct train: 90002
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=90002 Date=2026-01-21 Coaches=3 Seats/Coach=60 Total=180 Booked=4
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+DEBUG: Found direct train: 90003
+Hibernate: select count(bs1_0.seat_id) from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.train_id=? and b1_0.journey_date=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+DEBUG_SEATS: Train=90003 Date=2026-01-24 Coaches=3 Seats/Coach=60 Total=180 Booked=0
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 join karbs.booking b1_0 on b1_0.booking_id=bs1_0.booking_id where b1_0.journey_date=? and b1_0.train_id=? and bs1_0.coach_type=? and bs1_0.from_seq<? and bs1_0.to_seq>?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.user_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0 where ts1_0.train_id=? and ts1_0.station_id=?
+Hibernate: select ts1_0.schedule_id,ts1_0.arrival_time,ts1_0.departure_time,ts1_0.distance_from_start_km,ts1_0.station_id,ts1_0.stop_sequence,ts1_0.train_id from karbs.train_schedule ts1_0 where ts1_0.train_id=? and ts1_0.station_id=?
+Hibernate: insert into karbs.booking (booking_status,dest_station_id,journey_date,pnr,source_station_id,total_fare,train_id,user_id) values (?,?,?,?,?,?,?,?)
+Hibernate: insert into karbs.booked_seat (booking_id,coach_type,from_seq,seat_number,to_seq) values (?,?,?,?,?)
+Blocked Seat 2 from seq 1 to 2
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select b1_0.booking_id,b1_0.booking_status,b1_0.dest_station_id,b1_0.journey_date,b1_0.pnr,b1_0.source_station_id,b1_0.total_fare,b1_0.train_id,b1_0.user_id from karbs.booking b1_0 left join karbs.users u1_0 on u1_0.user_id=b1_0.user_id where u1_0.user_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.user_id=?
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0 where s1_0.station_id=?
+Hibernate: select t1_0.train_id,t1_0.number_of_coaches,t1_0.price,t1_0.total_seats_per_coach,t1_0.train_name,t1_0.train_number from karbs.train t1_0 where t1_0.train_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select bs1_0.seat_id,bs1_0.booking_id,bs1_0.coach_type,bs1_0.from_seq,bs1_0.seat_number,bs1_0.to_seq from karbs.booked_seat bs1_0 where bs1_0.booking_id=?
+Hibernate: select u1_0.user_id,u1_0.email,u1_0.full_name,u1_0.password,u1_0.role,u1_0.username from karbs.users u1_0 where u1_0.username=?
+DEBUG: User loaded: vk
+DEBUG: Authorities: [ROLE_USER]
+DEBUG: Authentication set in context for: vk
+Hibernate: select s1_0.station_id,s1_0.city,s1_0.latitude,s1_0.longitude,s1_0.station_code,s1_0.station_name from karbs.station s1_0

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, IndianRupee, Check } from 'lucide-react';
@@ -31,6 +31,7 @@ const SeatSelection = () => {
 
   const [legs, setLegs] = useState<JourneyLeg[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   // State maps: trainId -> value
   const [selectedCoaches, setSelectedCoaches] = useState<Record<number, string>>({});
@@ -127,10 +128,12 @@ const SeatSelection = () => {
     setSelectedSeats(prev => ({ ...prev, [trainId]: [] }));
   };
 
+  const isSubmittingRef = useRef(false);
+
   const handleProceed = () => {
-    // Validate: Must select at least 1 seat for EACH leg
-    // Actually, maybe not strictly required? But user asked for "book all".
-    // Let's enforce it to avoid partial bookings for now.
+    if (isSubmittingRef.current) return;
+
+    // Validate
     const missingLegs = legs.filter(l => (selectedSeats[l.trainId]?.length || 0) === 0);
 
     if (missingLegs.length > 0) {
@@ -147,10 +150,9 @@ const SeatSelection = () => {
       return;
     }
 
-    // Construct Payload
-    // If multiple legs, use composite. even if 1 leg, we can use composite or fallback.
-    // Let's use composite for consistency if we want.
-    // Or just check length. Backend supports composite.
+    // LOCK IMMEDIATELY
+    isSubmittingRef.current = true;
+    setIsProcessing(true);
 
     const bookingRequests = legs.map(leg => ({
       userId: user?.userId,
@@ -161,14 +163,6 @@ const SeatSelection = () => {
       coachType: selectedCoaches[leg.trainId],
       selectedSeats: selectedSeats[leg.trainId]
     }));
-
-    const apiCall = bookingRequests.length > 1
-      ? bookingApi.createComposite({ bookings: bookingRequests })
-      : bookingApi.create(bookingRequests[0]); // Fallback to simple for single leg if desired, OR just use composite for list of 1.
-    // Actually earlier code used simple create. Let's stick to safe path: single -> create, multi -> createComposite.
-
-    // Wait, simple create() returns Long (id). composite returns List<Long>.
-    // Promise handling needs to be robust.
 
     (bookingRequests.length > 1
       ? bookingApi.createComposite({ bookings: bookingRequests })
@@ -187,6 +181,17 @@ const SeatSelection = () => {
           description: 'Could not complete your booking. Please try again.',
           variant: 'destructive',
         });
+        // Release lock on error
+        isSubmittingRef.current = false;
+      })
+      .finally(() => {
+        setIsProcessing(false);
+        // We explicitly do NOT release ref on success immediately because we navigate away.
+        // But if we stayed, we would need to release. 
+        // If navigation fails or is slow, keeping it locked is safer.
+        // However, if the catch block ran, we released it.
+        // Let's release it here to be safe against SPA navigation logic where component might not unmount immediately.
+        isSubmittingRef.current = false;
       });
   };
 
@@ -286,10 +291,19 @@ const SeatSelection = () => {
             variant="hero"
             size="lg"
             onClick={handleProceed}
-            disabled={totalSeats === 0}
+            disabled={totalSeats === 0 || isProcessing}
           >
-            <Check className="w-5 h-5" />
-            Proceed to Book All
+            {isProcessing ? (
+              <>
+                <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                Processing...
+              </>
+            ) : (
+              <>
+                <Check className="w-5 h-5" />
+                Proceed to Book All
+              </>
+            )}
           </Button>
         </div>
       </div>
