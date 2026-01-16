@@ -272,7 +272,7 @@
                         "header": [],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"userId\": {{userId}},\n  \"trainId\": 1,\n  \"journeyDate\": \"2024-01-20\",\n  \"sourceStationId\": 1,\n  \"destStationId\": 6,\n  \"coachType\": \"SLEEPER\",\n  \"selectedSeats\": [1, 2]\n}",
+                            "raw": "{\n  \"userId\": {{userId}},\n  \"trainId\": 104,\n  \"journeyDate\": \"2026-01-22\",\n  \"sourceStationId\": 34,\n  \"destStationId\": 35,\n  \"coachType\": \"AC\",\n  \"selectedSeats\": [1, 2]\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"

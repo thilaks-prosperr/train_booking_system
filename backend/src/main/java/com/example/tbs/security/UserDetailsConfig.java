@@ -24,7 +24,7 @@ public class UserDetailsConfig {
                 .map(user -> new org.springframework.security.core.userdetails.User(
                         user.getUsername(),
                         user.getPassword(),
-                        Collections.singleton(new SimpleGrantedAuthority(user.getRole())) // Use actual role
+                        Collections.singleton(new SimpleGrantedAuthority("ROLE_" + user.getRole())) // Add ROLE_ prefix
                 ))
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }

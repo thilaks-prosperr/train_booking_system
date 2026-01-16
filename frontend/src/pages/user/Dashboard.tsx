@@ -51,12 +51,28 @@ const UserDashboard = () => {
     }
   };
 
-  const upcomingBookings = bookings.filter(b =>
-    b.bookingStatus === 'CONFIRMED' && new Date(b.journeyDate) >= new Date()
-  );
-  const pastBookings = bookings.filter(b =>
-    new Date(b.journeyDate) < new Date() || b.bookingStatus === 'CANCELLED'
-  );
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcomingBookings = bookings.filter(b => {
+    const journeyDate = new Date(b.journeyDate); // Assuming YYYY-MM-DD
+    // If journeyDate is UTC 00:00, and we are +5:30, it works fine as long as we compare days.
+    // Simplest approach: Compare string YYYY-MM-DD if available, or use strict timestamps.
+    // Let's use simple string comparison for "today or future" vs "past".
+    // Alternatively, treat journeyDate as midnight local time.
+    const jDate = new Date(b.journeyDate);
+    jDate.setHours(0, 0, 0, 0);
+    // If journeyDate is strictly YYYY-MM-DD string, `new Date(string)` is UTC.
+    // We want to know if the journey DATE is >= TODAY's DATE.
+    // Let's adjust for timezone offset if needed, or just compare ISO strings.
+    return b.bookingStatus === 'CONFIRMED' && jDate >= today;
+  });
+
+  const pastBookings = bookings.filter(b => {
+    const jDate = new Date(b.journeyDate);
+    jDate.setHours(0, 0, 0, 0);
+    return b.bookingStatus === 'CANCELLED' || jDate < today;
+  });
 
   return (
     <div className="min-h-screen bg-background">

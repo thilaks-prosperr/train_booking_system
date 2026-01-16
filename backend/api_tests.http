@@ -16,7 +16,7 @@ POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-    "username": "testuser",
+    "username": "user",
     "password": "password"
 }
 
@@ -53,11 +53,11 @@ Authorization: Bearer {{authToken}}
 
 {
   "userId": {{userId}},
-  "trainId": 1,
-  "journeyDate": "2026-01-20",
-  "sourceStationId": 1,
-  "destStationId": 5,
-  "coachType": "S1",
+  "trainId": 104,
+  "journeyDate": "2026-01-22",
+  "sourceStationId": 34,
+  "destStationId": 35,
+  "coachType": "AC",
   "selectedSeats": [1, 2]
 }
 
@@ -78,7 +78,7 @@ Content-Type: application/json
 
 {
     "username": "admin",
-    "password": "adminpassword"
+    "password": "admin"
 }
 
 > {%

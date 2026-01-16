@@ -60,8 +60,13 @@ public class BookingService {
                 booking.setUser(user);
                 booking.setTrain(train);
                 booking.setJourneyDate(request.getJourneyDate());
+                booking.setSourceStation(source);
                 booking.setDestStation(dest);
                 booking.setBookingStatus("CONFIRMED");
+
+                // Generate PNR: 2 chars + 4 random digits
+                String pnr = "TBS" + (1000 + new java.util.Random().nextInt(9000));
+                booking.setPnr(pnr);
 
                 // Calculate Price
                 double dist = destSchedule.getDistanceFromStartKm() - sourceSchedule.getDistanceFromStartKm();
@@ -137,8 +142,8 @@ public class BookingService {
                                         b.getUser().getUserId(),
                                         b.getTrain().getTrainId(),
                                         b.getJourneyDate(),
-                                        b.getSourceStation().getStationId(),
-                                        b.getDestStation().getStationId(),
+                                        b.getSourceStation() != null ? b.getSourceStation().getStationId() : null,
+                                        b.getDestStation() != null ? b.getDestStation().getStationId() : null,
                                         b.getBookingStatus(),
                                         b.getTrain(),
                                         b.getSourceStation(),
@@ -146,7 +151,8 @@ public class BookingService {
                                         seatDTOs,
                                         b.getTotalFare() != null ? b.getTotalFare() : 0.0,
                                         b.getUser().getFullName(),
-                                        b.getUser().getEmail());
+                                        b.getUser().getEmail(),
+                                        b.getPnr());
                 }).collect(java.util.stream.Collectors.toList());
         }
 
@@ -169,6 +175,7 @@ public class BookingService {
                 private Double totalPrice;
                 private String userName;
                 private String userEmail;
+                private String pnr;
         }
 
         @lombok.Data

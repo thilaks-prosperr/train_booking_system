@@ -35,11 +35,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(org.springframework.security.config.Customizer.withDefaults()) // Use existing WebConfig CORS
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/api/search", "/api/stations/**", "/api/trains/**",
+                        .requestMatchers("/api/auth/**", "/api/search/**", "/api/stations/**", "/api/trains/**",
                                 "/api/seats/**")
-                        .permitAll() // Public
-                        // endpoints
-                        .requestMatchers("/api/admin/**").permitAll() // TEMPORARY DEBUG: Allow all to unblock UI
+                        .permitAll()
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/bookings/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

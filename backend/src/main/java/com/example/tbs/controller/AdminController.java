@@ -172,8 +172,9 @@ public class AdminController {
                             b.getUser().getUserId(),
                             b.getTrain().getTrainId(),
                             b.getJourneyDate(),
-                            b.getSourceStation().getStationId(),
-                            b.getDestStation().getStationId(),
+
+                            b.getSourceStation() != null ? b.getSourceStation().getStationId() : null,
+                            b.getDestStation() != null ? b.getDestStation().getStationId() : null,
                             b.getBookingStatus(),
                             b.getTrain(),
                             b.getSourceStation(),
@@ -181,7 +182,8 @@ public class AdminController {
                             seatDTOs,
                             b.getTotalFare() != null ? b.getTotalFare() : 0.0,
                             b.getUser().getFullName(),
-                            b.getUser().getEmail());
+                            b.getUser().getEmail(),
+                            b.getPnr());
                 })
                 .collect(java.util.stream.Collectors.toList());
         return ResponseEntity.ok(dtos);

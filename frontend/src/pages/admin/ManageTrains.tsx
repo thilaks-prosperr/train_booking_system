@@ -185,24 +185,48 @@ const EditTrainDialog = ({ isOpen, onClose, formData, setFormData, onSave, isLoa
                 className="bg-muted/50"
               />
             </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="edit-price">Base Price</Label>
+              <Label htmlFor="edit-coaches">Coaches</Label>
               <Input
-                id="edit-price"
+                id="edit-coaches"
                 type="number"
-                value={formData.price}
-                onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                value={formData.numberOfCoaches}
+                onChange={(e) => setFormData({ ...formData, numberOfCoaches: e.target.value })}
+                required
+                className="bg-muted/50"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-seats">Seats/Coach</Label>
+              <Input
+                id="edit-seats"
+                type="number"
+                value={formData.totalSeatsPerCoach}
+                onChange={(e) => setFormData({ ...formData, totalSeatsPerCoach: e.target.value })}
                 required
                 className="bg-muted/50"
               />
             </div>
           </div>
+          <div className="space-y-2">
+            <Label htmlFor="edit-price">Base Price</Label>
+            <Input
+              id="edit-price"
+              type="number"
+              value={formData.price}
+              onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+              required
+              className="bg-muted/50"
+            />
+          </div>
           <Button type="submit" variant="hero" disabled={isLoading} className="w-full">
             {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Save Changes"}
           </Button>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

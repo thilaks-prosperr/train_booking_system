@@ -58,6 +58,8 @@ public class TrainSearchService {
                         for (TrainSchedule dst : destSchedules) {
                                 if (src.getTrain().getTrainId().equals(dst.getTrain().getTrainId())) {
                                         if (src.getStopSequence() < dst.getStopSequence()) {
+                                                System.out.println("DEBUG: Found direct train: "
+                                                                + src.getTrain().getTrainNumber());
                                                 results.add(createDirectDTO(src, dst, allSchedules, journeyDate));
                                         }
                                 }
@@ -181,8 +183,10 @@ public class TrainSearchService {
         }
 
         private int getAvailableSeats(com.example.tbs.entity.Train train, LocalDate date, int startSeq, int endSeq) {
-                int totalSeats = train.getTotalSeatsPerCoach()
-                                * (train.getNumberOfCoaches() > 0 ? train.getNumberOfCoaches() : 10);
+                int coaches = train.getNumberOfCoaches() != null ? train.getNumberOfCoaches() : 3;
+                int seatsPerCoach = train.getTotalSeatsPerCoach() != null ? train.getTotalSeatsPerCoach() : 40;
+                int totalSeats = seatsPerCoach * coaches;
+
                 long bookedCount = bookedSeatRepository.countOverlappingBookings(train.getTrainId(), date, startSeq,
                                 endSeq);
                 return Math.max(0, totalSeats - (int) bookedCount);

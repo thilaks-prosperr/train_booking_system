@@ -17,8 +17,8 @@ public class Train {
 
     private String trainNumber;
     private String trainName;
-    private int totalSeatsPerCoach;
-    private int numberOfCoaches;
+    private Integer totalSeatsPerCoach;
+    private Integer numberOfCoaches;
 
     @Column(nullable = false, columnDefinition = "bigint default 100")
     private Long price = 100L;
