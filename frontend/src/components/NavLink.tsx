@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2026 Thilaks. All Rights Reserved.
+ *
+ * This source code is licensed under the proprietary license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { NavLink as RouterNavLink, NavLinkProps } from "react-router-dom";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";

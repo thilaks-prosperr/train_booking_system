@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2026 Thilaks. All Rights Reserved.
+ *
+ * This source code is licensed under the proprietary license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";

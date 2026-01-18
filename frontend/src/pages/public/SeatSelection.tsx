@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2026 Thilaks. All Rights Reserved.
+ *
+ * This source code is licensed under the proprietary license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';

@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2026 Thilaks. All Rights Reserved.
+ *
+ * This source code is licensed under the proprietary license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 // Update this page (the content is just a fallback if you fail to update the page)
 
 const Index = () => {
