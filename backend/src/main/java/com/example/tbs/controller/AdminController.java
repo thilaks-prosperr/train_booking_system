@@ -181,7 +181,7 @@ public class AdminController {
 
                     return new BookingService.BookingHistoryDTO(
                             b.getBookingId(),
-                            b.getUser().getUserId(),
+                            b.getUser() != null ? b.getUser().getUserId() : null,
                             b.getTrain().getTrainId(),
                             b.getJourneyDate(),
 
@@ -193,8 +193,8 @@ public class AdminController {
                             b.getDestStation(),
                             seatDTOs,
                             b.getTotalFare() != null ? b.getTotalFare() : 0.0,
-                            b.getUser().getFullName(),
-                            b.getUser().getEmail(),
+                            b.getUser() != null ? b.getUser().getFullName() : "System Admin",
+                            b.getUser() != null ? b.getUser().getEmail() : "admin@railbook.com",
                             b.getPnr());
                 })
                 .collect(java.util.stream.Collectors.toList());
