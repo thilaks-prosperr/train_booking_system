@@ -46,7 +46,8 @@ public class BookingService {
                 // 1. Fetch Entities
                 User user = userRepository.findById(request.getUserId())
                                 .orElseThrow(() -> new RuntimeException("User not found"));
-                Train train = trainRepository.findById(request.getTrainId())
+                // Lock the train row to prevent concurrent bookings on the same train
+                Train train = trainRepository.findByIdWithLock(request.getTrainId())
                                 .orElseThrow(() -> new RuntimeException("Train not found"));
                 Station source = stationRepository.findById(request.getSourceStationId())
                                 .orElseThrow(() -> new RuntimeException("Source Station not found"));
@@ -102,6 +103,37 @@ public class BookingService {
                                 bookedSeat.setFromSeq(sourceSequence);
                                 bookedSeat.setToSeq(destSequence);
 
+                                // Check for conflict BEFORE saving
+                                long conflictCount = bookedSeatRepository.countOverlappingBookings(
+                                                train.getTrainId(),
+                                                request.getJourneyDate(),
+                                                sourceSequence,
+                                                destSequence);
+
+                                // We need to check if *this specific seat* is already booked.
+                                // The countOverlappingBookings counts *any* seat, which is not precise enough
+                                // for "is THIS seat taken?"
+                                // Actually, let's look at BookedSeatRepository.
+                                // It has findBookedSeats which takes seq range.
+                                // We should filter by seat number.
+
+                                // Let's use a specific query for this seat.
+                                List<BookedSeat> conflicts = bookedSeatRepository.findAdminBlockedSeats(
+                                                train.getTrainId(),
+                                                request.getJourneyDate(),
+                                                coachType,
+                                                List.of(seatNum));
+
+                                // Filter conflicts to check if they actually overlap in sequence
+                                boolean isTaken = conflicts.stream()
+                                                .anyMatch(existing -> existing.getFromSeq() < destSequence
+                                                                && existing.getToSeq() > sourceSequence);
+
+                                if (isTaken) {
+                                        throw new com.example.tbs.exception.SeatAlreadyBookedException(
+                                                        "Seat " + seatNum + " is already booked.");
+                                }
+
                                 bookedSeatRepository.save(bookedSeat);
 
                                 // 5. Debugging Log
@@ -111,6 +143,144 @@ public class BookingService {
                 }
 
                 return savedBooking.getBookingId();
+        }
+
+        @Transactional
+        public Long createAdminBlock(BookingRequestDTO request) {
+                // 1. Fetch Entities
+                User user = null;
+                if (request.getUserId() != null && request.getUserId() > 0) {
+                        user = userRepository.findById(request.getUserId()).orElse(null);
+                }
+
+                // If user is null, we proceed (assuming DB allows nullable user_id for blocks)
+                // If DB enforces Not Null, this will fail at save, but that's better than
+                // failing at "User not found" check
+                // for a dummy ID.
+
+                Train train = trainRepository.findByIdWithLock(request.getTrainId())
+                                .orElseThrow(() -> new RuntimeException("Train not found"));
+
+                Station source;
+                Station dest;
+                int sourceSequence;
+                int destSequence;
+
+                // Auto-detect route if ID is 0 or null (simplifies frontend)
+                if (request.getSourceStationId() == null || request.getSourceStationId() <= 0 ||
+                                request.getDestStationId() == null || request.getDestStationId() <= 0) {
+
+                        List<TrainSchedule> schedules = trainScheduleRepository.findByTrain(train);
+                        if (schedules.isEmpty())
+                                throw new RuntimeException("Train has no schedule");
+
+                        // Sort by sequence
+                        schedules.sort(java.util.Comparator.comparingInt(TrainSchedule::getStopSequence));
+
+                        TrainSchedule first = schedules.get(0);
+                        TrainSchedule last = schedules.get(schedules.size() - 1);
+
+                        source = first.getStation();
+                        dest = last.getStation();
+                        sourceSequence = first.getStopSequence();
+                        destSequence = last.getStopSequence();
+                } else {
+                        source = stationRepository.findById(request.getSourceStationId())
+                                        .orElseThrow(() -> new RuntimeException("Source Station not found"));
+                        dest = stationRepository.findById(request.getDestStationId())
+                                        .orElseThrow(() -> new RuntimeException("Destination Station not found"));
+
+                        TrainSchedule sourceSchedule = trainScheduleRepository.findByTrainAndStation(train, source)
+                                        .orElseThrow(() -> new RuntimeException(
+                                                        "Train schedule not found for source station"));
+                        TrainSchedule destSchedule = trainScheduleRepository.findByTrainAndStation(train, dest)
+                                        .orElseThrow(() -> new RuntimeException(
+                                                        "Train schedule not found for destination station"));
+
+                        sourceSequence = sourceSchedule.getStopSequence();
+                        destSequence = destSchedule.getStopSequence();
+                }
+
+                // 2. Save Booking as BLOCKED
+                Booking booking = new Booking();
+                booking.setUser(user);
+                booking.setTrain(train);
+                booking.setJourneyDate(request.getJourneyDate());
+                booking.setSourceStation(source);
+                booking.setDestStation(dest);
+                booking.setBookingStatus("BLOCKED");
+                booking.setPnr("BLK" + System.currentTimeMillis());
+                booking.setTotalFare(0.0);
+
+                Booking savedBooking = bookingRepository.save(booking);
+
+                // 3. Save Booked Seats
+                List<Integer> selectedSeats = request.getSelectedSeats();
+                if (selectedSeats != null) {
+                        for (Integer seatNum : selectedSeats) {
+                                BookedSeat bookedSeat = new BookedSeat();
+                                bookedSeat.setBooking(savedBooking);
+                                bookedSeat.setSeatNumber(seatNum);
+                                bookedSeat.setCoachType(request.getCoachType());
+                                bookedSeat.setFromSeq(sourceSequence);
+                                bookedSeat.setToSeq(destSequence);
+
+                                // Check conflict?
+                                // If Admin wants to force block, maybe we don't check?
+                                // BUT if a user already booked it, we shouldn't overwrite without warning.
+                                // Let's enforce conflict check. Admin should see it's booked and not try to
+                                // block.
+                                // If they really want to block, they should cancel the user's booking first.
+                                long conflictCount = bookedSeatRepository.countOverlappingBookings(
+                                                train.getTrainId(),
+                                                request.getJourneyDate(),
+                                                sourceSequence,
+                                                destSequence);
+
+                                List<BookedSeat> conflicts = bookedSeatRepository.findAdminBlockedSeats(
+                                                train.getTrainId(),
+                                                request.getJourneyDate(),
+                                                request.getCoachType(),
+                                                List.of(seatNum));
+
+                                boolean isTaken = conflicts.stream()
+                                                .anyMatch(existing -> existing.getFromSeq() < destSequence
+                                                                && existing.getToSeq() > sourceSequence);
+
+                                if (isTaken) {
+                                        throw new RuntimeException("Seat " + seatNum
+                                                        + " is already booked/blocked. Cannot block.");
+                                }
+
+                                bookedSeatRepository.save(bookedSeat);
+                        }
+                }
+                return savedBooking.getBookingId();
+        }
+
+        @Transactional
+        public void unblockSeats(Long trainId, java.time.LocalDate journeyDate, List<Integer> seatNumbers,
+                        String coachType) {
+                // Find seats that are BLOCKED and match the criteria
+                List<BookedSeat> seats = bookedSeatRepository.findAdminBlockedSeats(trainId, journeyDate, coachType,
+                                seatNumbers);
+
+                // Filter only those that belong to a BLOCKED booking
+                List<BookedSeat> seatsToRemove = seats.stream()
+                                .filter(s -> "BLOCKED".equalsIgnoreCase(s.getBooking().getBookingStatus()))
+                                .collect(java.util.stream.Collectors.toList());
+
+                if (seatsToRemove.isEmpty()) {
+                        // Determine if failure or silent success.
+                        // Maybe some seats were not blocked?
+                        // Let's just return.
+                        return;
+                }
+
+                bookedSeatRepository.deleteAll(seatsToRemove);
+
+                // Optional: Cleanup empty bookings
+                // We can leave them for now or delete if no seats left.
         }
 
         @Transactional

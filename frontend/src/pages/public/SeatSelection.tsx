@@ -23,6 +23,15 @@ import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { trainApi, bookingApi } from '@/lib/api';
 import { Segment } from '@/types';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 interface JourneyLeg {
   trainId: number;
@@ -50,6 +59,8 @@ const SeatSelection = () => {
   const [selectedSeats, setSelectedSeats] = useState<Record<number, number[]>>({});
 
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showConflictModal, setShowConflictModal] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   const globalDate = searchParams.get('date') || '';
   const pricePerLeg = (Number(searchParams.get('price')) || 850) / (legs.length || 1); // rough estimate
@@ -186,13 +197,17 @@ const SeatSelection = () => {
         });
         navigate('/dashboard');
       })
-      .catch((err) => {
+      .catch((err: any) => {
         console.error(err);
-        toast({
-          title: 'Booking Failed',
-          description: 'Could not complete your booking. Please try again.',
-          variant: 'destructive',
-        });
+        if (err.response && err.response.status === 409) {
+          setShowConflictModal(true);
+        } else {
+          toast({
+            title: 'Booking Failed',
+            description: 'Could not complete your booking. Please try again.',
+            variant: 'destructive',
+          });
+        }
         // Release lock on error
         isSubmittingRef.current = false;
       })
@@ -274,6 +289,7 @@ const SeatSelection = () => {
                     ))}
                   </TabsList>
                   <SeatSelector
+                    key={`${leg.trainId}-${refreshTrigger}`}
                     trainId={leg.trainId}
                     coach={selectedCoaches[leg.trainId]}
                     date={leg.date}
@@ -328,6 +344,31 @@ const SeatSelection = () => {
           handleProceed();
         }}
       />
+
+      <AlertDialog open={showConflictModal} onOpenChange={setShowConflictModal}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Seat data mismatch</AlertDialogTitle>
+            <AlertDialogDescription>
+              You are late bro, someone just took it 2 seconds back, try different seats.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => {
+              setShowConflictModal(false);
+              setRefreshTrigger(prev => prev + 1);
+              // Clear selected seats
+              const initialSeats: Record<number, number[]> = {};
+              legs.forEach(l => {
+                initialSeats[l.trainId] = [];
+              });
+              setSelectedSeats(initialSeats);
+            }}>
+              Refresh Seats
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

@@ -24,6 +24,7 @@ interface SeatSelectorProps {
     date: string;
     selectedSeats: number[];
     onSeatToggle: (seatNumber: number) => void;
+    isAdmin?: boolean; // New prop for admin mode
 }
 
 interface SeatRow {
@@ -31,7 +32,7 @@ interface SeatRow {
     seats: Seat[];
 }
 
-const SeatSelector = ({ trainId, coach, date, selectedSeats, onSeatToggle }: SeatSelectorProps) => {
+const SeatSelector = ({ trainId, coach, date, selectedSeats, onSeatToggle, isAdmin = false }: SeatSelectorProps) => {
     // Store rows instead of flat seats for better layout control
     const [rows, setRows] = useState<SeatRow[]>([]);
     const [loading, setLoading] = useState(true);
@@ -45,14 +46,16 @@ const SeatSelector = ({ trainId, coach, date, selectedSeats, onSeatToggle }: Sea
                 const response = await seatApi.getLayout(trainId, date, coach);
                 if (response.data) {
                     // Backend returns List<SeatRowDTO>
-                    // Structure: [{ rowNumber: 1, seats: [{ id: 1, number: "1", isBooked: false }, ...] }, ...]
+                    // Structure: [{ rowNumber: 1, seats: [{ id: 1, number: "1", status: "booked" }, ...] }, ...]
                     const rawRows: any[] = response.data;
 
                     const parsedRows: SeatRow[] = rawRows.map(row => ({
                         rowNumber: row.rowNumber,
                         seats: row.seats.map((s: any) => ({
                             seatNumber: parseInt(s.number),
-                            status: s.isBooked ? 'booked' : 'available' as const,
+                            // Backend now sends "available", "booked", "blocked"
+                            // Fallback to boolean check if needed for backward compat (though we changed backend)
+                            status: s.status ? s.status : (s.isBooked ? 'booked' : 'available'),
                             // Helper to attach original ID or other props if needed
                             seatId: s.id
                         })).sort((a: Seat, b: Seat) => a.seatNumber - b.seatNumber) // Ensure order
@@ -123,6 +126,7 @@ const SeatSelector = ({ trainId, coach, date, selectedSeats, onSeatToggle }: Sea
                                         type={getSeatType(idx, 4)}
                                         status={getStatus(seat)}
                                         onToggle={onSeatToggle}
+                                        isAdmin={isAdmin}
                                     />
                                 ))}
                             </div>
@@ -141,6 +145,7 @@ const SeatSelector = ({ trainId, coach, date, selectedSeats, onSeatToggle }: Sea
                                         type={getSeatType(idx + 2, 4)}
                                         status={getStatus(seat)}
                                         onToggle={onSeatToggle}
+                                        isAdmin={isAdmin}
                                     />
                                 ))}
                             </div>
@@ -163,6 +168,10 @@ const SeatSelector = ({ trainId, coach, date, selectedSeats, onSeatToggle }: Sea
                     <div className="w-5 h-5 rounded-md bg-background border border-red-500/60 opacity-70" />
                     <span className="text-muted-foreground">Booked</span>
                 </div>
+                <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-md bg-orange-500/80 border border-orange-600/50" />
+                    <span className="text-muted-foreground">Blocked</span>
+                </div>
                 <div className="flex items-center gap-2 ml-4 text-xs text-muted-foreground">
                     <span>(W) Window</span>
                     <span>(A) Aisle</span>
@@ -173,26 +182,39 @@ const SeatSelector = ({ trainId, coach, date, selectedSeats, onSeatToggle }: Sea
 };
 
 // Sub-component for individual seat to keep main clear
-const SeatButton = ({ seat, type, status, onToggle }: { seat: Seat, type: string, status: string, onToggle: (n: number) => void }) => {
-    const isBooked = status === 'booked' || status === 'blocked';
+const SeatButton = ({ seat, type, status, onToggle, isAdmin }: { seat: Seat, type: string, status: string, onToggle: (n: number) => void, isAdmin: boolean }) => {
+    // Logic: 
+    // If not admin: Booked/Blocked -> disabled.
+    // If admin: Booked/Blocked -> interactable (user can select to unblock).
+
+    // Status can be: 'available', 'booked', 'blocked', 'selected'
+
+    const isBooked = status === 'booked';
+    const isBlocked = status === 'blocked';
     const isSelected = status === 'selected';
+
+    const isDisabled = (!isAdmin && (isBooked || isBlocked));
 
     return (
         <div className="relative flex flex-col items-center gap-1">
             <span className="text-[10px] text-muted-foreground/40 font-bold uppercase tracking-tighter">{type}</span>
             <motion.button
-                whileHover={!isBooked ? { scale: 1.1 } : {}}
-                whileTap={!isBooked ? { scale: 0.95 } : {}}
-                onClick={() => !isBooked && onToggle(seat.seatNumber)}
-                disabled={isBooked}
+                whileHover={!isDisabled ? { scale: 1.1 } : {}}
+                whileTap={!isDisabled ? { scale: 0.95 } : {}}
+                onClick={() => !isDisabled && onToggle(seat.seatNumber)}
+                disabled={isDisabled}
                 className={cn(
                     "w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold transition-all duration-300 relative border",
                     // Available
                     status === 'available' && "bg-background border-primary/20 text-foreground hover:border-primary hover:shadow-[0_0_10px_rgba(var(--primary),0.3)]",
                     // Booked
                     isBooked && "bg-background border-red-500/60 text-muted-foreground/40 cursor-not-allowed opacity-70",
+                    // Blocked
+                    isBlocked && "bg-orange-500/10 border-orange-500/60 text-orange-500 cursor-not-allowed",
                     // Selected
-                    isSelected && "bg-green-500 border-green-600 text-white shadow-[0_0_15px_rgba(34,197,94,0.4)] scale-105 z-10 border-none"
+                    isSelected && "bg-green-500 border-green-600 text-white shadow-[0_0_15px_rgba(34,197,94,0.4)] scale-105 z-10 border-none",
+                    // Admin override styling for booked/blocked
+                    isAdmin && (isBooked || isBlocked) && "cursor-pointer opacity-100 hover:ring-2 hover:ring-destructive"
                 )}
                 title={`Seat ${seat.seatNumber} (${type}) - ${status}`}
             >

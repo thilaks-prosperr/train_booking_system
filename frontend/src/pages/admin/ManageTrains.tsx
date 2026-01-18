@@ -51,6 +51,7 @@ import {
   verticalListSortingStrategy,
   useSortable,
 } from '@dnd-kit/sortable';
+import AdminSeatManagement from './AdminSeatManagement';
 import { CSS } from '@dnd-kit/utilities';
 
 interface RouteStop {
@@ -385,6 +386,9 @@ const ManageTrains = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [editingTrain, setEditingTrain] = useState<TrainType | null>(null);
 
+  const [isSeatManagementOpen, setIsSeatManagementOpen] = useState(false);
+  const [seatManagementTrain, setSeatManagementTrain] = useState<TrainType | null>(null);
+
   const handleEditClick = (train: TrainType) => {
     setEditingTrain(train);
     setFormData({
@@ -616,6 +620,17 @@ const ManageTrains = () => {
                         <Button
                           variant="ghost"
                           size="icon"
+                          onClick={() => {
+                            setSeatManagementTrain(train);
+                            setIsSeatManagementOpen(true);
+                          }}
+                          title="Manage Seats"
+                        >
+                          <GripVertical className="w-4 h-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="icon"
                           className="text-destructive"
                           onClick={() => handleDelete(train.trainId)}
                         >
@@ -630,6 +645,12 @@ const ManageTrains = () => {
           </div>
         </motion.div>
       </div>
+
+      <AdminSeatManagement
+        isOpen={isSeatManagementOpen}
+        onClose={() => setIsSeatManagementOpen(false)}
+        train={seatManagementTrain}
+      />
     </AdminLayout>
   );
 };

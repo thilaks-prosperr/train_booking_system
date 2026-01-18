@@ -244,50 +244,8 @@ public class AdminController {
     }
 
     // ==========================================
-    // 4. Seat Operations
+    // 4. Seat Operations (Moved to AdminSeatController)
     // ==========================================
-
-    @PostMapping("/seats/block")
-    public ResponseEntity<String> blockSeats(@RequestBody BlockSeatsRequest request) {
-        Booking booking = new Booking();
-        // Bind to a dummy or admin user
-        booking.setUser(userRepository.findById(1L).orElse(null));
-        booking.setTrain(trainRepository.findById(request.trainId).orElseThrow());
-        booking.setJourneyDate(request.date);
-        booking.setBookingStatus("ADMIN_BLOCK");
-
-        // Full route block by default for Maintenance
-        booking.setSourceStation(null);
-        booking.setDestStation(null);
-
-        Booking saved = bookingRepository.save(booking);
-
-        for (Integer seatNum : request.seatNumbers) {
-            BookedSeat seat = new BookedSeat();
-            seat.setBooking(saved);
-            seat.setSeatNumber(seatNum);
-            seat.setCoachType(request.coach);
-            seat.setFromSeq(0);
-            seat.setToSeq(100);
-            bookedSeatRepository.save(seat);
-        }
-        return ResponseEntity.ok("Seats blocked successfully");
-    }
-
-    @DeleteMapping("/seats/block")
-    public ResponseEntity<String> unblockSeats(@RequestBody BlockSeatsRequest request) {
-        List<BookedSeat> blockedSeats = bookedSeatRepository.findAdminBlockedSeats(
-                request.trainId, request.date, request.coach, request.seatNumbers);
-
-        if (blockedSeats.isEmpty()) {
-            return ResponseEntity.badRequest().body("No matching blocked seats found");
-        }
-
-        bookedSeatRepository.deleteAll(blockedSeats);
-        // Clean up empty ADMIN_BLOCK bookings? optional.
-
-        return ResponseEntity.ok("Seats unblocked successfully");
-    }
 
     // --- Stats ---
     @GetMapping("/stats")
@@ -352,10 +310,4 @@ public class AdminController {
         return ResponseEntity.ok(result);
     }
 
-    public static class BlockSeatsRequest {
-        public Long trainId;
-        public LocalDate date;
-        public String coach;
-        public List<Integer> seatNumbers;
-    }
 }

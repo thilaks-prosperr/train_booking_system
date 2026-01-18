@@ -32,6 +32,8 @@ public class BookingController {
         try {
             Long bookingId = bookingService.createBooking(request);
             return ResponseEntity.ok(bookingId);
+        } catch (com.example.tbs.exception.SeatAlreadyBookedException e) {
+            return ResponseEntity.status(org.springframework.http.HttpStatus.CONFLICT).body(e.getMessage());
         } catch (RuntimeException e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());

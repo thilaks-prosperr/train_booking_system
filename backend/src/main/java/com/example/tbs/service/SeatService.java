@@ -35,16 +35,25 @@ public class SeatService {
 
         public List<SeatRowDTO> getSeatLayout(Long trainId, LocalDate date, String coach, int startSeq, int endSeq) {
                 // Fetch overlapping bookings
-                // Logic: A seat is 'BOOKED' if (UserStart < BookedEnd) AND (UserEnd >
-                // BookedStart).
-                // The repository query already handles this logic:
-                // b.fromSeq < :endSeq AND b.toSeq > :startSeq
                 List<BookedSeat> bookedSeats = bookedSeatRepository.findBookedSeats(
                                 trainId, date, coach, startSeq, endSeq);
 
-                Set<Integer> bookedSeatNumbers = bookedSeats.stream()
-                                .map(BookedSeat::getSeatNumber)
-                                .collect(Collectors.toSet());
+                // Create a map of SeatNumber -> Status
+                // If multiple bookings overlap (shouldn't happen conceptually due to locks, but
+                // physically possible), priority: BLOCKED > BOOKED
+                java.util.Map<Integer, String> seatStatusMap = new java.util.HashMap<>();
+
+                for (BookedSeat bs : bookedSeats) {
+                        String status = "booked";
+                        if (bs.getBooking() != null && "BLOCKED".equalsIgnoreCase(bs.getBooking().getBookingStatus())) {
+                                status = "blocked";
+                        }
+
+                        // If already blocked, don't overwrite with booked
+                        if (!"blocked".equals(seatStatusMap.get(bs.getSeatNumber()))) {
+                                seatStatusMap.put(bs.getSeatNumber(), status);
+                        }
+                }
 
                 List<SeatRowDTO> rows = new ArrayList<>();
                 int seatsPerRow = 4;
@@ -52,18 +61,13 @@ public class SeatService {
 
                 for (int i = 1; i <= totalRows; i++) {
                         List<SeatDTO> seats = new ArrayList<>();
-                        // Seat Numbers logic matches frontend expectation
                         int baseSeatNum = (i - 1) * seatsPerRow;
 
-                        seats.add(new SeatDTO(baseSeatNum + 1, String.valueOf(baseSeatNum + 1),
-                                        bookedSeatNumbers.contains(baseSeatNum + 1)));
-                        seats.add(new SeatDTO(baseSeatNum + 2, String.valueOf(baseSeatNum + 2),
-                                        bookedSeatNumbers.contains(baseSeatNum + 2)));
-                        seats.add(new SeatDTO(baseSeatNum + 3, String.valueOf(baseSeatNum + 3),
-                                        bookedSeatNumbers.contains(baseSeatNum + 3)));
-                        seats.add(new SeatDTO(baseSeatNum + 4, String.valueOf(baseSeatNum + 4),
-                                        bookedSeatNumbers.contains(baseSeatNum + 4)));
-
+                        for (int j = 1; j <= 4; j++) {
+                                int seatNum = baseSeatNum + j;
+                                String status = seatStatusMap.getOrDefault(seatNum, "available");
+                                seats.add(new SeatDTO(seatNum, String.valueOf(seatNum), status));
+                        }
                         rows.add(new SeatRowDTO(i, seats));
                 }
                 return rows;
