@@ -25,11 +25,19 @@ CREATE DATABASE karbs_db;
 ```
 
 ### 2. Configuration
-Open `backend/src/main/resources/application.properties` and verify your credentials:
+Open `backend/src/main/resources/application.properties` and verify your credentials.
+By default, it uses:
+*   Username: `postgres`
+*   Password: `password`
+
+If your local PostgreSQL setup uses different credentials, you can either:
+1.  Set the `DB_USERNAME` and `DB_PASSWORD` environment variables.
+2.  Or manually update `backend/src/main/resources/application.properties`.
+
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/karbs_db
-spring.datasource.username=postgres
-spring.datasource.password=Thilaks@1624  # Change this to your local password
+spring.datasource.username=${DB_USERNAME:postgres}
+spring.datasource.password=${DB_PASSWORD:password}
 spring.jpa.properties.hibernate.default_schema=karbs
 ```
 

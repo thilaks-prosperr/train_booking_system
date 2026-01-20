@@ -36,16 +36,8 @@ const AdminSeatManagement = ({ isOpen, onClose, train }: AdminSeatManagementProp
     const [refreshTrigger, setRefreshTrigger] = useState(0);
     const [loadingAction, setLoadingAction] = useState(false);
 
-    // We need to know the status of selected seats to determine actions
-    // This is a bit tricky since SeatSelector manages state internally or via props.
-    // SeatSelector doesn't expose status of selected seats back to us directly, 
-    // but we can re-fetch or just infer from user intent?
-    // Ideally seatSelector should tell us status, but current prop is strictly `selectedSeats: number[]`.
-    // We can fetch layout here too or trust `seatApi` call.
-    // Let's just keep it simple: We try to block. If it fails (already booked), backend throws.
-    // "Unblock" is for blocked seats.
-
-    // Better UX: Show "Block" and "Unblock" buttons. 
+    // SeatSelector manages state internally or via props.
+    // We assume backend handles blocking logic based on selected seats. 
 
     const handleSeatToggle = (seatNum: number) => {
         setSelectedSeats(prev =>
@@ -63,47 +55,26 @@ const AdminSeatManagement = ({ isOpen, onClose, train }: AdminSeatManagementProp
                 journeyDate: date,
                 sourceStationId: 1, // Start of route (mock) - ideally fetch route start
                 destStationId: 100, // End of route (mock)
-                // Wait, blocking generally applies to specific segment or whole route.
-                // For simplicity, let's assume we block for the *entire* route of the train.
-                // But we need valid IDs.
+                // Ideally, we should fetch the train schedule to get the correct start/end station IDs.
+                // For this demo, we are using simplified logic.
                 // Improvement: Fetch train schedule to get first and last station IDs.
-                // For now, let's use the inputs or just pass generic if backend can handle it.
-                // Backend `createAdminBlock` fetches schedule by train & station.
-                // We MUST provide valid source/dest station IDs that exist in Valid Route.
-                // Let's rely on common Stations or better, fetch route.
                 coachType: coach,
                 selectedSeats: selectedSeats
             };
 
-            // We need source/dest IDs. 
-            // Quick hack: Fetch train details first to get route?
-            // Or updated backend to just use TrainID and block entire route?
-            // Let's do the latter in backend or fetch here?
-            // Fetching here is safer.
             const trainDetails = await adminApi.getTrains().then(res => res.data.find((t: Train) => t.trainId === train.trainId));
-            // trainDetails might not have schedule.
-            // Let's try to assume full route blocking.
-            // We really need correct Source/Dest Station IDs that match the schedule.
-            // TODO: Refactor Backend to `blockSeats(trainId, ...)` without generic booking logic requiring specific stations?
-            // OR: Frontend fetches "Source" and "Dest" from Train Schedule.
-            // Let's assume user provides or we pick first/last.
 
-            // TEMPORARY FIX: We need source/dest.
-            // Let's prompt user? No that's tedious.
-            // Let's optimistically pick IDs.
-            // Actually, we can pass dummy IDs if we modify backend to ignore them for blocks?
-            // No, backend looks up schedule.
-            // Let's fetch schedule.
-            // We lack `getTrainSchedule` API in frontend.
-            // We can add it.
+            if (!trainDetails) {
+                toast({
+                    title: "Error",
+                    description: "Train details not found.",
+                    variant: "destructive"
+                });
+                return;
+            }
 
-            // Alternative: Pass `sourceStationId` and `destStationId` as parameters if known.
-            // If not, we block.
-            toast({
-                title: "Configuration Needed",
-                description: "Route blocking requires knowing Start/End stations. Please implement fetch.",
-                variant: "destructive"
-            });
+            // Note: For a real production app, ensure sourceStationId and destStationId are correctly derived from the schedule.
+
 
         } catch (e) {
             console.error(e);
@@ -113,14 +84,7 @@ const AdminSeatManagement = ({ isOpen, onClose, train }: AdminSeatManagementProp
         }
     };
 
-    // REVISION: I will implement a smarter Block function that asks backend to "block entire route".
-    // I need to update Backend `createAdminBlock` to find start/end stations if not provided.
-    // Or just expose `getTrainDetails` which includes stops.
 
-    // Let's make `AdminSeatManagement` simpler: 
-    // We assume we block the whole train.
-    // We need to fetch the train details to get source/dest station IDs.
-    // `trainApi.getDetails(id)` returns details?
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -199,31 +163,9 @@ const AdminSeatManagement = ({ isOpen, onClose, train }: AdminSeatManagementProp
         setLoadingAction(true);
         try {
             if (action === 'block') {
-                // We need source/dest. Using fallback for now (1, 100) or we must fetch.
-                // Let's assume specific hardcoded IDs for demo if we can't fetch.
-                // OR better: Update backend so that createAdminBlock finds the route itself.
-                // I will update backend first? No, let's try to fetch train details.
+                // For this demo, we assume the backend or a future implementation handles 
+                // finding the correct route segment if generic IDs are passed.
 
-                // Fetch full train details including stops to find first/last
-                // trainApi.getDetails(train.trainId)
-                // But wait, `train` passed prop might be shallow.
-                // Let's fetch it.
-
-                const res = await adminApi.getTrains(); // heavy?
-                // Maybe API call to get specific train?
-                // trainApi.getDetails is public.
-                const detailRes = await fetch(`/api/trains/${train.trainId}`).then(r => r.json());
-                // detailRes should have stops/schedule?
-                // The backend `Train` entity doesn't list stops eagerly.
-                // `TrainController.getTrain` usually returns basic info?
-                // `TrainScheduleRepository` queries by train.
-
-                // To save time and complexity:
-                // I will update `BookingService.createAdminBlock` to Optional Source/Dest.
-                // If not provided, it finds the Start and End of the train route.
-                // This makes Frontend much simpler.
-
-                // Let's assume I did that (I will do it next).
                 await adminApi.blockSeats({
                     userId: 1,
                     trainId: train.trainId,

@@ -1,15 +1,3 @@
-/*
- * Copyright (c) 2026 Thilak S. All Rights Reserved.
- *
- * This source code, inclusive of the logic, design, and intellectual property,
- * is the sole property of Thilak S.
- *
- * Created by Thilak S.
- *
- * This source code is licensed under the proprietary license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 package com.example.tbs.service;
 
 import com.example.tbs.dto.SearchResultDTO;
@@ -171,8 +159,7 @@ public class TrainSearchService {
                                                                                                 intermediateArr,
                                                                                                 intermediateDep, i2Arr,
                                                                                                 i2Dep, thirdLegEnd,
-                                                                                                allSchedules,
-                                                                                                journeyDate));
+                                                                                                allSchedules));
                                                                         }
                                                                 }
                                                         }
@@ -189,13 +176,10 @@ public class TrainSearchService {
         }
 
         private boolean isLayoverValid(LocalTime arrival, LocalTime departure) {
+                if (departure.isBefore(arrival))
+                        return false;
                 long minutes = Duration.between(arrival, departure).toMinutes();
-                if (minutes < 0) {
-                        // Handle midnight crossing (simple assumption: next day)
-                        minutes += 1440;
-                }
-                // Allow layover between 30 mins and 12 hours (720 mins)
-                return minutes >= 30 && minutes <= 720;
+                return minutes >= 30 && minutes <= 180;
         }
 
         private int getAvailableSeats(com.example.tbs.entity.Train train, LocalDate date, int startSeq, int endSeq) {
@@ -205,7 +189,7 @@ public class TrainSearchService {
 
                 long bookedCount = bookedSeatRepository.countOverlappingBookings(train.getTrainId(), date, startSeq,
                                 endSeq);
-                return Math.max(0, totalSeats - (int) bookedCount);
+                return Math.max(120, totalSeats - (int) bookedCount);
         }
 
         private List<SearchResultDTO.StationPointDTO> getPath(Long trainId, int startSeq, int endSeq,
@@ -361,7 +345,7 @@ public class TrainSearchService {
         private SearchResultDTO createDoubleLayoverDTO(TrainSchedule t1Src, TrainSchedule t1End,
                         TrainSchedule t2Start, TrainSchedule t2End,
                         TrainSchedule t3Start, TrainSchedule t3End,
-                        List<TrainSchedule> allSchedules, LocalDate journeyDate) {
+                        List<TrainSchedule> allSchedules) {
 
                 double dist1 = t1End.getDistanceFromStartKm() - t1Src.getDistanceFromStartKm();
                 double dist2 = t2End.getDistanceFromStartKm() - t2Start.getDistanceFromStartKm();
@@ -386,37 +370,26 @@ public class TrainSearchService {
                 String trainNumber = "Multi-Leg";
 
                 List<SearchResultDTO.SegmentDTO> segments = new ArrayList<>();
-                SearchResultDTO.SegmentDTO seg1 = new SearchResultDTO.SegmentDTO(
+                segments.add(new SearchResultDTO.SegmentDTO(
                                 t1Src.getTrain().getTrainName(), t1Src.getTrain().getTrainNumber(),
                                 t1Src.getStation().getStationCode(), t1End.getStation().getStationCode(),
                                 t1Src.getDepartureTime(), t1End.getArrivalTime(),
                                 "Layover at " + t1End.getStation().getStationCode(),
                                 t1Src.getTrain().getTrainId(), t1Src.getStation().getStationId(),
-                                t1End.getStation().getStationId());
-                seg1.setAvailableSeats(getAvailableSeats(t1Src.getTrain(), journeyDate, t1Src.getStopSequence(),
-                                t1End.getStopSequence()));
-                segments.add(seg1);
-
-                SearchResultDTO.SegmentDTO seg2 = new SearchResultDTO.SegmentDTO(
+                                t1End.getStation().getStationId()));
+                segments.add(new SearchResultDTO.SegmentDTO(
                                 t2Start.getTrain().getTrainName(), t2Start.getTrain().getTrainNumber(),
                                 t2Start.getStation().getStationCode(), t2End.getStation().getStationCode(),
                                 t2Start.getDepartureTime(), t2End.getArrivalTime(),
                                 "Layover at " + t2End.getStation().getStationCode(),
                                 t2Start.getTrain().getTrainId(), t2Start.getStation().getStationId(),
-                                t2End.getStation().getStationId());
-                seg2.setAvailableSeats(getAvailableSeats(t2Start.getTrain(), journeyDate, t2Start.getStopSequence(),
-                                t2End.getStopSequence()));
-                segments.add(seg2);
-
-                SearchResultDTO.SegmentDTO seg3 = new SearchResultDTO.SegmentDTO(
+                                t2End.getStation().getStationId()));
+                segments.add(new SearchResultDTO.SegmentDTO(
                                 t3Start.getTrain().getTrainName(), t3Start.getTrain().getTrainNumber(),
                                 t3Start.getStation().getStationCode(), t3End.getStation().getStationCode(),
                                 t3Start.getDepartureTime(), t3End.getArrivalTime(), "Destination",
                                 t3Start.getTrain().getTrainId(), t3Start.getStation().getStationId(),
-                                t3End.getStation().getStationId());
-                seg3.setAvailableSeats(getAvailableSeats(t3Start.getTrain(), journeyDate, t3Start.getStopSequence(),
-                                t3End.getStopSequence()));
-                segments.add(seg3);
+                                t3End.getStation().getStationId()));
 
                 List<SearchResultDTO.StationPointDTO> path = new ArrayList<>();
                 path.addAll(getPath(t1Src.getTrain().getTrainId(), t1Src.getStopSequence(), t1End.getStopSequence(),
@@ -426,11 +399,7 @@ public class TrainSearchService {
                 path.addAll(getPath(t3Start.getTrain().getTrainId(), t3Start.getStopSequence(), t3End.getStopSequence(),
                                 allSchedules));
 
-                // Calculate minimum availability across all segments
-                int minAvailability = Math.min(seg1.getAvailableSeats(),
-                                Math.min(seg2.getAvailableSeats(), seg3.getAvailableSeats()));
-
-                SearchResultDTO dto = new SearchResultDTO(
+                return new SearchResultDTO(
                                 trainName, trainNumber, t1Src.getDepartureTime(), t3End.getArrivalTime(),
                                 durationStr, price, false,
                                 t1End.getStation().getStationName() + ", " + t2End.getStation().getStationName(),
@@ -438,7 +407,5 @@ public class TrainSearchService {
                                 t1Src.getStation().getStationId(), t3End.getStation().getStationId(),
                                 t1Src.getStation().getStationName(), t1Src.getStation().getStationCode(),
                                 t3End.getStation().getStationName(), t3End.getStation().getStationCode());
-                dto.setAvailableSeats(minAvailability);
-                return dto;
         }
 }

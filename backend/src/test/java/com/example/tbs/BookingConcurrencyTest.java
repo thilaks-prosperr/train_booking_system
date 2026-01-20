@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -52,9 +51,6 @@ public class BookingConcurrencyTest {
 
     @Autowired
     private TrainScheduleRepository trainScheduleRepository;
-
-    @Autowired
-    private BookingRepository bookingRepository;
 
     @Autowired
     private BookedSeatRepository bookedSeatRepository;
