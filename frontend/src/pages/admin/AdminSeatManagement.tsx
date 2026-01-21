@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import { format, addDays } from 'date-fns';
 import { Loader2, ShieldAlert, ShieldCheck } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { DatePicker } from '@/components/ui/date-picker';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -30,7 +31,7 @@ interface AdminSeatManagementProps {
 
 const AdminSeatManagement = ({ isOpen, onClose, train }: AdminSeatManagementProps) => {
     const { toast } = useToast();
-    const [date, setDate] = useState(format(addDays(new Date(), 1), 'yyyy-MM-dd')); // Default tomorrow
+    const [date, setDate] = useState<Date | undefined>(addDays(new Date(), 1)); // Default tomorrow
     const [coach, setCoach] = useState('S1');
     const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -52,7 +53,7 @@ const AdminSeatManagement = ({ isOpen, onClose, train }: AdminSeatManagementProp
             const payload = {
                 userId: 1, // Admin User ID (Mock or use context)
                 trainId: train.trainId,
-                journeyDate: date,
+                journeyDate: date ? format(date, 'yyyy-MM-dd') : '',
                 sourceStationId: 1, // Start of route (mock) - ideally fetch route start
                 destStationId: 100, // End of route (mock)
                 // Ideally, we should fetch the train schedule to get the correct start/end station IDs.
@@ -95,12 +96,14 @@ const AdminSeatManagement = ({ isOpen, onClose, train }: AdminSeatManagementProp
                 <div className="flex gap-4 p-4 bg-muted/30 rounded-lg">
                     <div className="space-y-2">
                         <Label>Journey Date</Label>
-                        <input
-                            type="date"
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                        />
+                        <div className="space-y-2">
+                            <Label>Journey Date</Label>
+                            <DatePicker
+                                date={date}
+                                setDate={setDate}
+                                className="w-full"
+                            />
+                        </div>
                     </div>
                     <div className="space-y-2 w-32">
                         <Label>Coach</Label>
@@ -124,7 +127,7 @@ const AdminSeatManagement = ({ isOpen, onClose, train }: AdminSeatManagementProp
                             key={`${train.trainId}-${date}-${coach}-${refreshTrigger}`}
                             trainId={train.trainId}
                             coach={coach}
-                            date={date}
+                            date={date ? format(date, 'yyyy-MM-dd') : format(new Date(), 'yyyy-MM-dd')}
                             selectedSeats={selectedSeats}
                             onSeatToggle={handleSeatToggle}
                         />
@@ -180,7 +183,7 @@ const AdminSeatManagement = ({ isOpen, onClose, train }: AdminSeatManagementProp
             } else {
                 await adminApi.unblockSeats({
                     trainId: train.trainId,
-                    journeyDate: date,
+                    journeyDate: date ? format(date, 'yyyy-MM-dd') : '',
                     coachType: coach,
                     seatNumbers: selectedSeats
                 });

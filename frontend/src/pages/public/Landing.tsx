@@ -12,8 +12,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { format } from "date-fns";
 import { stationApi } from '@/lib/api';
 import Navbar from '@/components/Navbar';
+import { DatePicker } from '@/components/ui/date-picker';
 
 interface Station {
     stationCode: string;
@@ -23,7 +25,7 @@ interface Station {
 const Landing = () => {
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState<Date>();
     const [stations, setStations] = useState<Station[]>([]);
     const navigate = useNavigate();
 
@@ -36,7 +38,7 @@ const Landing = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (from && to && date) {
-            navigate(`/search?from=${from}&to=${to}&date=${date}`);
+            navigate(`/search?from=${from}&to=${to}&date=${format(date, 'yyyy-MM-dd')}`);
         }
     };
 
@@ -101,14 +103,12 @@ const Landing = () => {
 
                             <div className="space-y-1.5">
                                 <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Date</label>
-                                <input
-                                    type="date"
-                                    value={date}
-                                    onChange={(e) => setDate(e.target.value)}
-                                    // @ts-ignore
-                                    onClick={(e) => e.currentTarget.showPicker && e.currentTarget.showPicker()}
-                                    className="w-full bg-background/50 border border-input rounded-md p-3 focus:ring-2 focus:ring-primary outline-none transition-all cursor-pointer"
-                                    required
+                                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Date</label>
+                                <DatePicker
+                                    date={date}
+                                    setDate={setDate}
+                                    className="w-full bg-background/50 border border-input rounded-md p-3 focus:ring-2 focus:ring-primary outline-none transition-all h-auto"
+                                    placeholder="Select Journey Date"
                                 />
                             </div>
 
